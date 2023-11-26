@@ -10,7 +10,14 @@ class App
     {
         $url = $this->parseURL();
 
-        $this->setController($_SESSION["role"], $url);
+        if (isset($_SESSION)) {
+            $this->setController($_SESSION["role"], $url);
+        } else {
+            if ($url == NULL) {
+                $url[0] = $this->controller;
+            }
+        }
+
 
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
@@ -37,21 +44,15 @@ class App
     }
     public function setController($role, $url)
     {
-        if ($role !== NULL) {
-            if ($url == NULL) {
+        if ($url == NULL) {
 
-                $this->controller = $_SESSION["role"];
-                $url[0] = $this->controller;
-            } else {
-                // controller
-                if (file_exists('../app/controllers/' . $url[0] . '.php')) {
-                    $this->controller = $url[0];
-                    unset($url[0]);
-                }
-            }
+            $this->controller = $_SESSION["role"];
+            $url[0] = $this->controller;
         } else {
-            if ($url == NULL) {
-                $url[0] = $this->controller;
+            // controller
+            if (file_exists('../app/controllers/' . $url[0] . '.php')) {
+                $this->controller = $url[0];
+                unset($url[0]);
             }
         }
     }
