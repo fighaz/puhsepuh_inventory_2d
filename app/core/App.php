@@ -8,6 +8,7 @@ class App
 
     public function __construct()
     {
+        echo "App.php";
         $url = $this->parseURL();
 
         $this->setController($_SESSION["role"], $url);
