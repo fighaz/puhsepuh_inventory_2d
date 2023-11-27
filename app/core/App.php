@@ -2,7 +2,7 @@
 
 class App
 {
-    protected $controller = 'Login';
+    protected $controller = 'Auth';
     protected $method = 'index';
     protected $params = [];
 
@@ -46,7 +46,7 @@ class App
     {
         if ($url == NULL) {
 
-            $this->controller = $_SESSION["role"];
+            $this->controller = $role;
             $url[0] = $this->controller;
         } else {
             // controller
