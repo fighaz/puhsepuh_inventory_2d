@@ -3,7 +3,7 @@ class Admin extends Controller
 {
     public function index()
     {
-        $data['admin'] = $this->model('Barang')->getAllBarang();
+        $data['admin'] = $this->model('Peminjaman')->getAllPeminjaman();
         $this->view('admin/index', $data);
     }
 }

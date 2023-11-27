@@ -8,7 +8,7 @@ class Peminjaman
     {
         $this->db = new Database;
     }
-    public function getAllBarang()
+    public function getAllPeminjaman()
     {
         $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
@@ -46,7 +46,7 @@ class Peminjaman
         return $this->db->rowCount();
     }
 
-    public function hapusDataBarang($id)
+    public function hapusDataPeminjaman($id)
     {
         $query = "DELETE FROM peminjaman WHERE id = :id";
 
