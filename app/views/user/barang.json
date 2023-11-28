@@ -1,0 +1,32 @@
+[
+    {
+        "id": "brg1 ",
+        "nama": "Barang 1",
+        "kuantitas": "10\/10"
+    },
+    {
+        "id": "brg2 ",
+        "nama": "Barang 2",
+        "kuantitas": "10\/20"
+    },
+    {
+        "id": "brg3 ",
+        "nama": "Barang 3",
+        "kuantitas": "10\/30"
+    },
+    {
+        "id": "brg4 ",
+        "nama": "Barang 4",
+        "kuantitas": "10\/40"
+    },
+    {
+        "id": "brg5 ",
+        "nama": "Barang 5",
+        "kuantitas": "10\/50"
+    },
+    {
+        "id": "brg55",
+        "nama": "Barang 55",
+        "kuantitas": "10\/550"
+    }
+]

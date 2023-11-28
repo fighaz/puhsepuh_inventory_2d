@@ -28,7 +28,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
   --bs-ikan: #ff0000;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-sans-serif: Montserrat;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
@@ -52,7 +52,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: var(--background-global);
+  background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
