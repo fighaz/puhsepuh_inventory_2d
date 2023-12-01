@@ -5,7 +5,7 @@
   <title>Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
   
   <style>
     * {
@@ -16,7 +16,7 @@
       top: 0;
       left: 0;
       height: 100%;
-      width: 250px;
+      width: 260px;
       background-color: #222D30;;
       padding-top: 20px;
     }
@@ -37,19 +37,20 @@
     }
     .sidebar a:hover {
         background-color: #E7AE0E;
+        font-weight: bold;
     }
     .sidebar .icon {
-      margin-left: 25px;
-      margin-right: 38px; 
+      margin-right: 30px; 
     }
   </style>
 </head>
 <body>
 
-
 <div class="sidebar" id="sidebar">
   <a href="#">
-    <i class="material-icons">menu</i>
+  <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"><span class="material-symbols-outlined">
+menu
+    <i class="material-icons" onclick="closeNav()">menu</i>
   </a>
   <a href="#">
     Home <i class="material-icons icon">home</i>
@@ -61,10 +62,7 @@
     Peminjaman <i class="material-icons icon">note_add</i>
   </a>
   <a href="#">
-    Ganti Password <i class="material-icons icon">lock</i>
-  </a>
-  <a href="#">
-    Keluar <i class="material-icons icon">exit_to_app</i>
+    Ganti Password <i class="material-icons icon">key</i>
   </a>
 </div>
 
