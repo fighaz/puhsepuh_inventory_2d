@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="css/style.css">
   
   <style>
+    * {
+      font-family: Montserrat;
+    }
     .sidebar {
       position: fixed;
       top: 0;
@@ -16,8 +19,6 @@
       width: 250px;
       background-color: #222D30;;
       padding-top: 20px;
-      color: white;
-      transition: all 0.3s ease; 
     }
     .sidebar a {
       padding: 10px;
@@ -26,6 +27,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between; 
+      padding-left: 31px ;
+      color: #FFF;
+      font-family: Montserrat;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
     }
     .sidebar a:hover {
         background-color: #E7AE0E;
