@@ -10,7 +10,7 @@
     * {
       font-family: Montserrat;
       background: #EBEFF5;
-    }
+    }         
 
     .content {
       padding: 14px 42px 14px 42px;
