@@ -11,7 +11,7 @@
 
 <body>
     <div class="container mt-5 w-25">
-        <form id="login-form" class="" action="<?= BASEURL; ?>/auth/login" method="post">
+        <form id="login-form" class="" action="<?= BASEURL; ?>/Auth/login" method="post">
             <div class="d-flex justify-content-center">
                 <img src="assets/jti-logo.png" alt="logo" class="img-fluid w-25 h-25">
             </div>
