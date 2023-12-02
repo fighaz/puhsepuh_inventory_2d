@@ -10,14 +10,13 @@ class App
     {
         $url = $this->parseURL();
 
-        if (isset($_SESSION)) {
-            $this->setController($_SESSION["role"], $url);
-        } else {
-            if ($url == NULL) {
-                $url[0] = $this->controller;
+        if (isset($url[0])) {
+            if (file_exists('../app/controllers/' . $url[0] . '.php')) {
+                $this->controller = $url[0];
+                unset($url[0]);
             }
         }
-
+        // controller   
 
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
@@ -37,34 +36,19 @@ class App
 
         // jalankan controller & method, serta kirimkan params jika ada
         call_user_func_array([$this->controller, $this->method], $this->params);
-
-
-
-
     }
-    public function setController($role, $url)
-    {
-        if ($url == NULL) {
 
-            $this->controller = $role;
-            $url[0] = $this->controller;
-        } else {
-            // controller
-            if (file_exists('../app/controllers/' . $url[0] . '.php')) {
-                $this->controller = $url[0];
-                unset($url[0]);
-            }
-        }
-    }
     public function parseURL()
     {
         if (isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
-            // Supaya bersih dari karakter karakter aneh
             $url = explode('/', $url);
-            // pecah urlnya berdasarkan tanda /  menggunakan explode
             return $url;
         }
     }
 }
+
+
+
+

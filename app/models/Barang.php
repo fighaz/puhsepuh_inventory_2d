@@ -56,7 +56,7 @@ class Barang
     }
 
 
-    public function ubahDataMahasiswa($data)
+    public function ubahDataBarang($data)
     {
         $query = "UPDATE barang SET
                     nama = :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar
