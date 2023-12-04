@@ -13,6 +13,14 @@ class User extends Controller
         $_SESSION['cart'][] = $id;
 
     }
+    public function removeFromChart($id)
+    {
+        for ($i = 0; $i < count($_SESSION['chart']); $i++) {
+            if ($_SESSION['cart'][$i] == $id) {
+                unset($_SESSION['cart'][$i]);
+            }
+        }
+    }
     public function tambah()
     {
         if ($this->model('Peminjaman')->tambahDataMahasiswa($_POST) > 0) {
