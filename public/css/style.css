@@ -1,5 +1,11 @@
 :root {
     font-family: Montserrat;
     --background-global: #EBEFF5;
+    --table-row-height: 75px;
+    --secondary: #E7AE0E;
+}
+
+html, body {
+    color: var(--bs-primary)
 }
 
