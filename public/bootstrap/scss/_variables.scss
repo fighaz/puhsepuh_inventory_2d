@@ -76,6 +76,7 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 $ikan:          #ff0000 !default;
+$accent:        #E7AE0E !default;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -89,6 +90,7 @@ $theme-colors: (
   "light":      $light,
   "dark":       $dark,
   "ikan":       $ikan,
+  "accent":     $accent
 ) !default;
 // scss-docs-end theme-colors-map
 
