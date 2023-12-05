@@ -59,13 +59,8 @@
   <h3>Beranda</h3>
   <h2>Selamat Datang</h2>
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
-      <div class="search">
-        <input type="text" class="form-control">
-        <button class="btn btn-primary">
-        Search <i class="fa fa-search"></i> 
-        <img src="asset/asdasdasda.svg" alt="">
-        </button>
-      </div>
+      
+  <!-- SearchBar -->
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
