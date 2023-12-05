@@ -62,16 +62,47 @@
             padding: 0 0 0 15px;
             border: 1px solid var(--bs-primary);
         }
+    .container-table {
+        margin-top: 20px; 
+    }
+
+    .container-tabs {
+        font-size: 25px;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: #E7AE0E;
+        font-size: 25;
+    }
+    .nav-item{
+        background-color: #3C8DBB !important;
+    }
   </style>
-    </style>
 </head>
 <body>
 <div class="content">
   <h3>List Barang</h3>
   <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
+  
+  <!-- NavTabs -->
+  <div class="container-tabs rounded mt-2 fs-5 fw-semibold">
+    <ul class="nav nav-pills nav-fill rounded">
+    <li class="nav-item rounded-start">
+        <a class="nav-link active" aria-current="page" href="#">Semua</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="#">Dibeli</a>
+    </li>
+    <li class="nav-item rounded-end">
+        <a class="nav-link text-white" href="#">Hibah</a>
+    </li>
+    </ul>
+  </div>
   <!-- SearchBar -->
 
+
   <!-- Table -->
+  <div class="container-table">
   <div class="d-flex flex-row mb-2 entries-control">
                     Show 
                     <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
@@ -121,5 +152,6 @@
                     </nav>
                 </div>
 </div>
+  </div>
 </body>
 </html>
