@@ -3,7 +3,7 @@ class Auth extends Controller
 {
     public function index()
     {
-        $this->view('Login');
+        $this->viewWithoutTemplate('Login');
     }
     public function login()
     {

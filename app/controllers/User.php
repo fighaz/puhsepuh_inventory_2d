@@ -1,6 +1,11 @@
 <?php
 class User extends Controller
 {
+    public function __construct()
+    {
+        session_start();
+        $_SESSION['cart'] = array();
+    }
     public function index()
     {
         $data['user'] = $this->model('Barang')->getAllBarang();
@@ -8,14 +13,16 @@ class User extends Controller
     }
     public function addCart($id)
     {
-        session_start();
-        $_SESSION['cart'] = array();
         $_SESSION['cart'][] = $id;
 
     }
-    public function removeFromChart($id)
+    public function getCart()
     {
-        for ($i = 0; $i < count($_SESSION['chart']); $i++) {
+        echo json_encode($_SESSION['cart']);
+    }
+    public function removeFromCart($id)
+    {
+        for ($i = 0; $i < count($_SESSION['cart']); $i++) {
             if ($_SESSION['cart'][$i] == $id) {
                 unset($_SESSION['cart'][$i]);
             }
