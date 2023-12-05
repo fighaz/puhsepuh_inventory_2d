@@ -107,7 +107,7 @@
     </tbody>
   </table>
   <div class="pagination-wrapper d-flex flex-row justify-content-between">
-                    <div class="intries-showed mt-2"> 
+                    <div class="intries-showed mt-2 text-primary"> 
                         Showing 1 to 10 of 100 entries
                     </div>
                     <nav class="navigation">
