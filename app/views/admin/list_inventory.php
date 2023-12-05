@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../../../public/css/style.css" rel="stylesheet">
-  <link href="../../../public/css/bootstrap.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-  <style>
+    <title>List Barang</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../../public/css/style.css" rel="stylesheet">
+    <link href="../../../public/css/bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        <style>
     :root {
       font-family: Montserrat;
     }         
@@ -18,10 +19,6 @@
 
     .content {
       padding: 14px 42px 14px 42px;
-    }
-    .content h2 {
-      font-size: 40px;
-      color: #E7AE0E;
     }
 
     .content h3 {
@@ -65,16 +62,47 @@
             padding: 0 0 0 15px;
             border: 1px solid var(--bs-primary);
         }
+    .container-table {
+        margin-top: 20px; 
+    }
+
+    .container-tabs {
+        font-size: 25px;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: #E7AE0E;
+        font-size: 25;
+    }
+    .nav-item{
+        background-color: #3C8DBB !important;
+    }
   </style>
 </head>
 <body>
 <div class="content">
-  <h3>Beranda</h3>
-  <h2>Selamat Datang</h2>
-  <p>Berikut adalah peminjaman barang yang diajukan di website</p>
+  <h3>List Barang</h3>
+  <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
+  
+  <!-- NavTabs -->
+  <div class="container-tabs rounded mt-2 fs-5 fw-semibold">
+    <ul class="nav nav-pills nav-fill rounded">
+    <li class="nav-item rounded-start">
+        <a class="nav-link active" aria-current="page" href="#">Semua</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="#">Dibeli</a>
+    </li>
+    <li class="nav-item rounded-end">
+        <a class="nav-link text-white" href="#">Hibah</a>
+    </li>
+    </ul>
+  </div>
   <!-- SearchBar -->
 
+
   <!-- Table -->
+  <div class="container-table">
   <div class="d-flex flex-row mb-2 entries-control">
                     Show 
                     <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
@@ -83,25 +111,28 @@
   <table class="table table-hover">
     <thead>
       <tr class="bg-primary">
+          <th>Gambar</th>
           <th>ID</th>
-          <th>Detail Peminjam</th>
-          <th>Barang</th>
-          <th>Tanggal Pinjam</th>
-          <th>Tanggal Pengembalian</th>
+          <th>Nama Barang</th>
+          <th>Kuantitas</th>
+          <th>Penanggung Jawab</th>
+          <th>Asal</th>
           <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
     <tbody class="text-primary">
       <tr class="bg-white">
+        <td>Gambar</td>
         <td>ID</td>
-        <td>Detail Pinjam</td>
-        <td>Barang</td>
-        <td>Tanggal Pinjam</td>
-        <td>Tanggal Pengembalian</td>
+        <td>Nama Barang</td>
+        <td>Kuantitas</td>
+        <td>Penanggung Jawab</td>
+        <td>Asal</td>
         <td>
-          <a href="" class="icon_terima"><img src="asset/terima.svg" alt="Terima"></a>
-          <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
+          <a href="" class="icon_info"><img src="asset/info.svg" alt="Rincian"></a>
+          <a href="" class="icon_edit"><img src="asset/edit.svg" alt="Edit"></a>
+          <a href="" class="icon_remove"><img src="asset/remove.svg" alt="Remove"></a>
         </td>
       </tr>
     </tbody>
@@ -121,8 +152,6 @@
                     </nav>
                 </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+  </div>
 </body>
 </html>

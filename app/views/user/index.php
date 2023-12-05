@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../../../public/css/bootstrap.css" rel="stylesheet">
-    <link href="../../../public/css/style.css" rel="stylesheet">
-    <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/tZ1ZqjKw0BOyL8GfZ2mPAmUw/A763lSNtFqIo=" crossorigin="anonymous"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
-
-<body>
     <div class="container page d-flex flex-column">
         <div id="welcome" class="title">
             SELAMAT DATANG
@@ -22,7 +8,7 @@
             <input type="text" class="form-control" id="search" placeholder="Cari barang">
             <button class="btn btn-primary text-white d-flex flex-row">
                 Cari
-                <img src="../../../public/assets/search.svg" alt="search" class="alt-button search">
+                <img src="assets/search.svg" alt="search" class="alt-button search">
             </button>
         </div>
         <div class="container tables">
@@ -68,7 +54,7 @@
                             Barang 1
                         </span>
                         <span>
-                            <img src="../../../public/assets/hapus.svg" alt="hapus" class="alt-button hapus">
+                            <img src="assets/hapus.svg" alt="hapus" class="alt-button hapus">
                         </span>
                     </li>
                         <!--
@@ -105,7 +91,7 @@
 
         function loadTable(numOfEntries, page) {
             $.ajax({
-                url: "barang.json",
+                url: "assets/barang.json",
                 dataType: "json",
                 success: function(result) {
                     let table = $("#table-content");
@@ -119,7 +105,7 @@
                         });
 
                         let imgWrapper = $wrapper.clone().append($("<img>", {
-                            src: "../../../public/assets/jti-logo.png",
+                            src: "assets/jti-logo.png",
                             alt: "logo",
                             class: "img-fluid"
                         }));;
@@ -136,7 +122,7 @@
                             class: ""
                         }).append($("<img>", {
                             class: "alt-button tambah",
-                            src: "../../../public/assets/tambah.svg",
+                            src: "assets/tambah.svg",
                             alt: "tambah",
                             style: `
                             `,
@@ -145,7 +131,7 @@
                             class: ""
                         }).append($("<img>", {
                             class: "alt-button rincian",
-                            src: "../../../public/assets/rincian.svg",
+                            src: "assets/rincian.svg",
                             alt: "rincian",
                             style: `
                             `,
@@ -374,6 +360,3 @@
             background-color: red;
         }
     </style>
-</body>
-
-</html>
