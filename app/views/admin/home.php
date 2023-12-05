@@ -28,30 +28,6 @@
     .content p {
       color: #3C8DBB;
     }
-
-    /* Search */
-    .search button{
-      top: 5px;
-      right: 5px;
-      height: 54px;
-      width: 160px;
-      background: #3C8DBB;
-    }
-
-    .search{
-      display: flex;
-      align-items: center;
-    }
-
-    .search input{
-    height: 54px;
-    width: 734;
-    border-radius: 5px;
-    border: 3px solid #3C8DBB;
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    }
   </style>
 </head>
 <body>
@@ -61,6 +37,36 @@
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
       
   <!-- SearchBar -->
+
+  <!-- Table -->
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-primary">
+          <th>ID</th>
+          <th>Detail Peminjam</th>
+          <th>Barang</th>
+          <th>Tanggal Pinjam</th>
+          <th>Tanggal Pengembalian</th>
+          <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td>Detail Pinjam</td>
+        <td>Barang</td>
+        <td>Tanggal Pinjam</td>
+        <td>Tanggal Pengembalian</td>
+        <td>
+          <a href=""><img src="asset/terima.svg" alt="Terima"></a>
+          <a href=""><img src="asset/tolak.svg" alt="Tolak"></a>
+        </td>
+      </tr>
+    </tbody>
+
+    </tbody>
+  </table>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>

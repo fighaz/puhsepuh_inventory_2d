@@ -1,10 +1,15 @@
+<!-- HTML -->
 <div class="search">
         <input type="text" class="form-control">
         <button class="btn btn-primary">
         Search <i class="fa fa-search"></i> 
-        <img src="asset/asdasdasda.svg" alt="">
+        <img src="asset/search.svg" alt="">  
+<!-- Belum ada -->
         </button>
 </div>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Style -->
 <style>
