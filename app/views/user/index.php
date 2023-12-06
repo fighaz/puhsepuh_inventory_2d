@@ -1,5 +1,5 @@
     <div class="container page d-flex flex-column">
-        <div id="welcome" class="title">
+        <div id="welcome" class="title text-accent">
             SELAMAT DATANG
             <span class="nama"> Alim </span>
         </div>
@@ -13,37 +13,16 @@
         </div>
         <div class="container tables">
             <div class="tabel-barang">
-                <div class="d-flex flex-row mb-2 entries-control">
-                    Show 
-                    <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
-                    entries
-                </div>
-                <table id="table" class="table rounded">
+                <table id="table" class="table table-stripped rounded">
                     <thead class="bg-primary rounded-top">
                         <tr>
-                            <th scope="col" style="border-top-left-radius: 5px;" class="">Gambar</th>
-                            <th scope="col" class="">Nama</th>
-                            <th scope="col" class="">Kuantitas</th>
-                            <th scope="col" style="border-top-right-radius: 5px;">Aksi</th>
+                            <th style="border-top-left-radius: 5px;">Gambar</th>
+                            <th class="">Nama</th>
+                            <th class="">Kuantitas</th>
+                            <th style="border-top-right-radius: 5px;">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="table-content" class="text-primary">
-                    </tbody>
                 </table>
-                <div class="pagination-wrapper d-flex flex-row justify-content-between">
-                    <div class="intries-showed mt-2"> 
-                        Showing 1 to 10 of 100 entries
-                    </div>
-                    <nav class="navigation">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#table">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#table">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#table">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#table">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
             <div class="peminjaman">
                 <div class="list-items">
@@ -81,116 +60,77 @@
         </div>
     </div>
     <script>
+
         $(document).ready(() => {
-            loadTable(10, 1);
         });
 
         $(".proses button").click(() => {
-            
         });
 
-        function loadTable(numOfEntries, page) {
-            $.ajax({
-                url: "assets/barang.json",
-                dataType: "json",
-                success: function(result) {
-                    let table = $("#table-content");
-                    table.html("");
-                    for (const barang of result) {
-                        let $wrapper = $("<div>", {
-                            class: "td-wrapper"
-                        });
-                        let $row = $("<tr>", {
-                            class: "bg-white"
-                        });
 
-                        let imgWrapper = $wrapper.clone().append($("<img>", {
-                            src: "assets/jti-logo.png",
-                            alt: "logo",
-                            class: "img-fluid"
-                        }));;
-
-                        let $imgColumn = $("<td>", {
-                            class: "img-clm"
-                        }).append(imgWrapper);
-
-                        //let $idColumn = $("<td>").append($wrapper.clone().text(barang.id));
-                        let $namaColumn = $("<td>").append($wrapper.clone().text(barang.nama));
-                        let $kuantitasColumn = $("<td>").append($wrapper.clone().text(barang.kuantitas));
-
-                        let $tambahButton = $("<span>", {
-                            class: ""
-                        }).append($("<img>", {
-                            class: "alt-button tambah",
-                            src: "assets/tambah.svg",
-                            alt: "tambah",
-                            style: `
-                            `,
-                        }));
-                        let $rincianButton = $("<span>", {
-                            class: ""
-                        }).append($("<img>", {
-                            class: "alt-button rincian",
-                            src: "assets/rincian.svg",
-                            alt: "rincian",
-                            style: `
-                            `,
-                        }));
-
-                        let $actionColumn = $("<td>", {
-                            class: `
-                            `,
-                            style: `
-                                max-width: 100px;
-                                gap: 3px;
-                            `
-                        })
-                        .append($wrapper.clone()
-                            .append($rincianButton)
-                            .append($tambahButton)
-                        );
-
-                        $row
-                            .append($imgColumn)
-                            //.append($idColumn)
-                            .append($namaColumn)
-                            .append($kuantitasColumn)
-                            .append($actionColumn);
-
-                        table.append($row);
+        let table = new DataTable("#table", {
+            ajax: "assets/barang.json",
+            dom: "lrtip",
+            columns: [
+                { data: "img" },
+                { data: "nama" },
+                { data: "kuantitas" },
+                { data: null },
+            ],
+            columnDefs: [
+                {
+                    targets: 0,
+                    sortable: false,
+                    className: "img-clm",
+                    render: function(data, type, row) {
+                        return `
+                            <div class="td-wrapper">
+                                <img src="${data}" alt="logo" class="img-fluid">
+                            </div>
+                        `;
                     }
                 },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
-                    console.log(status);
-                    console.log(error);
-                }
-            });
-        }
+                {
+                    targets: 1,
+                    sortable: false,
+                    render: function(data, type, row) {
+                        return `<div class="td-wrapper"> ${data} </div>`
+                    }
+                },
+                {
+                    targets: 2,
+                    sortable: false,
+                    render: function(data, type, row) {
+                        return `<div class="td-wrapper"> ${data} </div>`
+                    }
+                },
+                {
+                    targets: 3,
+                    sortable: false,
+                    render: function(data, type, row) {
+                        return `
+                            <div class="td-wrapper">
+                                <img src="assets/rincian.svg" alt="rincian" class="alt-button rincian img-fluid">
+                                <img src="assets/tambah.svg" alt="tambah" class="alt-button tambah img-fluid">
+                            </div>
+                        `;
+                    }
+                },
+            ],
+            initComplete: function() {
+                let search = $("#search");
 
-        let keranjang = [];
-        //$(".btn-pinjam").click(function() {
-        //    const id = $(this).parent().parent().children()[1].innerText;
-        //    const nama = $(this).parent().parent().children()[2].innerText;
-        //    const barang = {
-        //        id: id,
-        //        nama: nama,
-        //    };
-        //    keranjang.push(barang);
-        //});
-        //$(".btn-hapus").click(function() {
-        //    const id = $(this).parent().parent().children()[1].innerText;
-        //    const nama = $(this).parent().parent().children()[2].innerText;
-        //    const barang = {
-        //        id: id,
-        //        nama: nama,
-        //    };
-        //    keranjang.forEach((barang, index) => {
-        //        if (barang.id === id) {
-        //            keranjang.splice(index, 1);
-        //        }
-        //    });
-        //});
+                search.keyup(() => {
+                    table.column(1).search(search.val(), false, true).draw();
+                });
+
+                table.on('click', '.alt-button.tambah', function() {
+                    let data = table.row($(this).parents('tr')).data();
+                    console.log(data);
+                });
+            },
+        });
+
     </script>
     <style>
         body, html {
@@ -207,7 +147,6 @@
         #welcome {
             font-size: 30px;
             font-weight: 500;
-            color: var(--secondary);
             margin-left: 10px;
         }
 
@@ -248,17 +187,36 @@
 
         table {
             text-align: center;
+            max-height: 100px;
+            overflow-y: scroll;
+        }
+
+        .dataTables_wrapper > div > label {
+            color: var(--bs-primary);
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            border: 1px solid var(--bs-primary) !important;
+            color: var(--bs-primary);
         }
 
         thead>tr>th {
             border-right: 1px solid var(--background-global);
             color: white;
             font-weight: 650;
+            text-align: center !important;
         }
 
         tbody>tr {
             width: 100%;
             height: var(--table-row-height);
+        }
+
+        tbody {
+            background-color: white;
         }
 
         .td-wrapper {
@@ -278,6 +236,11 @@
             max-height: var(--table-row-height);
         }
 
+        .dataTables_paginate {
+            margin-top: -29px !important;
+            margin-bottom: 29px !important;
+        }
+
         .peminjaman {
             display: flex;
             flex-direction: column;
@@ -287,7 +250,7 @@
         .peminjaman>.list-items {
             position: sticky;
             top: 20px;
-            margin-top: 36px;
+            margin-top: 40px;
         }
 
         .list-items>.list-group {
@@ -322,7 +285,7 @@
 
         .alt-button {
             padding: 0;
-            background-color: white;
+            background-color: transparent;
             border: 3px solid transparent;
             border-radius: 40px;
             width:  50px;
