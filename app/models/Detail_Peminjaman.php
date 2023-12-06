@@ -9,14 +9,15 @@ class Detail_Peminjaman
     {
         $this->db = new Database;
     }
-    public function tambahDataPeminjaman($data)
+    public function tambahDataPeminjaman($data, $id)
     {
         for ($i = 0; $i < count($_SESSION['cart']); $i++) {
             $query = "INSERT INTO detail_peminjaman
             VALUES
-          ('', LAST_INSERT_ID(), :id_barang, :jumlah)";
+          ('', :id_peminjaman, :id_barang, :jumlah)";
 
             $this->db->query($query);
+            $this->db->bind('id_peminjaman', $id);
             $this->db->bind('id_barang', $_SESSION['cart'][[$i]]);
             $this->db->bind('jumlah', $data['jumlah'][$i]);
 

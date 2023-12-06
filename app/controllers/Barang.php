@@ -3,8 +3,8 @@ class Barang extends Controller
 {
     public function index()
     {
-        $data['admin'] = $this->model('Barang')->getAllPeminjaman();
-        $this->view('barang/index', $data);
+        // $data['brg'] = $this->model('Barang')->getAllPeminjaman();
+        $this->view('admin/list_inventory');
     }
     public function tambah()
     {
