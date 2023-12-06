@@ -6,22 +6,48 @@
     <title>Inventaris</title>
     <link href="../../../public/css/style.css" rel="stylesheet">
     <link href="../../../public/css/bootstrap.css" rel="stylesheet">
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-    :root {
-      font-family: Montserrat;
-    }         
-    * {
-      background-color: #EBEFF5;
-    }
-        /* Tambahkan style berikut */
-        .btn-primary {
-            font-size: 18px; /* Atur ukuran teks */
-            color: white; /* Warna teks putih */
+        :root {
+            font-family: Montserrat, sans-serif;
         }
+
+        * {
+            background-color: #EBEFF5;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            font-size: 18px;
+            color: white;
+            width: 100%;
+        }
+
         header h1 {
-            color: #E7AE0E
+            color: #E7AE0E;
+        }
+
+        /* Tambahkan style untuk area gambar */
+        .image-upload-container {
+            border: 10px solid #007BFF;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .image-upload-container img {
+            max-width: 100%;
+            max-height: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-control {
+            border: 2px solid #007BFF;
+        }
+        .save-button-container {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -37,31 +63,32 @@
                         <table class="table text-primary">
                             <tbody>
                                 <tr>
-                                    <td><label for="kode_barang">Kode Barang</label></td>
+                                    <td><label for="kode_barang" class="form-label">Kode Barang</label></td>
                                     <td><input type="text" name="kode_barang" id="kode_barang" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="nama_barang">Nama Barang</label></td>
+                                    <td><label for="nama_barang" class="form-label">Nama Barang</label></td>
                                     <td><input type="text" name="nama_barang" id="nama_barang" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="qty">QTY</label></td>
+                                    <td><label for="qty" class="form-label">QTY</label></td>
                                     <td><input type="number" name="qty" id="qty" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="maks_pinjam">Maks Pinjam</label></td>
+                                    <td><label for="maks_pinjam" class="form-label">Maks Pinjam</label></td>
                                     <td><input type="number" name="maks_pinjam" id="maks_pinjam" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="asal">Asal</label></td>
+                                    <td><label for="asal" class="form-label">Asal</label></td>
                                     <td><input type="text" name="asal" id="asal" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="keterangan">Keterangan</label></td>
-                                    <td><input type="text" name="keterangan" id="keterangan" class="form-control"></td>
+                                    <td><label for="keterangan" class="form-label">Keterangan</label></td>
+                                    <td><textarea rows="4" cols="50" name="keterangan" id="keterangan" class="form-control"></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="text-center"><button type="submit" class="btn btn-primary">SIMPAN</button></td>
+                                    <td></td>
+                                    <td colspan="2" class="text-center"><button type="submit" class="btn btn-primary btn-lg text-white">SIMPAN</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -69,9 +96,10 @@
                 </section>
                 <section class="col-md-4 p-4">
                     <div class="form-group border rounded p-4">
-                        <label for="gambar" class="mb-2">Upload Gambar</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control">
-                        <div class="mt-3">
+                        <!-- Tambahkan class untuk area gambar -->
+                        <div class="image-upload-container border border-primary rounded">
+                            <input type="file" name="gambar" id="gambar" class="form-control">
+                            <img id="preview" src="#" alt="Upload Gambar">
                         </div>
                     </div>
                 </section>
