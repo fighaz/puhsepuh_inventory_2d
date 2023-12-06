@@ -1,6 +1,6 @@
 <?php
 
-class Barang
+class Barang_model
 {
     private $table = 'barang';
     private $db;
@@ -23,17 +23,12 @@ class Barang
         return $this->db->single();
     }
 
-    public function tambahDataBarang($data)
+    public function tambahDataBarang($data, $gambar)
     {
         $query = "INSERT INTO barang
                     VALUES
-                  ('', :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
+                  (NULL, :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
 
-        $gambar = $this->upload();
-
-        if (!$gambar) {
-            return false;
-        }
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('jumlah', $data['jumlah']);
@@ -91,41 +86,6 @@ class Barang
         $this->db->bind('keyword', "%$keyword%");
         return $this->db->resultSet();
     }
-    function upload()
-    {
 
-        $namaFile = $_FILES['gambar']['name'];
-        $ukuranFile = $_FILES['gambar']['size'];
-        $error = $_FILES['gambar']['error'];
-        $tmpName = $_FILES['gambar']['tmp_name'];
-        //cek apakah tidak ada gambar yang diupload
-        if ($error === 4) {
-            echo "<script> alert('pilih gambar terlebih dahulu!')</script>";
-            return false;
-        }
-
-        //cek apakah yang diupload adalah gambar
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            echo "<script> alert('yang anda upload bukan gambar')</script>";
-            return false;
-        }
-
-        //cek jika ukurannya terlalu besar
-        if ($ukuranFile > 10000000) {
-            echo "<script> alert('Ukuran gambar terlalu besar!')</script>";
-            return false;
-        }
-        //generate nama gambar baru
-        $namaFileBaru = uniqid();
-        $namaFileBaru .= '.';
-        $namaFileBaru .= $ekstensiGambar;
-
-        //gambar siap diupload
-        move_uploaded_file($tmpName, BASEURL . '/img/' . $namaFileBaru);
-        return $namaFileBaru;
-    }
 
 }
