@@ -90,7 +90,7 @@
     <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
     <div class="row mb-3">
       <div class="col-lg-6">
-        <a href="" class="btn btn-primary">Tambah</a>
+        <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn btn-primary">Tambah</a>
       </div>
     </div>
     <!-- NavTabs -->
@@ -120,8 +120,8 @@
       <table class="table table-hover">
         <thead>
           <tr class="bg-primary">
-            <th>Gambar</th>
             <th>ID</th>
+            <th>Gambar</th>
             <th>Nama Barang</th>
             <th>Kuantitas</th>
             <th>Penanggung Jawab</th>
@@ -131,19 +131,47 @@
         </thead>
         <tbody>
         <tbody class="text-primary">
-          <tr class="bg-white">
-            <td>Gambar</td>
-            <td>ID</td>
-            <td>Nama Barang</td>
-            <td>Kuantitas</td>
-            <td>Penanggung Jawab</td>
-            <td>Asal</td>
-            <td>
-              <a href="" class="icon_info"><img src="asset/info.svg" alt="Rincian"></a>
-              <a href="" class="icon_edit"><img src="asset/edit.svg" alt="Edit"></a>
-              <a href="" class="icon_remove"><img src="asset/remove.svg" alt="Remove"></a>
-            </td>
-          </tr>
+          <?php $no = 1;
+          if (empty($data['brg'])): ?>
+            <tr>
+              <td colspan="7">
+                <div class="alert alert-danger" role="alert">
+                  Tidak ada data terkait.
+                </div>
+              </td>
+            </tr>
+          <?php else:
+            foreach ($data['brg'] as $brg): ?>
+              <tr class="bg-white">
+                <td>
+                  <?= $no++ ?>
+                </td>
+                <td>
+
+                  <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="" width="200px" height="200px">
+                </td>
+
+                <td>
+                  <?= $brg['nama']; ?>
+                </td>
+                <td>
+                  <?= $brg['jumlah']; ?>
+                </td>
+                <td>
+                  <?= $brg['maintainer']; ?>
+                </td>
+                <td>
+                  <?= $brg['asal']; ?>
+                </td>
+                <td>
+                  <a href="/" class="icon_info"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
+                  <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
+                      src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
+                  <a href="" class="icon_remove"><img src="<?= BASEURL; ?>/assets/hapus.svg" alt=""></a>
+                </td>
+              </tr>
+            <?php endforeach;
+          endif; ?>
         </tbody>
       </table>
       <div class="pagination-wrapper d-flex flex-row justify-content-between">
