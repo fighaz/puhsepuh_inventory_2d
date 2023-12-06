@@ -4,7 +4,12 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< Updated upstream
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+=======
+  <link href="../../../public/css/style.css" rel="stylesheet">
+    <link href="../../../public/css/bootstrap.css" rel="stylesheet">
+>>>>>>> Stashed changes
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -25,12 +30,17 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
+<<<<<<< Updated upstream
         <h4 class="modal-title text-center">Modal Heading</h4>
+=======
+        <h4 class="modal-title text-primary">Detail Barang</h4>
+>>>>>>> Stashed changes
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
+<<<<<<< Updated upstream
         Modal body..
       </div>
 
@@ -39,10 +49,80 @@
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
 
+=======
+        <div class="d-flex justify-content-end">
+          <img class="border border-2 border-primary roundeds mt-3 me-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nuon-N2000-Remote-Control.jpg/800px-Nuon-N2000-Remote-Control.jpg" alt="Remote Control" style="max-width: 280px; max-height: 200px; position: absolute; top: 0; right: 0;">
+        </div>
+        <div class="text mt-2">
+          <table class="table text-primary">
+            <tr>
+              <th>ID</th>
+              <td>B11</td>
+            </tr>
+            <tr>
+              <th>Nama Barang</th>
+              <td>Spidol</td>
+            </tr>
+            <tr>
+              <th>Kuantitas</th>
+              <td>12</td>
+            </tr>
+            <tr>
+              <th>Penanggung Jawab</th>
+              <td>B11</td>
+            </tr>
+            <tr>
+              <th>Asal</th>
+              <td>Hibah</td>
+            </tr>
+            <tr>
+              <th>Keterangan</th>
+              <td>
+                Air Conditioner dapat ditemukan dalam peminjaman, sehingga dapat
+                dilakukan peminjaman kembali tanpa harus berharap dipasangin,
+                jangan manja pasang sendiri ya teman teman. Terimakasih
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+>>>>>>> Stashed changes
     </div>
   </div>
 </div>
 
 
+<<<<<<< Updated upstream
+=======
+<!-- Style -->
+<style>
+    .modal-content {
+    width: 774px; 
+    height: 550px; 
+    border-radius: 5px;
+    border: 3px solid #3C8DBB;
+    background: #EBEFF5;
+    margin: auto; 
+}
+
+.modal-body {
+    width: 696px;
+    height: 409px; 
+    border-radius: 5px;
+    border: 3px solid #3C8DBB;
+    background: #EBEFF5;
+    margin: 27px 39px 46px 39px;
+}
+
+.modal-header h4 {
+    color: #E7AD0E;
+font-family: Montserrat;
+font-size: 30px;
+font-style: normal;
+font-weight: 600;
+}
+
+</style>
+>>>>>>> Stashed changes
 </body>
 </html>
