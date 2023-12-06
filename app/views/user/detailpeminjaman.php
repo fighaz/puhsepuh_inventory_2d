@@ -118,6 +118,7 @@
         </tr>
       </thead>
       <tbody class="text-primary">
+      <tbody class="text-primary" style="text-align: center";>
         <tr class="bg-white">
           <td>Gambar</td>
           <td>Nama Barang</td>
