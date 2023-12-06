@@ -28,6 +28,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
   --bs-ikan: #ff0000;
+  --bs-accent: #E7AE0E;
   --bs-font-sans-serif: Montserrat;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -3169,6 +3170,36 @@ textarea.form-control-lg {
   border-color: #ff0000;
 }
 
+.btn-accent {
+  color: #000;
+  background-color: #E7AE0E;
+  border-color: #E7AE0E;
+}
+.btn-accent:hover {
+  color: #000;
+  background-color: #ebba32;
+  border-color: #e9b626;
+}
+.btn-check:focus + .btn-accent, .btn-accent:focus {
+  color: #000;
+  background-color: #ebba32;
+  border-color: #e9b626;
+  box-shadow: 0 0 0 0.25rem rgba(196, 148, 12, 0.5);
+}
+.btn-check:checked + .btn-accent, .btn-check:active + .btn-accent, .btn-accent:active, .btn-accent.active, .show > .btn-accent.dropdown-toggle {
+  color: #000;
+  background-color: #ecbe3e;
+  border-color: #e9b626;
+}
+.btn-check:checked + .btn-accent:focus, .btn-check:active + .btn-accent:focus, .btn-accent:active:focus, .btn-accent.active:focus, .show > .btn-accent.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(196, 148, 12, 0.5);
+}
+.btn-accent:disabled, .btn-accent.disabled {
+  color: #000;
+  background-color: #E7AE0E;
+  border-color: #E7AE0E;
+}
+
 .btn-outline-primary {
   color: #3C8DBB;
   border-color: #3C8DBB;
@@ -3391,6 +3422,31 @@ textarea.form-control-lg {
 }
 .btn-outline-ikan:disabled, .btn-outline-ikan.disabled {
   color: #ff0000;
+  background-color: transparent;
+}
+
+.btn-outline-accent {
+  color: #E7AE0E;
+  border-color: #E7AE0E;
+}
+.btn-outline-accent:hover {
+  color: #000;
+  background-color: #E7AE0E;
+  border-color: #E7AE0E;
+}
+.btn-check:focus + .btn-outline-accent, .btn-outline-accent:focus {
+  box-shadow: 0 0 0 0.25rem rgba(231, 174, 14, 0.5);
+}
+.btn-check:checked + .btn-outline-accent, .btn-check:active + .btn-outline-accent, .btn-outline-accent:active, .btn-outline-accent.active, .btn-outline-accent.dropdown-toggle.show {
+  color: #000;
+  background-color: #E7AE0E;
+  border-color: #E7AE0E;
+}
+.btn-check:checked + .btn-outline-accent:focus, .btn-check:active + .btn-outline-accent:focus, .btn-outline-accent:active:focus, .btn-outline-accent.active:focus, .btn-outline-accent.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.25rem rgba(231, 174, 14, 0.5);
+}
+.btn-outline-accent:disabled, .btn-outline-accent.disabled {
+  color: #E7AE0E;
   background-color: transparent;
 }
 
@@ -4769,6 +4825,15 @@ textarea.form-control-lg {
   color: #7a0000;
 }
 
+.alert-accent {
+  color: #5c4606;
+  background-color: #faefcf;
+  border-color: #f8e7b7;
+}
+.alert-accent .alert-link {
+  color: #4a3805;
+}
+
 @keyframes progress-bar-stripes {
   0% {
     background-position-x: 1rem;
@@ -5160,6 +5225,20 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #990000;
   border-color: #990000;
+}
+
+.list-group-item-accent {
+  color: #5c4606;
+  background-color: #faefcf;
+}
+.list-group-item-accent.list-group-item-action:hover, .list-group-item-accent.list-group-item-action:focus {
+  color: #5c4606;
+  background-color: #e1d7ba;
+}
+.list-group-item-accent.list-group-item-action.active {
+  color: #fff;
+  background-color: #5c4606;
+  border-color: #5c4606;
 }
 
 .btn-close {
@@ -6163,6 +6242,13 @@ textarea.form-control-lg {
   color: #ff3333;
 }
 
+.link-accent {
+  color: #E7AE0E;
+}
+.link-accent:hover, .link-accent:focus {
+  color: #ecbe3e;
+}
+
 .ratio {
   position: relative;
   width: 100%;
@@ -6544,6 +6630,10 @@ textarea.form-control-lg {
 
 .border-ikan {
   border-color: #ff0000 !important;
+}
+
+.border-accent {
+  border-color: #E7AE0E !important;
 }
 
 .border-white {
@@ -7379,6 +7469,10 @@ textarea.form-control-lg {
   color: #ff0000 !important;
 }
 
+.text-accent {
+  color: #E7AE0E !important;
+}
+
 .text-white {
   color: #fff !important;
 }
@@ -7437,6 +7531,10 @@ textarea.form-control-lg {
 
 .bg-ikan {
   background-color: #ff0000 !important;
+}
+
+.bg-accent {
+  background-color: #E7AE0E !important;
 }
 
 .bg-body {
