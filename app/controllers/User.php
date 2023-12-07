@@ -1,32 +1,64 @@
 <?php
 class User extends Controller
 {
+    public $sidebar;
     public function __construct()
     {
         session_start();
-        $_SESSION['cart'] = array();
+        $this->sidebar = [
+            [
+                "id" => "home active",
+                "title" => "Home",
+                "icon" => "home.svg",
+                "url" => "user/index"
+            ],
+            [
+                "id" => "inventaris",
+                "title" => "Inventaris",
+                "icon" => "inventaris.svg",
+                "url" => "user/index"
+            ],
+            [
+                "id" => "peminjaman",
+                "title" => "Peminjaman",
+                "icon" => "peminjaman.svg",
+                "url" => "user/index"
+            ],
+            [
+                "id" => "ganti_password",
+                "title" => "Ganti Password",
+                "icon" => "kunci.svg",
+                "url" => "user/index"
+            ]
+        ];
     }
     public function index()
     {
-        $data['user'] = $this->model('Barang')->getAllBarang();
+        $data['sidebar'] = $this->sidebar;
         $this->view('user/index', $data);
     }
     public function addCart($id)
     {
-        $_SESSION['cart'][] = $id;
+        if (array_key_exists($id, $_SESSION['cart'])) {
+            http_response_code(400);
+        } else {
+            $_SESSION['cart'][$id] = $id;
+            http_response_code(200);
+        }
 
+    }
+    public function removeFromCart($id)
+    {
+        if (array_key_exists($id, $_SESSION['cart'])) {
+            unset($_SESSION['cart'][$id]);
+            http_response_code(200);
+        } else {
+            http_response_code(400);
+        }
     }
     public function getCart()
     {
         echo json_encode($_SESSION['cart']);
-    }
-    public function removeFromCart($id)
-    {
-        for ($i = 0; $i < count($_SESSION['cart']); $i++) {
-            if ($_SESSION['cart'][$i] == $id) {
-                unset($_SESSION['cart'][$i]);
-            }
-        }
     }
     public function tambah()
     {
