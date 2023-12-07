@@ -1,103 +1,103 @@
 {
     "data": [
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg1 ",
             "nama": "Barang 1",
             "kuantitas": "10\/10"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg2 ",
             "nama": "Barang 2",
             "kuantitas": "10\/20"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg3 ",
             "nama": "Barang 3",
             "kuantitas": "10\/30"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg4 ",
             "nama": "Barang 4",
             "kuantitas": "10\/40"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg5 ",
             "nama": "Barang 5",
             "kuantitas": "10\/50"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg6 ",
             "nama": "Barang 6",
             "kuantitas": "10\/60"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg7 ",
             "nama": "Barang 7",
             "kuantitas": "10\/70"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg8 ",
             "nama": "Barang 8",
             "kuantitas": "10\/80"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg9 ",
             "nama": "Barang 9",
             "kuantitas": "10\/90"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg10",
             "nama": "Barang 10",
             "kuantitas": "10\/100"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg11",
             "nama": "Barang 11",
             "kuantitas": "10\/110"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg12",
             "nama": "Barang 12",
             "kuantitas": "10\/120"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg13",
             "nama": "Barang 13",
             "kuantitas": "10\/130"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg14",
             "nama": "Barang 14",
             "kuantitas": "10\/140"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg15",
             "nama": "Barang 15",
             "kuantitas": "10\/150"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg16",
             "nama": "Barang 16",
             "kuantitas": "10\/160"
         },
         {
-            "img": "assets\/jti-logo.png",
+            "img": "jti-logo.png",
             "id": "brg55",
             "nama": "Barang 55",
             "kuantitas": "10\/550"

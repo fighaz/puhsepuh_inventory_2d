@@ -61,6 +61,11 @@ class Barang extends Controller
             exit;
         }
     }
+    public function getAll()
+    {
+        $result['data'] = $this->model('Barang_model')->getAllBarang();
+        echo json_encode($result);
+    }
     public function detail($id)
     {
         echo json_encode($this->model('Barang_model')->getBarangById($id));
