@@ -4,12 +4,8 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< Updated upstream
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-=======
   <link href="../../../public/css/style.css" rel="stylesheet">
     <link href="../../../public/css/bootstrap.css" rel="stylesheet">
->>>>>>> Stashed changes
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -30,28 +26,14 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-<<<<<<< Updated upstream
-        <h4 class="modal-title text-center">Modal Heading</h4>
-=======
-        <h4 class="modal-title text-primary">Detail Barang</h4>
->>>>>>> Stashed changes
+        <h4 class="modal-title text-center">Data Barang</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-<<<<<<< Updated upstream
-        Modal body..
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-
-=======
         <div class="d-flex justify-content-end">
-          <img class="border border-2 border-primary roundeds mt-3 me-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nuon-N2000-Remote-Control.jpg/800px-Nuon-N2000-Remote-Control.jpg" alt="Remote Control" style="max-width: 280px; max-height: 200px; position: absolute; top: 0; right: 0;">
+          <img class="border border-2 border-primary rounded mt-3 me-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nuon-N2000-Remote-Control.jpg/800px-Nuon-N2000-Remote-Control.jpg" alt="Remote Control" style="max-width: 280px; max-height: 200px; position: absolute; top: 0; right: 0;">
         </div>
         <div class="text mt-2">
           <table class="table text-primary">
@@ -86,14 +68,11 @@
           </table>
         </div>
       </div>
->>>>>>> Stashed changes
     </div>
   </div>
 </div>
 
 
-<<<<<<< Updated upstream
-=======
 <!-- Style -->
 <style>
     .modal-content {
@@ -123,6 +102,5 @@ font-weight: 600;
 }
 
 </style>
->>>>>>> Stashed changes
 </body>
 </html>
