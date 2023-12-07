@@ -167,7 +167,9 @@
                   <a href="/" class="icon_info"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
                   <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
                       src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
-                  <a href="" class="icon_remove"><img src="<?= BASEURL; ?>/assets/hapus.svg" alt=""></a>
+                  <a href="<?= BASEURL; ?>/Barang/hapus/<?= $brg['id']; ?>" class="icon_remove"><img
+                      src="<?= BASEURL; ?>/assets/hapus.svg" alt=""
+                      onclick="return confirm('Apakah Anda yakin untuk menghapus Data Barang berikut?');"></a>
                 </td>
               </tr>
             <?php endforeach;
