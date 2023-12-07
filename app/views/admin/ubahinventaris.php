@@ -58,11 +58,11 @@
     <header>
         <h1>Ubah Barang</h1>
     </header>
-    <form action="tambah" method="POST" enctype="multipart/form-data">
+    <form action="<?= BASEURL; ?>/Barang/ubah" method="POST" enctype="multipart/form-data">
         <div class="container text-primary">
             <div class="row">
                 <section class="col-md-8 p-4">
-
+                    <input type="hidden" name="id" value="<?= $data['brg']['id'] ?>">
                     <table class="table text-primary">
                         <tbody>
                             <tr>
@@ -123,7 +123,7 @@
                         <div class="image-upload-container border border-primary rounded">
                             <input type="file" name="gambar" id="gambar" class="form-control"
                                 value="<?= $data['brg']['gambar'] ?>">
-                            <img id="preview" src="<?= BASEURL; ?>'/img/'<?= $data['brg']['gambar'] ?>"
+                            <img id="preview" src="<?= BASEURL; ?>/img/<?= $data['brg']['gambar']; ?>"
                                 alt="Upload Gambar">
                         </div>
                     </div>
