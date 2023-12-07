@@ -59,7 +59,7 @@ class Barang_model
     public function ubahDataBarang($data, $gambar)
     {
         $query = "UPDATE barang SET
-                    nama = :nama,jumlah = :jumlah,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar :gambar
+                    nama = :nama,jumlah = :jumlah,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar= :gambar
                   WHERE id = :id";
 
         $this->db->query($query);
