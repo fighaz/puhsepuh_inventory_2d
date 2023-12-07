@@ -56,10 +56,10 @@ class Barang_model
     }
 
 
-    public function ubahDataBarang($data)
+    public function ubahDataBarang($data, $gambar)
     {
         $query = "UPDATE barang SET
-                    nama = :nama,jumlah = :jumlah,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar :gambar
+                    nama = :nama,jumlah = :jumlah,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar= :gambar
                   WHERE id = :id";
 
         $this->db->query($query);
@@ -69,7 +69,7 @@ class Barang_model
         $this->db->bind('asal', $data['asal']);
         $this->db->bind('keterangan', $data['keterangan']);
         $this->db->bind('maintainer', $data['maintainer']);
-        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('gambar', $gambar);
         $this->db->bind('id', $data['id']);
 
         $this->db->execute();

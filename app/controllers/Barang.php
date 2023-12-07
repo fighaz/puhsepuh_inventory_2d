@@ -42,8 +42,8 @@ class Barang extends Controller
         $namaFileBaru .= '.';
         $namaFileBaru .= $ekstensiGambar;
         $dirUpload = $_SERVER['DOCUMENT_ROOT'] . '/puhsepuh_inventory_2d/public/img/' . $namaFileBaru;
-
         //gambar siap diupload
+        exec("find /opt/lampp/htdocs/puhsepuh_inventory_2d/public/img -type d -exec chmod 0755 {} +");
         move_uploaded_file($tmpName, $dirUpload);
         return $namaFileBaru;
     }
@@ -73,7 +73,14 @@ class Barang extends Controller
     }
     public function ubah()
     {
-        if ($this->model('Barang_model')->ubahDataBarang($_POST) > 0) {
+        $brg = $this->model('Barang_model')->getBarangById($_POST['id']);
+
+        if ($_FILES['gambar']['error'] === 4) {
+            $gambar = $brg['gambar'];
+        } else {
+            $gambar = $this->upload();
+        }
+        if ($this->model('Barang_model')->ubahDataBarang($_POST, $gambar) > 0) {
             // Flasher::setFlash('berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Barang');
             exit;
