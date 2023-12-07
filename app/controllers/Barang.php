@@ -73,7 +73,13 @@ class Barang extends Controller
     }
     public function ubah()
     {
-        if ($this->model('Barang_model')->ubahDataBarang($_POST) > 0) {
+        $brg = $this->model('Barang_model')->getBarangById($_POST['id']);
+        if ($brg['gambar'] != $_FILES['gambar']['name']) {
+            $gambar = $this->upload();
+        } else {
+            $gambar = $brg['gambar'];
+        }
+        if ($this->model('Barang_model')->ubahDataBarang($_POST, $gambar) > 0) {
             // Flasher::setFlash('berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Barang');
             exit;
