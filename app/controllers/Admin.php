@@ -51,6 +51,15 @@ class Admin extends Controller
         $data['barang'] = $this->model('Barang')->cariDataBarang();
         $this->view('barang/index', $data);
     }
-
+    public function tambahInventaris()
+    {
+        $data['sidebar'] = $this->sidebar;
+        $this->view('admin/tambahinventaris', $data);
+    }
+    public function ubahInventaris()
+    {
+        $data['sidebar'] = $this->sidebar;
+        $this->view('admin/ubahinventaris', $data);
+    }
 }
 ?>

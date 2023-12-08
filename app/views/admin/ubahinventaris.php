@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventaris</title>
-    <link href="<?= BASEURL; ?>/css/style.css" rel="stylesheet">
-    <link href="<?= BASEURL; ?>/css/bootstrap.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             font-family: Montserrat, sans-serif;
         }
 
-        * {
+        html, body {
             background-color: #EBEFF5;
             font-family: inherit;
         }
@@ -52,9 +43,6 @@
             margin-top: 20px;
         }
     </style>
-</head>
-
-<body>
     <header>
         <h1>Ubah Barang</h1>
     </header>
@@ -142,6 +130,3 @@
             preview.src = URL.createObjectURL(e.target.files[0]);
         });
     </script>
-</body>
-
-</html>
