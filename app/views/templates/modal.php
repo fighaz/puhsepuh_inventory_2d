@@ -26,7 +26,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title text-center">Data Barang</h4>
+        <h4 class="col-12 modal-title text-center">Data Barang</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 

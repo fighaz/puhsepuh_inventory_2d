@@ -75,7 +75,7 @@
 <body>
   <div class="content">
 
-    <h3>List Barang</h3>
+    <h3 class="fw-semibold">List Barang</h3>
     <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
     <div class="row mb-3">
       <div class="col-lg-6">
