@@ -72,7 +72,11 @@
                             </tr>
                             <tr>
                                 <td><label for="qty" class="form-label">Jumlah</label></td>
-                                <td><input type="number" name="jumlah" id="qty" class="form-control"></td>
+                                <td><input type="number" name="jumlah" id="jumlah" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="qty" class="form-label">Tersedia</label></td>
+                                <td><input type="number" name="tersedia" id="tersedia" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td><label for="maks_pinjam" class="form-label">Kondisi</label></td>

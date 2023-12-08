@@ -27,11 +27,12 @@ class Barang_model
     {
         $query = "INSERT INTO barang
                     VALUES
-                  (NULL, :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
+                  (NULL, :nama, :jumlah, :tersedia, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('jumlah', $data['jumlah']);
+        $this->db->bind('tersedia', $data['tersedia']);
         $this->db->bind('kondisi', $data['kondisi']);
         $this->db->bind('asal', $data['asal']);
         $this->db->bind('keterangan', $data['keterangan']);
@@ -59,12 +60,13 @@ class Barang_model
     public function ubahDataBarang($data, $gambar)
     {
         $query = "UPDATE barang SET
-                    nama = :nama,jumlah = :jumlah,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar= :gambar
+                    nama = :nama,jumlah = :jumlah,tersedia = :tersedia,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar= :gambar
                   WHERE id = :id";
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('jumlah', $data['jumlah']);
+        $this->db->bind('tersedia', $data['tersedia']);
         $this->db->bind('kondisi', $data['kondisi']);
         $this->db->bind('asal', $data['asal']);
         $this->db->bind('keterangan', $data['keterangan']);

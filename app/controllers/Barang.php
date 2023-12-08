@@ -51,15 +51,22 @@ class Barang extends Controller
     {
         // var_dump($_POST);
         $gambar = $this->upload();
-        if ($this->model('Barang_model')->tambahDataBarang($_POST, $gambar) > 0) {
-            // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-            header('Location: ' . BASEURL . '/Barang');
-            exit;
+        $validate = $_POST['tersedia'] <= $_POST['jumlah'];
+        if ($validate) {
+            if ($this->model('Barang_model')->tambahDataBarang($_POST, $gambar) > 0) {
+                // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                header('Location: ' . BASEURL . '/Barang');
+                exit;
+            } else {
+                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+                header('Location: ' . BASEURL . '/Barang');
+                exit;
+            }
         } else {
-            // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/Barang');
-            exit;
+            echo "<script> alert('Barang tersedia melebihi jumlah yang diinputkan')</script>";
+            $this->viewTambah();
         }
+
     }
     public function getAll()
     {
@@ -85,15 +92,22 @@ class Barang extends Controller
         } else {
             $gambar = $this->upload();
         }
-        if ($this->model('Barang_model')->ubahDataBarang($_POST, $gambar) > 0) {
-            // Flasher::setFlash('berhasil', 'diubah', 'success');
-            header('Location: ' . BASEURL . '/Barang');
-            exit;
+        $validate = $_POST['tersedia'] <= $_POST['jumlah'];
+        if ($validate) {
+            if ($this->model('Barang_model')->ubahDataBarang($_POST, $gambar) > 0) {
+                // Flasher::setFlash('berhasil', 'diubah', 'success');
+                header('Location: ' . BASEURL . '/Barang');
+                exit;
+            } else {
+                // Flasher::setFlash('gagal', 'diubah', 'danger');
+                header('Location: ' . BASEURL . '/Barang');
+                exit;
+            }
         } else {
-            // Flasher::setFlash('gagal', 'diubah', 'danger');
-            header('Location: ' . BASEURL . '/Barang');
-            exit;
+            echo "<script> alert('Barang tersedia melebihi jumlah yang diinputkan')</script>";
+            $this->getUbah($_POST['id']);
         }
+
     }
     public function hapus($id)
     {
