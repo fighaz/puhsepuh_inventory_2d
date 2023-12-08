@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2023 at 02:16 AM
+-- Generation Time: Dec 08, 2023 at 03:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,6 +31,7 @@ CREATE TABLE `barang` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
+  `tersedia` int(11) NOT NULL,
   `kondisi` varchar(255) DEFAULT NULL,
   `asal` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
@@ -42,14 +43,14 @@ CREATE TABLE `barang` (
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id`, `nama`, `jumlah`, `kondisi`, `asal`, `keterangan`, `maintainer`, `gambar`) VALUES
-(1, 'Spidol', 100, 'Baik', 'Pembelian', 'Keterangan1', 'Pak Jadi', 'gambar1.jpg'),
-(2, 'Remote AC', 50, 'Rusak', 'Pembelian', 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
-(3, 'Proyektor', 70, 'Baik', 'Hibah', 'Keterangan3', 'Mas Wowon', 'gambar3.jpg'),
-(4, 'Remote Proyektor', 30, 'Baik', 'Pembelian', 'Keterangan4', 'Mbak Novi', 'gambar4.jpg'),
-(5, 'Penghapus', 100, 'Rusak', 'Pembelian', 'Keterangan5', 'Mas Wowon', 'gambar5.jpg'),
-(6, 'Keyboard', 93, 'Baik', 'Hibah', 'Keterangan5', 'Mas Wowon', 'gambar6.jpg'),
-(7, 'Mouse', 157, 'Cukup', 'Pembelian', 'Keterangan5', 'Mbak Novi', 'gambar7.jpg');
+INSERT INTO `barang` (`id`, `nama`, `jumlah`, `tersedia`, `kondisi`, `asal`, `keterangan`, `maintainer`, `gambar`) VALUES
+(1, 'Spidol', 100, 20, 'Baik', 'Pembelian', 'Keterangan1', 'Pak Jadi', 'gambar1.jpg'),
+(2, 'Remote AC', 50, 20, 'Rusak', 'Pembelian', 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
+(3, 'Proyektor', 70, 20, 'Baik', 'Hibah', 'Keterangan3', 'Mas Wowon', 'gambar3.jpg'),
+(4, 'Remote Proyektor', 30, 20, 'Baik', 'Pembelian', 'Keterangan4', 'Mbak Novi', 'gambar4.jpg'),
+(5, 'Penghapus', 100, 20, 'Rusak', 'Pembelian', 'Keterangan5', 'Mas Wowon', 'gambar5.jpg'),
+(6, 'Keyboard', 93, 20, 'Baik', 'Hibah', 'Keterangan5', 'Mas Wowon', 'gambar6.jpg'),
+(9, 'd', 21, 20, 'Baik', 'asd', 'sad', 'sad', '65717367d8d94.png');
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `nama`, `role`, `isChangePassword`) VALUES
 (1, 'admin', '$2y$10$46EDYWnooobvaq.K2I5TiOgZwSk3vo4f/OTWqKd1zlf92qh7PT91y', 'admin', 'Admin', NULL),
-(2, 'user', '$2y$10$r47QADWCNjdYiezczCs.7Oye.h2CvPeop9gHN53Qe3czZKMQb4wy2', 'user', 'User', NULL);
+(2, 'user', '$2y$10$r47QADWCNjdYiezczCs.7Oye.h2CvPeop9gHN53Qe3czZKMQb4wy2', 'user', 'User', NULL),
+(5, 'fighaz', '$2y$10$q68Izt7YjJAb2GMKQZHfvu1Mc1WgQ5e6G5uDe8irNg7vxZ416l7Za', 'fighaz', 'User', 0),
+(8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', 'User', 0);
 
 --
 -- Indexes for dumped tables
@@ -172,7 +175,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
@@ -184,7 +187,7 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
