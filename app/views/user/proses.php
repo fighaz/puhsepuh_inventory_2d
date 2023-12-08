@@ -99,6 +99,7 @@
         flex-shrink: 0;
         border-radius: 5px;
         color: #fff;
+        border: none;
     }
 
     .tombol {
@@ -109,6 +110,7 @@
         border-radius: 5px;
         background: #00B152;
         color: #fff;
+        border: none;
     }
 
     .judulTabel {
