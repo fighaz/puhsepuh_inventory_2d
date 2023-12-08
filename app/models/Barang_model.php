@@ -1,6 +1,6 @@
 <?php
 
-class Barang
+class Barang_model
 {
     private $table = 'barang';
     private $db;
@@ -23,11 +23,11 @@ class Barang
         return $this->db->single();
     }
 
-    public function tambahDataBarang($data)
+    public function tambahDataBarang($data, $gambar)
     {
         $query = "INSERT INTO barang
                     VALUES
-                  ('', :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
+                  (NULL, :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
@@ -36,7 +36,7 @@ class Barang
         $this->db->bind('asal', $data['asal']);
         $this->db->bind('keterangan', $data['keterangan']);
         $this->db->bind('maintainer', $data['maintainer']);
-        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('gambar', $gambar);
 
         $this->db->execute();
 
@@ -56,10 +56,10 @@ class Barang
     }
 
 
-    public function ubahDataMahasiswa($data)
+    public function ubahDataBarang($data, $gambar)
     {
         $query = "UPDATE barang SET
-                    nama = :nama, :jumlah, :kondisi, :asal, :keterangan, :maintainer, :gambar
+                    nama = :nama,jumlah = :jumlah,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar= :gambar
                   WHERE id = :id";
 
         $this->db->query($query);
@@ -69,7 +69,7 @@ class Barang
         $this->db->bind('asal', $data['asal']);
         $this->db->bind('keterangan', $data['keterangan']);
         $this->db->bind('maintainer', $data['maintainer']);
-        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('gambar', $gambar);
         $this->db->bind('id', $data['id']);
 
         $this->db->execute();
@@ -86,5 +86,6 @@ class Barang
         $this->db->bind('keyword', "%$keyword%");
         return $this->db->resultSet();
     }
+
 
 }
