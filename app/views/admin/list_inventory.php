@@ -1,86 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+  :root {
+    font-family: Montserrat;
+  }
 
-<head>
-  <title>List Barang</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="<?= BASEURL; ?>/css/style.css" rel="stylesheet">
-  <link href="<?= BASEURL; ?>/css/bootstrap.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  body {
+    background-color: #EBEFF5;
+  }
 
-  <style>
-    <style> :root {
-      font-family: Montserrat;
-    }
+  .content {
+    padding: 14px 42px 14px 42px;
+  }
 
-    * {
-      background-color: #EBEFF5;
-    }
+  .content h3 {
+    font-size: 30px;
+    color: #E7AE0E;
+  }
 
-    .content {
-      padding: 14px 42px 14px 42px;
-    }
+  .content p {
+    color: #3C8DBB;
+  }
 
-    .content h3 {
-      font-size: 30px;
-      color: #E7AE0E;
-    }
+  /* Table */
+  thead {
+    font-size: 16px;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+  }
 
-    .content p {
-      color: #3C8DBB;
-    }
+  thead th {
+    border: 2px solid #fff;
+  }
 
-    /* Table */
-    thead {
-      font-size: 16px;
-      color: #fff;
-      font-weight: normal;
-      text-align: center;
-    }
+  tbody {
+    text-align: center;
+  }
 
-    thead th {
-      border: 2px solid #fff;
-    }
+  tbody td {
+    border-bottom: 1px solid #3C8DBB;
+  }
 
-    tbody {
-      text-align: center;
-    }
+  /* Entries */
+  #num-of-entries {
+    background-color: var(--background-global);
+    color: var(--bs-primary);
+    max-width: 50px;
+    max-height: 10px;
+    height: 10px;
+    margin: 0 5px;
+    font-size: 12px;
+    padding: 0 0 0 15px;
+    border: 1px solid var(--bs-primary);
+  }
 
-    tbody td {
-      border-bottom: 1px solid #3C8DBB;
-    }
+  .container-table {
+    margin-top: 20px;
+  }
 
-    /* Entries */
-    #num-of-entries {
-      background-color: var(--background-global);
-      color: var(--bs-primary);
-      max-width: 50px;
-      max-height: 10px;
-      height: 10px;
-      margin: 0 5px;
-      font-size: 12px;
-      padding: 0 0 0 15px;
-      border: 1px solid var(--bs-primary);
-    }
+  .container-tabs {
+    font-size: 25px;
+  }
 
-    .container-table {
-      margin-top: 20px;
-    }
+  .nav-pills .nav-link.active {
+    background-color: #E7AE0E;
+    font-size: 25;
+  }
 
-    .container-tabs {
-      font-size: 25px;
-    }
-
-    .nav-pills .nav-link.active {
-      background-color: #E7AE0E;
-      font-size: 25;
-    }
-
-    .nav-item {
-      background-color: #3C8DBB !important;
-    }
-  </style>
+  .nav-item {
+    background-color: #3C8DBB !important;
+  }
+</style>
 </head>
 
 <body>
@@ -90,7 +79,7 @@
     <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
     <div class="row mb-3">
       <div class="col-lg-6">
-        <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn btn-primary">Tambah</a>
+        <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn btn-primary text-white">Tambah</a>
       </div>
     </div>
     <!-- NavTabs -->
@@ -142,19 +131,20 @@
             </tr>
           <?php else:
             foreach ($data['brg'] as $brg): ?>
-              <tr class="bg-white">
+              <tr class="bg-white text-primary align-middle">
                 <td>
                   <?= $no++ ?>
                 </td>
                 <td>
 
-                  <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="" width="200px" height="200px">
+                  <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" class="object-fit-cover border rounded" alt="" width="98px" height="70px">
                 </td>
 
                 <td>
                   <?= $brg['nama']; ?>
                 </td>
                 <td>
+                  <?= $brg['tersedia']; ?> /
                   <?= $brg['jumlah']; ?>
                 </td>
                 <td>
@@ -191,6 +181,7 @@
         </nav>
       </div>
     </div>
+<<<<<<< Updated upstream
   </div>
 
 
@@ -223,3 +214,6 @@
 </body>
 
 </html>
+=======
+  </div>
+>>>>>>> Stashed changes
