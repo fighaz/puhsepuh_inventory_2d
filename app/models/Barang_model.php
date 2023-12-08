@@ -88,6 +88,16 @@ class Barang_model
         $this->db->bind('keyword', "%$keyword%");
         return $this->db->resultSet();
     }
+    public function ubahStok($tersedia, $id)
+    {
+        $query = "UPDATE barang SET tersedia = :tersedia WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('tersedia', $tersedia);
+        $this->db->bind('id', $id);
+        $this->db->execute();
 
+        return $this->db->rowCount();
+
+    }
 
 }

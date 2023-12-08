@@ -62,8 +62,9 @@ class User extends Controller
     }
     public function tambah()
     {
-        if ($this->model('Peminjaman')->tambahDataMahasiswa($_POST) > 0) {
-            $this->model('Detail_Peminjaman')->tambahDataPeminjaman($_POST);
+        $peminjaman = $this->model('Peminjaman')->tambahDataPeminjaman($_POST);
+        if ($peminjaman > 0) {
+            $this->model('Detail_Peminjaman')->tambahDataPeminjaman($_POST, $peminjaman);
             unset($_SESSION['cart']);
             // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/User');

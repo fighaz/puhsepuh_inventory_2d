@@ -36,7 +36,9 @@ class Peminjaman
     {
         $query = "INSERT INTO peminjaman
                     VALUES
-                  ('', :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian)";
+                  ('', :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian)
+                  SELECT LAST_INSERT_ID();";
+
 
         $this->db->query($query);
         $this->db->bind('id_user', $data['id_user']);
@@ -47,8 +49,11 @@ class Peminjaman
 
 
         $this->db->execute();
+        if ($this->db->rowCount() > 0) {
+            return $this->db->single()->last_insert_id;
+        }
 
-        return $this->db->rowCount();
+
     }
 
     public function approvePeminjaman($id)
