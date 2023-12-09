@@ -67,8 +67,6 @@
                                     <?= $pnj['username']; ?>
                                 </td>
                                 <td>
-                                    <a href="<?= BASEURL; ?>/Peminjam/ubah/<?= $pnj['id']; ?>" data-bs-toggle="modal"
-                                        data-bs-target="#formModalPeminjam" ; ?><img src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
                                     <a href="<?= BASEURL; ?>/Peminjam/hapus/<?= $pnj['id']; ?>"><img src="<?= BASEURL; ?>/assets/hapus.svg" alt="" onclick="return confirm('Apakah Anda yakin untuk menghapus Data Admin berikut?');"></a>
                                 </td>
                             </tr>
@@ -108,17 +106,17 @@
                         <input type="hidden" name="id_user" id="id_user">
                         <div class="form-group">
                             <label for="username_peminjam">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" autocomplete="off"
+                            <input type="text" class="form-control" id="username" name="username" placeholder="NIM/NIP" autocomplete="off"
                                 required>
                         </div>
 
                         <div class="form-group">
                             <label for="email_admin">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" autocomplete="off" required>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" autocomplete="off" required>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                    <button type="submit" class="btn btn-primary text-white">Tambah Data</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </form>
                 </div>
@@ -134,7 +132,7 @@
             .row h3 {
                 color: #E7AE0E;
             }
-            * {
+            body {
     background-color: #EBEFF5;
     }
     thead th {

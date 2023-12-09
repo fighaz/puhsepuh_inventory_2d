@@ -14,11 +14,11 @@
     <div class="tabel-barang">
         <table id="table" class="table table-stripped rounded">
             <thead class="bg-primary rounded-top">
-                <tr>
-                    <th style="border-top-left-radius: 5px;">Gambar</th>
-                    <th class="">Nama</th>
-                    <th class="">Kuantitas</th>
-                    <th style="border-top-right-radius: 5px;">Aksi</th>
+                <tr class="text-primary">
+                    <th style="border-top-left-radius: 5px; text-primary">Gambar</th>
+                    <th class="text-primary">Nama</th>
+                    <th class="text-primary">Kuantitas</th>
+                    <th style="border-top-right-radius: 5px; text-primary">Aksi</th>
                 </tr>
             </thead>
         </table>
