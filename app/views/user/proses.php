@@ -1,48 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-
-<body>
     <div class="container">
         <div class="content">
             <p class="judul">Proses Peminjaman</p>
-            <form class="row">
                 <div class="mb-3 row">
                     <label for="Nama Peminjam" class="col-sm-3 col-form-label fw-normal">Nama Peminjam</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="Nama Peminjam" disabled>
+                    <input type="text" class="form-control" id="Nama Peminjam" value="<?=$_SESSION['nama']?>" readonly>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
                 <div class="mb-3 row">
                     <label for="NIM/NIP" class="col-sm-3 col-form-label fw-normal">NIM/NIP</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="NIM/NIP" disabled>
+                    <input type="text" class="form-control" id="NIM/NIP" value="<?=$_SESSION['id_user']?>" disabled>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
                 <div class="mb-3 row">
                     <label for="Mulai" class="col-sm-3 col-form-label fw-normal">Mulai Pinjam</label>
                     <div class="col-sm-3">
-                        <input type="date" class="form-control" id="Mulai">
+                        <input type="date" class="form-control" id="Mulai" name="tgl_mulai">
                     </div>
                     <label id="label-sampai" for="Sampai" class="col-sm-1 col-form-label fw-normal">Sampai</label>
                     <div class="col-sm-3">
-                        <input type="date" class="form-control" id="Sampai">
+                        <input type="date" class="form-control" id="Sampai" name="tgl_sampai">
                     </div>
                 </div>
-            </form>
 
 
 
             <p class="judulTabel fw-normal">Item Dipinjam</p>
-            <table class="table table-hover">
+            <table id="table" class="table table-hover">
                 <thead>
                     <tr class="table-primary">
                         <th class="fw-normal">Gambar</th>
@@ -52,36 +39,125 @@
                         <th class="fw-normal">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href=""><img src="asset/hapus.svg" alt="Hapus"></a>
-                        </td>
-                    </tr>
-                </tbody>
 
-                </tbody>
             </table>
             <div class="d-grid gap-2 d-md-block">
-                <button class="button" type="button">Kembali</button>
-                <button class="tombol" type="button">Pinjam!</button>
+                <button class="button kembali" type="button">Kembali</button>
+                <button class="tombol pinjam" type="submit">Pinjam!</button>
             </div>
 
         </div>
     </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+    // Path: proses.php
 
+
+    $('.kembali').click(function() {
+        window.location.href = "<?=BASEURL?>/user";
+    });
+
+    let table = new DataTable('#table', {
+        dom: 't',
+        columns: [
+            { data: 'gambar', },
+            { data: 'nama', },
+            { data: null, },
+            { data: null, },
+            { data: null, }
+        ],
+        columnDefs: [
+
+            {
+                targets: 0,
+                sortable: false,
+                render: function(data, type, row, meta) {
+                    return `<img src="<?=BASEURL?>/img/${data}" alt="Gambar" width="100px">`;
+                }
+            },
+            {
+                targets: 1,
+                sortable: false,
+                render: function(data, type, row, meta) {
+                    return `<p>${data}</p>`;
+                }
+            },
+            {
+                targets: 2,
+                sortable: false,
+                render: function(data, type, row, meta) {
+                    return `<input type="number" class="form-control-sm w-25" id="Jumlah Pinjam" value="1" name="nama">`;
+                }
+            },
+            {
+                targets: 3,
+                sortable: false,
+                render: function(data, type, row, meta) {
+                    return `<textarea class="form-control" id="Catatan" rows="2" name="keterangan"></textarea>`;
+                }
+            },
+            {
+                targets: 4,
+                sortable: false,
+                render: function(data, type, row, meta) {
+                    return `<img src="<?=BASEURL?>/assets/hapus.svg" alt="hapus" class="alt-button hapus">`;
+                }
+            }
+        ]
+    });
+
+    // return object barang
+    function getItem(id) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "<?=BASEURL?>/barang/detail/" + id,
+                dataType: "json",
+                success: function(data) {
+                    console.log("success get item");
+                    console.log(data);
+                    resolve(data);
+                },
+                error: function(err) {
+                    console.log("error get item");
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    $(document).ready(function() {
+        $.ajax({
+        url: '<?=BASEURL?>/user/getCart',
+            type: 'GET',
+            dataType: 'json',
+            success: async function(data) {
+                console.log("success");
+                console.log(data);
+                for (let key in data) {
+                    try {
+                        let barang = await getItem(key);
+                        table.row.add({
+                            gambar: barang.gambar,
+                            nama: barang.nama,
+                            //DT_RowId: data[key].id,
+                        }).draw(false);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+            },
+            error: function(err) {
+                console.log("error");
+                console.log(err);
+            }
+        });
+    });
+
+
+</script>
 <style>
     /* Custom styles for your form and table */
     body {
         font-family: 'Arial', sans-serif;
-        padding: 20px;
     }
 
     .judul {
@@ -166,4 +242,3 @@
     }
 </style>
 
-</html>

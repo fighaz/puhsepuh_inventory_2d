@@ -139,7 +139,7 @@
             </div>
             <ul class="sidebar-item-list list-unstyled w-100">
                 <?php
-                foreach ($data['sidebar'] as $item) {
+                foreach ($this->sidebar as $item) {
                     echo '
                         <li>
                             <a class="sidebar-item ' . $item['id'] . '" href="' . BASEURL. '/' . $item['url'] . '">

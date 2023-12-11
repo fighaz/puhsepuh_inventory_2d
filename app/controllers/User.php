@@ -74,7 +74,13 @@ class User extends Controller {
             exit;
         }
     }
-    public function peminjaman() {
+    public function proses()
+    {
+        $data['sidebar'] = $this->sidebar;
+        $this->view('user/proses', $data);
+    }
+    public function peminjaman()
+    {
         $data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
         $this->view('user/peminjaman', $data);
     }
