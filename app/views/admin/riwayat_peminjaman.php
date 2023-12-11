@@ -45,11 +45,23 @@
 
     thead th {
       border: 2px solid #fff;
+      color: #3C8DBB;
     }
 
     tbody {
       text-align: center;
     }
+    /* td, th {
+      color: #3C8DBB;
+    }
+
+    tbody tr:nth-child(odd) {
+    background-color: #EBEFF5;
+    }
+
+    tbody tr:nth-child(even) {
+    background-color: #fff; 
+    } */
 
     tbody td {
       border-bottom: 1px solid #3C8DBB;
@@ -58,7 +70,7 @@
         background-color: #E7AE0E;
         font-size: 25;
     }
-    .nav-item{
+    .nav-item  {
         background-color: #3C8DBB !important;
     }
 
@@ -79,31 +91,22 @@
 </head>
 <body>
   <div class="content">
-    <h3>Riwayat Peminjaman</h3>
+    <h3>Peminjaman</h3>
     <br>
       <!-- NavTabs -->
       <div class="container-tabs rounded mt-2 fs-5 fw-semibold">
     <ul class="nav nav-pills primary nav-fill rounded">
     <li class="nav-item rounded-start">
-        <a class="nav-link active" aria-current="page" href="#">Semua</a>
+        <a class="nav-link active bg-accent" aria-current="page" href="#">Semua</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-white" href="#">Menunggu Konfirmasi</a>
+        <a class="nav-link text-white" href="#">Barang Diminta</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-white" href="#">Menunggu Diambil</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white" href="#">Dipinjam</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white" href="#">Selesai</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white" href="#">Terlambat</a>
+        <a class="nav-link text-white" href="#">Sedang Dipinjam</a>
     </li>
     <li class="nav-item rounded-end">
-        <a class="nav-link text-white" href="#">Ditolak</a>
+        <a class="nav-link text-white" href="#">Segera Diikembalikan</a>
     </li>
     </ul>
     <br>
@@ -156,7 +159,7 @@
 </div>
 <table class="table table-hover table-striped table-bordered">
   <thead class="table-primary">
-    <tr>
+    <tr class="bg-primary">
       <th>ID</th>
       <th>Nama Peminjam</th>
       <th>Status peminjaman</th>
@@ -169,9 +172,9 @@
         <tr class="bg-white">
           <td>ID</td>
           <td>Alim</td>
-          <td><span class="badge rounded-pill bg-primary">dipinjam</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
+          <td><span class="badge rounded-pill bg-secondary">Menunggu</span></td>
+          <td>Remote</td>
+          <td>19/10/2023</td>
           <td>
             <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
             <a href="" class="icon_selesai"><img src="asset/selesai.svg" alt="Selesai"></a>
@@ -180,9 +183,9 @@
         <tr class="bg-white">
           <td>ID</td>
           <td>Febiola Lidya S.</td>
-          <td><span class="badge rounded-pill bg-secondary">Menunggu Konfirmasi</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
+          <td><span class="badge rounded-pill bg-warning">Pengambilan</span></td>
+          <td>Proyektor Remote Laptop Charger</td>
+          <td>20/10/2023</td>
           <td>
             <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
             <a href="" class="icon_selesai"><img src="asset/selesai.svg" alt="Selesai"></a>
@@ -192,9 +195,9 @@
         <tr class="bg-white">
           <td>ID</td>
           <td>Fighaz</td>
-          <td><span class="badge rounded-pill bg-warning text-dark">Menunggu diambil</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
+          <td><span class="badge rounded-pill bg-danger">Terlambat</span></td>
+          <td>Remote</td>
+          <td>19/10/2023</td>
           <td>
             <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
             <a href="" class="icon_selesai"><img src="asset/selesai.svg" alt="Selesai"></a>
@@ -203,9 +206,9 @@
         <tr class="bg-white">
           <td>ID</td>
           <td>Dhio Atlon</td>
-          <td><span class="badge rounded-pill bg-danger">Ditolak</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
+          <td><span class="badge rounded-pill bg-success">Selesai</span></td>
+          <td>Proyektor Remote</td>
+          <td>20/10/2023</td>
           <td>
             <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
             <a href="" class="icon_selesai"><img src="asset/selesai.svg" alt="Selesai"></a>
@@ -215,8 +218,8 @@
           <td>ID</td>
           <td>Denny Malik</td>
           <td><span class="badge rounded-pill bg-success">Selesai</span></td>
-          <td>Barang</td><s></s>
-          <td>Tanggal Pinjam</td>
+          <td>Remote</td><s></s>
+          <td>19/10/2023</td>
           <td>
             <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
             <a href="" class="icon_selesai"><img src="asset/selesai.svg" alt="Selesai"></a>
@@ -225,9 +228,9 @@
         <tr class="bg-white">
           <td>ID</td>
           <td>Lenka Mleinda</td>
-          <td><span class="badge rounded-pill bg-info text-dark">Terlambat</span></td>
-          <td>Barang</td><s></s>
-          <td>Tanggal Pinjam</td>
+          <td><span class="badge rounded-pill bg-success">Selesai</span></td>
+          <td>Remote</td><s></s>
+          <td>19/10/2023</td>
           <td>
             <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
             <a href="" class="icon_selesai"><img src="asset/selesai.svg" alt="Selesai"></a>
