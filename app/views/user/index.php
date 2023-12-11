@@ -204,9 +204,11 @@
         success: async function(data) {
             console.log("success");
             console.log(data);
-            for (let key in data) {
+            for (let item of data) {
+                console.log(item);
                 try {
-                    let barang = await getItem(key);
+                    let barang = await getItem(item.id_barang);
+                    console.log(barang);
                     keranjangTable.row.add({
                         nama: barang.nama,
                         id: barang.id

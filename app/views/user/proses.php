@@ -1,4 +1,5 @@
-    <div class="container">
+<div class="container">
+    <form action="<?=BASEURL?>/User/tambah" method="post">
         <div class="content">
             <p class="judul">Proses Peminjaman</p>
                 <div class="mb-3 row">
@@ -11,18 +12,18 @@
                 <div class="mb-3 row">
                     <label for="NIM/NIP" class="col-sm-3 col-form-label fw-normal">NIM/NIP</label>
                     <div class="col-sm-6">
-                    <input type="text" class="form-control" id="NIM/NIP" value="<?=$_SESSION['id_user']?>" disabled>
+                    <input type="text" class="form-control" id="NIM/NIP" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
                 <div class="mb-3 row">
                     <label for="Mulai" class="col-sm-3 col-form-label fw-normal">Mulai Pinjam</label>
                     <div class="col-sm-3">
-                        <input type="date" class="form-control" id="Mulai" name="tgl_mulai">
+                        <input type="date" class="form-control" id="Mulai" name="tanggal_peminjaman">
                     </div>
                     <label id="label-sampai" for="Sampai" class="col-sm-1 col-form-label fw-normal">Sampai</label>
                     <div class="col-sm-3">
-                        <input type="date" class="form-control" id="Sampai" name="tgl_sampai">
+                        <input type="date" class="form-control" id="Sampai" name="tanggal_pengembalian">
                     </div>
                 </div>
 
@@ -47,13 +48,18 @@
             </div>
 
         </div>
-    </div>
+    </form>
+</div>
 <script>
     // Path: proses.php
 
 
     $('.kembali').click(function() {
         window.location.href = "<?=BASEURL?>/User";
+    });
+
+    $('pinjam').click(() => {
+
     });
 
     let table = new DataTable('#table', {
@@ -132,13 +138,12 @@
             success: async function(data) {
                 console.log("success");
                 console.log(data);
-                for (let key in data) {
+                for (let item of data) {
                     try {
-                        let barang = await getItem(key);
+                        let barang = await getItem(item.id_barang);
                         table.row.add({
                             gambar: barang.gambar,
                             nama: barang.nama,
-                            //DT_RowId: data[key].id,
                         }).draw(false);
                     } catch (err) {
                         console.log(err);
@@ -202,12 +207,13 @@
         margin-right: 20px;
     }
 
-    /* Styles for the form */
+    /* Styles for the form 
     form {
         max-width: 800px;
         margin: 0 auto;
         color: #3C8DBB;
     }
+    */
 
     /* Styles for form labels */
     label {
