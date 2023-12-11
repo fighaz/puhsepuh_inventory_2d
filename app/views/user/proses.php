@@ -53,7 +53,7 @@
 
 
     $('.kembali').click(function() {
-        window.location.href = "<?=BASEURL?>/user";
+        window.location.href = "<?=BASEURL?>/User";
     });
 
     let table = new DataTable('#table', {
@@ -109,7 +109,7 @@
     function getItem(id) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?=BASEURL?>/barang/detail/" + id,
+                url: "<?=BASEURL?>/Barang/detail/" + id,
                 dataType: "json",
                 success: function(data) {
                     console.log("success get item");
@@ -126,7 +126,7 @@
 
     $(document).ready(function() {
         $.ajax({
-        url: '<?=BASEURL?>/user/getCart',
+        url: '<?=BASEURL?>/User/getCart',
             type: 'GET',
             dataType: 'json',
             success: async function(data) {
