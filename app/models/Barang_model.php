@@ -1,30 +1,25 @@
 <?php
 
-class Barang_model
-{
+class Barang_model {
     private $table = 'barang';
     private $db;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->db = new Database;
     }
 
-    public function getAllBarang()
-    {
-        $this->db->query('SELECT * FROM ' . $this->table);
+    public function getAllBarang() {
+        $this->db->query('SELECT b.id,b.nama,b.jumlah,b.tersedia,b.kondisi,k.nama as asal,b.keterangan,b.maintainer,b.gambar FROM `barang` as b INNER JOIN kategori as k ON b.asal =k.id;');
         return $this->db->resultSet();
     }
 
-    public function getBarangById($id)
-    {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+    public function getBarangById($id) {
+        $this->db->query('SELECT b.id,b.nama,b.jumlah,b.tersedia,b.kondisi,k.nama as asal,b.keterangan,b.maintainer,b.gambar FROM `barang` as b INNER JOIN kategori as k ON b.asal =k.id; WHERE id=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
 
-    public function tambahDataBarang($data, $gambar)
-    {
+    public function tambahDataBarang($data, $gambar) {
         $query = "INSERT INTO barang
                     VALUES
                   (NULL, :nama, :jumlah, :tersedia, :kondisi, :asal, :keterangan, :maintainer, :gambar)";
@@ -44,8 +39,7 @@ class Barang_model
         return $this->db->rowCount();
     }
 
-    public function hapusDataBarang($id)
-    {
+    public function hapusDataBarang($id) {
         $query = "DELETE FROM barang WHERE id = :id";
 
         $this->db->query($query);
@@ -57,8 +51,7 @@ class Barang_model
     }
 
 
-    public function ubahDataBarang($data, $gambar)
-    {
+    public function ubahDataBarang($data, $gambar) {
         $query = "UPDATE barang SET
                     nama = :nama,jumlah = :jumlah,tersedia = :tersedia,kondisi = :kondisi,asal = :asal,keterangan = :keterangan,maintainer = :maintainer,gambar= :gambar
                   WHERE id = :id";
@@ -80,14 +73,22 @@ class Barang_model
     }
 
 
-    public function cariDataBarang()
-    {
+    public function cariDataBarang() {
         $keyword = $_POST['keyword'];
         $query = "SELECT * FROM barang WHERE nama LIKE :keyword";
         $this->db->query($query);
         $this->db->bind('keyword', "%$keyword%");
         return $this->db->resultSet();
     }
+    public function ubahStok($tersedia, $id) {
+        $query = "UPDATE barang SET tersedia = :tersedia WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('tersedia', $tersedia);
+        $this->db->bind('id', $id);
+        $this->db->execute();
 
+        return $this->db->rowCount();
+
+    }
 
 }

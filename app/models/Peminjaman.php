@@ -1,42 +1,37 @@
 <?php
-class Peminjaman
-{
+class Peminjaman {
     private $table = 'peminjaman';
     private $db;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->db = new Database;
     }
-    public function getAllPeminjaman()
-    {
-        $this->db->query('SELECT * FROM ' . $this->table);
+    public function getAllPeminjaman() {
+        $this->db->query('SELECT * FROM '.$this->table);
         return $this->db->resultSet();
     }
-    public function getPeminjamanToApprove()
-    {
+    public function getPeminjamanToApprove() {
         $this->db->query("SELECT * FROM ' . $this->table . ' WHERE status='menungggu'");
         return $this->db->resultSet();
     }
 
-    public function getPeminjamanById($id)
-    {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+    public function getPeminjamanById($id) {
+        $this->db->query('SELECT * FROM '.$this->table.' WHERE id=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
-    public function getPeminjamanByUserId($iduser)
-    {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_user=:iduser');
+    public function getPeminjamanByUserId($iduser) {
+        $this->db->query('SELECT * FROM '.$this->table.' WHERE id_user=:iduser');
         $this->db->bind('iduser', $iduser);
         return $this->db->single();
     }
 
-    public function tambahDataPeminjaman($data)
-    {
+    public function tambahDataPeminjaman($data) {
         $query = "INSERT INTO peminjaman
                     VALUES
-                  ('', :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian)";
+                  ('', :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian)
+                  SELECT LAST_INSERT_ID() as last_insert_id;";
+
 
         $this->db->query($query);
         $this->db->bind('id_user', $data['id_user']);
@@ -47,12 +42,14 @@ class Peminjaman
 
 
         $this->db->execute();
+        if($this->db->rowCount() > 0) {
+            return $this->db->single()->last_insert_id;
+        }
 
-        return $this->db->rowCount();
+
     }
 
-    public function approvePeminjaman($id)
-    {
+    public function approvePeminjaman($id) {
         $query = "UPDATE peminjaman SET status='dipinjam' WHERE id= :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
@@ -61,8 +58,7 @@ class Peminjaman
 
         return $this->db->rowCount();
     }
-    public function tolakPeminjaman($id)
-    {
+    public function tolakPeminjaman($id) {
         $query = "UPDATE peminjaman SET status='ditolak' WHERE id= :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
