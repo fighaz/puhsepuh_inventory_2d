@@ -48,11 +48,11 @@
     });
 
     $(".proses button").on('click', () => {
-        window.location.href = "<?=BASEURL?>/user/proses";
+        window.location.href = "<?=BASEURL?>/User/proses";
     });
 
     let table = new DataTable("#table", {
-        ajax: "<?=BASEURL?>/barang/getAll",
+        ajax: "<?=BASEURL?>/Barang/getAll",
         //data: dataBarang,
         scrollY: "43vh",
         scrollX: true,
@@ -139,7 +139,7 @@
                 let row = keranjangTable.row($(this).parents('tr'));
                 let data = row.data();
                 $.ajax({
-                    url: "<?=BASEURL?>/user/removeFromCart/" + data.id,
+                    url: "<?=BASEURL?>/User/removeFromCart/" + data.id,
                     success: function(_) {
                         console.log("success");
                         row.remove().draw();
@@ -163,7 +163,7 @@
         $(this).on('click', '.alt-button.tambah', function() {
             let data = table.row($(this).parents('tr')).data();
             $.ajax({
-                url: "<?=BASEURL?>/user/addCart/" + data.id,
+                url: "<?=BASEURL?>/User/addCart/" + data.id,
                 success: function(_, _, xhr) {
                     if (xhr.status != 200) {
                         return;
@@ -186,7 +186,7 @@
     function getItem(id) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?=BASEURL?>/barang/detail/" + id,
+                url: "<?=BASEURL?>/Barang/detail/" + id,
                 dataType: "json",
                 success: function(data) {
                     resolve(data);
@@ -199,7 +199,7 @@
     }
 
     $.ajax({
-        url: "<?=BASEURL?>/user/getCart",
+        url: "<?=BASEURL?>/User/getCart",
         dataType: "json",
         success: async function(data) {
             console.log("success");
