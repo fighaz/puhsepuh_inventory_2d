@@ -8,6 +8,11 @@
             $('#sidebar').trigger('toggle');
         });
     });
+
+    $(document).ready(function () {
+        $('.sidebar-item.<?= $this->active_sidebar ?>').addClass('active');
+    });
+
 </script>
 
 <style> 
@@ -122,6 +127,7 @@
         width: 100%;
     }
 </style>
+
 
 <div id="global-container">
     <div id="top">
