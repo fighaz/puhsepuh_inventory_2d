@@ -6,6 +6,197 @@
 }
 
 html, body {
-    color: var(--bs-primary)
+    color: var(--bs-primary);
 }
 
+body, html {
+    background-color: var(--background-global);
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.container.tables {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    min-width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#welcome {
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+#welcome > .nama {
+    font-weight: 650;
+}
+
+.subtitle {
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+.search-wrapper {
+    margin-left: 10px;
+    gap: 7px;
+}
+
+#search {
+    border: 2px solid var(--bs-primary);
+}
+
+.label-daftar-barang {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+table {
+    text-align: center;
+    width: 100% !important;
+}
+
+.dataTables_scrollHead {
+    width: 100% !important;
+}
+
+.dataTables_scrollHeadInner {
+    width: 100% !important;
+}
+
+.dataTables_wrapper > div > label {
+    color: var(--bs-primary);
+    font-weight: 500 !important;
+    font-size: 14px;
+}
+
+select {
+    border: 1px solid var(--bs-primary) !important;
+    color: var(--bs-primary) !important;
+    background-color: var(--background-global) !important;
+}
+
+thead>tr>th {
+    border-right: 1px solid var(--background-global);
+    color: white;
+    font-weight: 650;
+    text-align: center !important;
+}
+
+tbody {
+    background-color: white;
+}
+
+.td-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--table-row-height);
+}
+
+#table-content {
+    font-weight: 500;
+}
+
+.img-clm img {
+    max-width: 75px;
+    max-height: var(--table-row-height);
+}
+
+.dataTables_info {
+    margin-top: 10px !important;
+}
+
+.dataTables_paginate {
+    margin-top: -25px !important;
+}
+
+.dataTables_info, .dataTables_paginate {
+    font-size: 14px;
+}
+
+#keranjang_wrapper .dataTables_scrollHead thead {
+    height: 40px;
+}
+
+#keranjang_wrapper .dataTables_scrollBody tbody tr {
+    padding: 10px;
+    height: 50px;
+}
+
+.keranjang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    min-width: none !important;
+    padding: 0 9px;
+}
+
+.peminjaman>.list-items {
+    margin-top: 31px;
+}
+
+/*
+    .peminjaman > .proses {
+        position: sticky;
+        bottom: 20px;
+        margin-top: 29px;
+    }
+*/
+.proses {
+    margin-top: 23px;
+}
+
+.proses>button {
+    width: 100%;
+    height: 41px;
+    text-align: center;
+    text-justify: center;
+}
+
+.alt-button {
+    padding: 0;
+    background-color: transparent;
+    border: 3px solid transparent;
+    border-radius: 40px;
+    width:  50px;
+    height: 50px;
+}
+
+.alt-button:active {
+    background-color: var(--bs-primary);
+}
+
+.alt-button.tambah:hover {
+    border: 3px solid #00B152;
+}
+
+.alt-button.rincian:hover {
+    border: 3px solid #E7AE0E;
+}
+
+.alt-button.search {
+    width:  25px;
+    height: 25px;
+    background-color: transparent;
+}
+
+.alt-button.hapus {
+    width:  30px;
+    height: 30px;
+}
+
+.alt-button.hapus:hover {
+    background-color: #f6a5a8;
+}
+
+.alt-button.hapus:active {
+    background-color: red;
+}

@@ -1,73 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Home</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../../../public/css/style.css" rel="stylesheet">
-  <link href="../../../public/css/bootstrap.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-  <style>
-    :root {
-      font-family: Montserrat;
-    }         
-    * {
-      background-color: #EBEFF5;
-    }
+<style>
+:root {
+  font-family: Montserrat;
+}         
+html, body { 
+  background-color: #EBEFF5;
+}
 
-    .content {
-      padding: 14px 42px 14px 42px;
-    }
-    .content h2 {
-      font-size: 40px;
-      color: #E7AE0E;
-    }
+.content {
+  padding: 14px 42px 14px 42px;
+}
+.content h2 {
+  font-size: 40px;
+  color: #E7AE0E;
+}
 
-    .content h3 {
-      font-size: 30px;
-      color: #E7AE0E;
-    }
+.content h3 {
+  font-size: 30px;
+  color: #E7AE0E;
+}
 
-    .content p {
-      color: #3C8DBB;
-    }
+.content p {
+  color: #3C8DBB;
+}
 
-    /* Table */
-    thead {
-      font-size: 16px;
-      color: #fff;
-      font-weight: normal;
-      text-align: center;
-    }
+/* Table */
+thead {
+  font-size: 16px;
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
+}
 
-    thead th {
-      border: 2px solid #fff;
-    }
+thead th {
+  border: 2px solid #fff;
+}
 
-    tbody {
-      text-align: center;
-    }
+tbody {
+  text-align: center;
+}
 
-    tbody td{
-      border-bottom: 1px solid #3C8DBB;
-    }
+tbody td{
+  border-bottom: 1px solid #3C8DBB;
+}
 
-    /* Entries */
-    #num-of-entries {
-            background-color: var(--background-global);
-            color: var(--bs-primary);
-            max-width: 50px;
-            max-height: 10px;
-            height: 10px;
-            margin: 0 5px;
-            font-size: 12px;
-            padding: 0 0 0 15px;
-            border: 1px solid var(--bs-primary);
-        }
-  </style>
-</head>
-<body>
+/* Entries */
+#num-of-entries {
+        background-color: var(--background-global);
+        color: var(--bs-primary);
+        max-width: 50px;
+        max-height: 10px;
+        height: 10px;
+        margin: 0 5px;
+        font-size: 12px;
+        padding: 0 0 0 15px;
+        border: 1px solid var(--bs-primary);
+    }
+</style>
 <div class="content">
   <h3>Beranda</h3>
   <h2>Selamat Datang</h2>
@@ -122,7 +110,3 @@
                 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-</body>
-</html>

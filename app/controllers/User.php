@@ -1,54 +1,70 @@
 <?php
-class User extends Controller
-{
-    public function __construct()
-    {
-        session_start();
-        $_SESSION['cart'] = array();
-    }
-    public function index()
-    {
-        $data['user'] = $this->model('Barang')->getAllBarang();
-        $this->view('user/index', $data);
-    }
-    public function addCart($id)
-    {
-        $_SESSION['cart'][] = $id;
+class User extends Controller {
 
+    public $sidebar;
+
+    public function __construct() {
+        parent::__construct();
+        session_start();
+        $this->sidebar = $this->sidebar_user;
     }
-    public function getCart()
-    {
-        echo json_encode($_SESSION['cart']);
+    public function index() {
+        $this->active_sidebar = "home";
+        $this->view('user/index');
     }
-    public function removeFromCart($id)
-    {
-        for ($i = 0; $i < count($_SESSION['cart']); $i++) {
-            if ($_SESSION['cart'][$i] == $id) {
-                unset($_SESSION['cart'][$i]);
-            }
-        }
-    }
-    public function tambah()
-    {
-        if ($this->model('Peminjaman')->tambahDataMahasiswa($_POST) > 0) {
-            $this->model('Detail_Peminjaman')->tambahDataPeminjaman($_POST);
-            unset($_SESSION['cart']);
+    public function addCart($id) {
+        if($this->model('Keranjang')->tambahItemKeranjang($id) > 0) {
             // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-            header('Location: ' . BASEURL . '/User');
+            header('Location: '.BASEURL.'/User');
             exit;
         } else {
             // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/User');
+            header('Location: '.BASEURL.'/User');
+            exit;
+        }
+
+    }
+    public function removeFromCart($id) {
+        if($this->model('Keranjang')->hapusItemKeranjangByUserId($_SESSION['id_user'], $id) > 0) {
+            // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: '.BASEURL.'/User');
+            exit;
+        } else {
+            // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location: '.BASEURL.'/User');
             exit;
         }
     }
+    public function getCart() {
+        echo json_encode($this->model('Keranjang')->getAllKeranjangByUserId());
+    }
+    public function tambah() {
+        $peminjaman = $this->model('Peminjaman')->tambahDataPeminjaman($_POST);
+        if($peminjaman > 0) {
+            $this->model('Detail_Peminjaman')->tambahDataPeminjaman($_POST, $peminjaman);
+            $this->model('Keranjang')->hapusDataKeranjangByUserId($_SESSION['id_user']);
+            // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: '.BASEURL.'/User');
+            exit;
+        } else {
+            // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location: '.BASEURL.'/User');
+            exit;
+        }
+    }
+    public function proses()
+    {
+        $this->active_sidebar = "home";
+        $this->view('user/proses');
+    }
     public function peminjaman()
     {
-        $data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
-        $this->view('user/peminjaman', $data);
+        $this->active_sidebar = "peminjaman";
+        //$data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
+        //$this->view('user/peminjaman', $data);
+        $this->view('user/riwayat');
     }
-    public function detailPeminjaman($id)
-    {
+    public function detailPeminjaman($id) {
         $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
         $this->view('user/peminjaman', $data);
     }

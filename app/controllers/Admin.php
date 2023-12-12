@@ -1,15 +1,35 @@
 <?php
 class Admin extends Controller
 {
+    public $sidebar;
+    public function __construct()
+    {
+        parent::__construct();
+        session_start();
+        $this->sidebar = $this->sidebar_admin;
+    }
     public function index()
     {
         // $data['admin'] = $this->model('Peminjaman')->getPeminjamanToApprove();
+        $this->active_sidebar = "home";
         $this->view('admin/index');
+    }
+    public function inventaris()
+    {
+        //$data['barang'] = $this->model('Barang')->getAllBarang();
+        $this->active_sidebar = "inventaris";
+        $this->view('admin/list_inventory');
     }
     public function peminjaman()
     {
-        $data['admin'] = $this->model('Peminjaman')->getAllPeminjaman();
-        $this->view('admin/index', $data);
+        //$data['admin'] = $this->model('Peminjaman')->getAllPeminjaman();
+        $this->active_sidebar = "peminjaman";
+        $this->view('admin/riwayat_peminjaman');
+    }
+    public function peminjam()
+    {
+        $this->active_sidebar = "peminjam";
+        $this->view('admin/peminjam');
     }
     public function approve($id)
     {
