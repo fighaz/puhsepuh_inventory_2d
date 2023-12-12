@@ -60,8 +60,9 @@ class User extends Controller {
     public function peminjaman()
     {
         $this->active_sidebar = "peminjaman";
-        $data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
-        $this->view('user/peminjaman', $data);
+        //$data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
+        //$this->view('user/peminjaman', $data);
+        $this->view('user/riwayat');
     }
     public function detailPeminjaman($id) {
         $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);

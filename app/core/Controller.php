@@ -48,6 +48,12 @@ class Controller
                 "url" => "admin/peminjaman"
             ],
             [
+                "id" => "peminjam",
+                "title" => "Peminjam",
+                "icon" => "groups.svg",
+                "url" => "admin/peminjam"
+            ],
+            [
                 "id" => "ganti_password",
                 "title" => "Ganti Password",
                 "icon" => "kunci.svg",
