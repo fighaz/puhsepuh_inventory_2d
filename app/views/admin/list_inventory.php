@@ -1,9 +1,9 @@
 <style>
-  <style> :root {
+  :root {
     font-family: Montserrat;
   }
 
-  * {
+  body {
     background-color: #EBEFF5;
   }
 
@@ -75,11 +75,11 @@
 <body>
   <div class="content">
 
-    <h3>List Barang</h3>
+    <h3 class="fw-semibold">List Barang</h3>
     <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
     <div class="row mb-3">
       <div class="col-lg-6">
-        <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn btn-primary">Tambah</a>
+        <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn btn-primary text-white">Tambah</a>
       </div>
     </div>
     <!-- NavTabs -->
@@ -131,13 +131,13 @@
             </tr>
           <?php else:
             foreach ($data['brg'] as $brg): ?>
-              <tr class="bg-white">
+              <tr class="bg-white text-primary align-middle">
                 <td>
                   <?= $no++ ?>
                 </td>
                 <td>
 
-                  <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="" width="200px" height="200px">
+                  <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" class="object-fit-cover border rounded" alt="" width="98px" height="70px">
                 </td>
 
                 <td>
@@ -182,3 +182,6 @@
       </div>
     </div>
   </div>
+</body>
+
+</html>
