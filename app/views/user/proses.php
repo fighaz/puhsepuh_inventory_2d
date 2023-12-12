@@ -2,21 +2,21 @@
     <form action="<?=BASEURL?>/User/tambah" method="post">
         <div class="content">
             <p class="judul">Proses Peminjaman</p>
-                <div class="mb-3 row">
+                <div class="mb-2 row">
                     <label for="Nama Peminjam" class="col-sm-3 col-form-label fw-normal">Nama Peminjam</label>
                     <div class="col-sm-6">
                     <input type="text" class="form-control" id="Nama Peminjam" value="<?=$_SESSION['nama']?>" readonly>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
-                <div class="mb-3 row">
+                <div class="mb-2 row">
                     <label for="NIM/NIP" class="col-sm-3 col-form-label fw-normal">NIM/NIP</label>
                     <div class="col-sm-6">
                     <input type="text" class="form-control" id="NIM/NIP" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
-                <div class="mb-3 row">
+                <div class="mb-2 row">
                     <label for="Mulai" class="col-sm-3 col-form-label fw-normal">Mulai Pinjam</label>
                     <div class="col-sm-3">
                         <input type="date" class="form-control" id="Mulai" name="tanggal_peminjaman">
@@ -42,7 +42,7 @@
                 </thead>
 
             </table>
-            <div class="d-grid gap-2 d-md-block">
+            <div class="d-grid gap-2 d-md-block mt-2">
                 <button class="button kembali" type="button">Kembali</button>
                 <button class="tombol pinjam" type="submit">Pinjam!</button>
             </div>
@@ -63,6 +63,7 @@
     });
 
     let table = new DataTable('#table', {
+        scrollY: '190px',
         dom: 't',
         columns: [
             { data: 'gambar', },
@@ -98,7 +99,7 @@
                 targets: 3,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<textarea class="form-control" id="Catatan" rows="2" name="keterangan"></textarea>`;
+                    return `<textarea class="form-control-lg" id="Catatan" rows="2" name="keterangan"></textarea>`;
                 }
             },
             {
@@ -223,7 +224,22 @@
     /* Styles for form inputs */
     .form-control {
         width: 100%;
-        padding: 8px;
+        max-height: 50px;
+        padding: 5px 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 3px solid #3C8DBB;
+    }
+
+    .form-control-sm {
+        border: 3px solid #3C8DBB;
+    }
+
+    .form-control-lg {
+        font-size: 15px;
+        width: 80%;
+        min-height: 90px;
+        padding: 5px 8px;
         margin: 5px 0;
         box-sizing: border-box;
         border: 3px solid #3C8DBB;
