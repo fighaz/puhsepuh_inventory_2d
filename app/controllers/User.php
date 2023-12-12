@@ -1,38 +1,16 @@
 <?php
 class User extends Controller {
+
     public $sidebar;
+
     public function __construct() {
+        parent::__construct();
         session_start();
-        $this->sidebar = [
-            [
-                "id" => "home active",
-                "title" => "Home",
-                "icon" => "home.svg",
-                "url" => "user/index"
-            ],
-            [
-                "id" => "inventaris",
-                "title" => "Inventaris",
-                "icon" => "inventaris.svg",
-                "url" => "user/index"
-            ],
-            [
-                "id" => "peminjaman",
-                "title" => "Peminjaman",
-                "icon" => "peminjaman.svg",
-                "url" => "user/index"
-            ],
-            [
-                "id" => "ganti_password",
-                "title" => "Ganti Password",
-                "icon" => "kunci.svg",
-                "url" => "user/index"
-            ]
-        ];
+        $this->sidebar = $this->sidebar_user;
     }
     public function index() {
-        $data['sidebar'] = $this->sidebar;
-        $this->view('user/index', $data);
+        $this->active_sidebar = "home";
+        $this->view('user/index');
     }
     public function addCart($id) {
         if($this->model('Keranjang')->tambahItemKeranjang($id) > 0) {
@@ -76,11 +54,12 @@ class User extends Controller {
     }
     public function proses()
     {
-        $data['sidebar'] = $this->sidebar;
-        $this->view('user/proses', $data);
+        $this->active_sidebar = "home";
+        $this->view('user/proses');
     }
     public function peminjaman()
     {
+        $this->active_sidebar = "peminjaman";
         $data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
         $this->view('user/peminjaman', $data);
     }
