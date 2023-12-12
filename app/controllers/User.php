@@ -46,8 +46,8 @@ class User extends Controller
     }
     public function tambah()
     {
-        $data = json_decode($_POST['barang']);
-        $peminjaman = $this->model('Peminjaman')->tambahDataPeminjaman($data, $_SESSION['id_user']);
+        $data = json_decode($_POST['barang'], true);
+        $peminjaman = $this->model('Peminjaman')->tambahDataPeminjaman($_POST, $_SESSION['id_user']);
         if ($peminjaman > 0) {
             $this->model('Detail_Peminjaman')->tambahDataPeminjaman($data, $peminjaman);
             $this->model('Keranjang')->hapusDataKeranjangByUserId($_SESSION['id_user']);

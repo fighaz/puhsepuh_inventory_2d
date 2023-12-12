@@ -41,7 +41,7 @@ class Keranjang
     }
     public function hapusDataKeranjangByUserId($id)
     {
-        $query = "DELETE FROM kategori WHERE id_user = :id_user";
+        $query = "DELETE FROM keranjang WHERE id_user = :id_user";
 
         $this->db->query($query);
         $this->db->bind('id_user', $id);
