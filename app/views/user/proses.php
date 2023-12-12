@@ -12,18 +12,18 @@
                 <div class="mb-2 row">
                     <label for="NIM/NIP" class="col-sm-3 col-form-label fw-normal">NIM/NIP</label>
                     <div class="col-sm-6">
-                    <input type="text" class="form-control" id="NIM/NIP" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
+                    <input type="text" class="form-control" id="username" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
                 <div class="mb-2 row">
                     <label for="Mulai" class="col-sm-3 col-form-label fw-normal">Mulai Pinjam</label>
                     <div class="col-sm-3">
-                        <input type="date" class="form-control" id="Mulai" name="tanggal_peminjaman">
+                        <input type="date" class="form-control" id="tgl_pinjam" name="tanggal_peminjaman">
                     </div>
                     <label id="label-sampai" for="Sampai" class="col-sm-1 col-form-label fw-normal">Sampai</label>
                     <div class="col-sm-3">
-                        <input type="date" class="form-control" id="Sampai" name="tanggal_pengembalian">
+                        <input type="date" class="form-control" id="tgl_kembali" name="tanggal_pengembalian">
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
             </table>
             <div class="d-grid gap-2 d-md-block mt-2">
                 <button class="button kembali" type="button">Kembali</button>
-                <button class="tombol pinjam" type="submit">Pinjam!</button>
+                <button class="tombol pinjam" type="button">Pinjam!</button>
             </div>
 
         </div>
@@ -58,10 +58,6 @@
         window.location.href = "<?=BASEURL?>/User";
     });
 
-    $('pinjam').click(() => {
-
-    });
-
     let table = new DataTable('#table', {
         scrollY: '190px',
         dom: 't',
@@ -70,7 +66,8 @@
             { data: 'nama', },
             { data: null, },
             { data: null, },
-            { data: null, }
+            { data: null, },
+            { data: 'id', },
         ],
         columnDefs: [
 
@@ -92,14 +89,14 @@
                 targets: 2,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<input type="number" class="form-control-sm w-25" id="Jumlah Pinjam" value="1" name="nama">`;
+                    return `<input type="number" class="jumlah form-control-sm w-25" value="1">`;
                 }
             },
             {
                 targets: 3,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<textarea class="form-control-lg" id="Catatan" rows="2" name="keterangan"></textarea>`;
+                    return `<textarea class="catatan form-control-lg" rows="2"></textarea>`;
                 }
             },
             {
@@ -108,8 +105,15 @@
                 render: function(data, type, row, meta) {
                     return `<img src="<?=BASEURL?>/assets/hapus.svg" alt="hapus" class="alt-button hapus">`;
                 }
-            }
-        ]
+            },
+            {
+                targets: 5,
+                visible: false,
+            },
+        ],
+        createdRow: function(row, data, dataIndex) {
+            $(row).attr('id', data.id);
+        }
     });
 
     // return object barang
@@ -131,6 +135,36 @@
         });
     }
 
+    $('.pinjam').on('click', () => {
+        let form = $('form');
+        let data = table.rows().data();
+        let barang = [];
+        for (let i = 0; i < data.length; i++) {
+            let item = {};
+            Object.defineProperty(item, 'id_barang', {
+                value: data[i].id,
+                enumerable: true,
+            });
+            Object.defineProperty(item, 'jumlah', {
+                value: $(`#${data[i].id} input.jumlah`).val(),
+                enumerable: true,
+            });
+            Object.defineProperty(item, 'catatan', {
+                value: $(`#${data[i].id} textarea.catatan`).val(),
+                enumerable: true,
+            });
+            barang.push(item);
+        }
+        let barang_str = [];
+        console.log(barang);
+        form.append($('<input />', {
+            type: "hidden",
+            name: "barang",
+            value: JSON.stringify(barang)
+        }));
+        form.submit();
+    });
+
     $(document).ready(function() {
         $.ajax({
         url: '<?=BASEURL?>/User/getCart',
@@ -145,6 +179,7 @@
                         table.row.add({
                             gambar: barang.gambar,
                             nama: barang.nama,
+                            id: barang.id,
                         }).draw(false);
                     } catch (err) {
                         console.log(err);
