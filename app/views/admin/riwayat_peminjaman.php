@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Peminjaman</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../../../public/css/style.css" rel="stylesheet">
-  <link href="../../../public/css/bootstrap.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
   <style>
     :root {
       font-family: Montserrat;
     }         
-    * {
+    html, body {
       background-color: #EBEFF5;
     }
 
@@ -88,8 +78,7 @@
     }
 
   </style>
-</head>
-<body>
+
   <div class="content">
     <h3>Peminjaman</h3>
     <br>
@@ -120,10 +109,6 @@
       </button>
     </div>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Style -->
     <style>
       /* Search */
       .search button{
@@ -157,8 +142,8 @@
   <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
   entries
 </div>
-<table class="table table-hover table-striped table-bordered">
-  <thead class="table-primary">
+<table class="table table-hover table-bordered">
+  <thead class="">
     <tr class="bg-primary">
       <th>ID</th>
       <th>Nama Peminjam</th>
@@ -252,8 +237,3 @@
         </ul>
       </nav>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
