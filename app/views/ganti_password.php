@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../../../public/css/style.css" rel="stylesheet">
-  <link href="../../../public/css/bootstrap.css" rel="stylesheet">
+  <link href="<?= BASEURL; ?>/css/style.css" rel="stylesheet">
+  <link href="<?= BASEURL; ?>/css/bootstrap.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+
   <style>
     :root {
       font-family: Montserrat;
-    }         
+    }
+
     * {
       background-color: #EBEFF5;
     }
-    
+
     .content {
       padding: 35px 90px 45px 90px;
       border: 2px solid #3C8DBB;
@@ -44,7 +46,7 @@
       height: 100vh;
       margin: 0;
     }
-    
+
     .form-control {
       width: 300px;
       height: 35px;
@@ -70,20 +72,26 @@
     label {
       margin-bottom: -30px;
     }
-
   </style>
 </head>
+
 <body>
   <div class="content">
-    <div class="form-group">
-      <label for="pastPassword" class="form-label" text-primary>Masukkan Password Lama :</label>
-      <input type="password" class="form-control" id="pastPassword" placeholder="Masukkan Password Lama">
-      <label for="inputPassword" class="form-label" text-primary>Masukkan Password Baru :</label>
-      <input type="password" class="form-control" id="Masukkan Password Baru" placeholder="Masukkan Password Baru">
-      <label for="confirmPassword" class="form-label">Konfirmasi Password Baru :</label>
-      <input type="password" class="form-control" id="Konfirmasi Password Baru" placeholder="Konfirmasi Password">
-    </div>
-    <button type="button" class="btn btn-primary text-white" >Simpan</button>
+    <form action="<?= BASEURL; ?>/UbahPassword/ubah" method="post">
+      <div class="form-group">
+        <label for="pastPassword" class="form-label" text-primary>Masukkan Password Lama :</label>
+        <input type="password" class="form-control" id="pastPassword" placeholder="Masukkan Password Lama"
+          name="password_lama">
+        <label for="inputPassword" class="form-label" text-primary>Masukkan Password Baru :</label>
+        <input type="password" class="form-control" id="Masukkan Password Baru" placeholder="Masukkan Password Baru"
+          name="password_baru">
+        <label for="confirmPassword" class="form-label">Konfirmasi Password Baru :</label>
+        <input type="password" class="form-control" id="Konfirmasi Password Baru" placeholder="Konfirmasi Password"
+          name="konfirm_password">
+      </div>
+      <button type="submit" class="btn btn-primary text-white">Simpan</button>
   </div>
+  </form>
 </body>
+
 </html>
