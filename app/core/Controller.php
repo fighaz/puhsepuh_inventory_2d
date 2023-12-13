@@ -12,19 +12,19 @@ class Controller
                 "id" => "home",
                 "title" => "Home",
                 "icon" => "home.svg",
-                "url" => "user/index"
+                "url" => "User/index"
             ],
             [
                 "id" => "peminjaman",
                 "title" => "Peminjaman",
                 "icon" => "peminjaman.svg",
-                "url" => "user/peminjaman"
+                "url" => "User/peminjaman"
             ],
             [
                 "id" => "ganti_password",
                 "title" => "Ganti Password",
                 "icon" => "kunci.svg",
-                "url" => "user/ganti_password"
+                "url" => "User/ganti_password"
             ]
         ];
 
@@ -33,31 +33,31 @@ class Controller
                 "id" => "home",
                 "title" => "Home",
                 "icon" => "home.svg",
-                "url" => "admin/index"
+                "url" => "Admin/index"
             ],
             [
                 "id" => "inventaris",
                 "title" => "Inventaris",
                 "icon" => "inventaris.svg",
-                "url" => "admin/inventaris"
+                "url" => "Admin/inventaris"
             ],
             [
                 "id" => "peminjaman",
                 "title" => "Peminjaman",
                 "icon" => "peminjaman.svg",
-                "url" => "admin/peminjaman"
+                "url" => "Admin/peminjaman"
             ],
             [
                 "id" => "peminjam",
                 "title" => "Peminjam",
                 "icon" => "groups.svg",
-                "url" => "admin/peminjam"
+                "url" => "Admin/peminjam"
             ],
             [
                 "id" => "ganti_password",
                 "title" => "Ganti Password",
                 "icon" => "kunci.svg",
-                "url" => "admin/ganti_password"
+                "url" => "Admin/ganti_password"
             ]
         ];
     }
