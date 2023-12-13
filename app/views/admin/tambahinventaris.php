@@ -98,6 +98,7 @@
                     </tbody>
                 </table>
 
+<<<<<<< Updated upstream
             </section>
             <section class="col-md-4 p-4">
                 <div class="form-group border rounded p-4">
@@ -105,6 +106,80 @@
                     <div class="image-upload-container border border-primary rounded">
                         <input type="file" name="gambar" id="gambar" class="form-control">
                         <img id="preview" src="#" alt="Upload Gambar">
+=======
+                    <table class="table text-primary">
+                        <tbody>
+                            <tr>
+                                <td><label for="nama_barang" class="form-label">Nama Barang</label></td>
+                                <td><input type="text" name="nama" id="nama_barang" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="qty" class="form-label">Jumlah</label></td>
+                                <td><input type="number" name="jumlah" id="jumlah" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="qty" class="form-label">Tersedia</label></td>
+                                <td><input type="number" name="tersedia" id="tersedia" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="maks_pinjam" class="form-label">Kondisi</label></td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="kondisi" id="inlineRadio1"
+                                            value="Baik">
+                                        <label class="form-check-label" for="inlineRadio1">Baik</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="kondisi" id="inlineRadio2"
+                                            value="Rusak">
+                                        <label class="form-check-label" for="inlineRadio2">Rusak</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="asal" class="form-label">Asal</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" name="asal" id="asal" class="form-control" placeholder="Masukkan Asal">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle bg-transparent text-dark" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Asal
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <li><button class="dropdown-item" type="button">Pembelian</button></li>
+                                                <li><button class="dropdown-item" type="button">Hibah</button></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="keterangan" class="form-label">Keterangan</label></td>
+                                <td><textarea rows="4" cols="50" name="keterangan" id="keterangan"
+                                        class="form-control"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><label for="maintainer" class="form-label">Maintainer</label></td>
+                                <td><input type="text" name="maintainer" id="maintainer" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2" class="text-center"><button type="submit"
+                                        class="btn btn-primary btn-lg text-white">SIMPAN</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+                <section class="col-md-4 p-4">
+                    <div class="form-group border rounded p-4">
+                        <!-- Tambahkan class untuk area gambar -->
+                        <div class="image-upload-container border border-primary rounded">
+                            <input type="file" name="gambar" id="gambar" class="form-control">
+                            <img id="preview" src="#" alt="Upload Gambar">
+                        </div>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </section>
