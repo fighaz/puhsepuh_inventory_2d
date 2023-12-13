@@ -36,5 +36,24 @@ class Detail_Peminjaman
         $this->db->query($query);
         $this->db->execute();
     }
+    public function updateDetailPeminjaman($data, $id)
+    {
+        for ($i = 0; $i < count($data); $i++) {
+            $query = "UPDATE detail_peminjaman
+            SET jumlah = :jumlah,keterangan = :keterangan WHERE id_peminjaman = :id_peminjaman AND id_barang = :id_barang";
+
+            $this->db->query($query);
+            $this->db->bind('id_peminjaman', $id);
+            $this->db->bind('id_barang', $data[$i]['id_barang']);
+            $this->db->bind('jumlah', $data[$i]['jumlah']);
+            $this->db->bind('keterangan', $data[$i]['catatan']);
+
+            $this->db->execute();
+
+
+        }
+
+        return $this->db->rowCount();
+    }
 }
 ?>
