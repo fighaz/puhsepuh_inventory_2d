@@ -1,3 +1,115 @@
+    <h3>Riwayat Peminjaman</h3>
+    <br>
+
+    <div class="search-wrapper d-flex flex-row mb-3">
+        <input type="text" class="form-control" id="search" placeholder="Cari barang">
+        <button class="btn btn-primary text-white d-flex flex-row">
+            Cari
+            <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
+        </button>
+    </div>
+
+    <table id="table" class="table table-hover rounded mt-2">
+      <thead class="bg-primary rounded-top">
+        <tr>
+          <th style="border-top-left-radius: 5px;">ID</th>
+          <th>Status peminjaman</th>
+          <th>Barang</th>
+          <th>Tanggal Pinjam</th>
+          <th>Tanggal Pengembalian</th>
+          <th style="border-top-right-radius: 5px;">Aksi</th>
+        </tr>
+      </thead>
+    </table>
+
+<script> 
+
+    function getBarangs(id) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '<?=BASEURL?>/User/getBarangFromPeminjaman/' + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(id + " : " + data);
+                    resolve(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    let table = new DataTable("#table", {
+        ajax: "<?=BASEURL?>/User/getAllPeminjaman",
+        dom: "lrtip",
+        scrollY: '300px',
+        columns: [
+            {data: "id"},
+            {data: "status"},
+            {
+                data: null,
+                createdCell: async function(cell, cellData, rowData, rowIndex, colIndex) {
+                    try {
+                        let barangs = [];
+                        barangs = await getBarangs(rowData.id);
+                        let barangs_str = barangs.length == 0 ? "Something went wrong" :
+                            barangs.join("<br>");
+                        $(cell).html(barangs_str);
+                    } catch (err) {
+                        console.log(err);
+                        $(cell).text("Something went wrong");
+                    }
+                }
+            },
+            {data: "tanggal_peminjaman"},
+            {data: "tanggal_pengembalian"},
+            {data: null}
+        ],
+        columnDefs: [
+            {
+                targets: 1,
+                render: function(data, type, row, meta) {
+                    if (data == 'dipinjam') {
+                        return `<span class="badge rounded-pill bg-primary">dipinjam</span>`;
+                    } else if (data == 'menunggu konfirmasi') {
+                        return `<span class="badge rounded-pill bg-secondary">Menunggu Konfirmasi</span>`;
+                    } else if (data == 'menunggu diambil') {
+                        return `<span class="badge rounded-pill bg-warning text-dark">Menunggu diambil</span>`;
+                    } else if (data == 'ditolak') {
+                        return `<span class="badge rounded-pill bg-danger">Ditolak</span>`;
+                    } else if (data == 'selesai') {
+                        return `<span class="badge rounded-pill bg-success">Selesai</span>`;
+                    } else if (data == 'terlambat') {
+                        return `<span class="badge rounded-pill bg-info text-dark">Terlambat</span>`;
+                    } else {
+                        return `<span class="badge rounded-pill bg-danger">Something went wrong</span>`;
+                    }
+                }
+            },
+            {
+                targets: 2,
+                render: async function(data, type, row, meta) {
+                    return `<span>loading...</span>`;
+                },
+            },
+            {
+                targets: 5,
+                className: "aksi",
+                render: function(data, type, row, meta) {
+                    return `
+                        <a class="icon_edit"><img src="<?=BASEURL?>/assets/edit.svg" class="alt-button" alt="edit"></a>
+                        <a class="icon_tolak"><img src="<?=BASEURL?>/assets/tolak.svg" class="alt-button" alt="Tolak"></a>
+                        <a class="icon_rincian"><img src="<?=BASEURL?>/assets/rincian.svg" class="alt-button" alt="rincian"></a>
+                    `;
+                }
+            }
+        ],
+    });
+</script>
+
   <style>
     :root {
       font-family: Montserrat;
@@ -21,6 +133,10 @@
 
     .content p {
       color: #3C8DBB;
+    }
+
+    .search-wrapper {
+        margin-left: 0;
     }
 
     /* Table */
@@ -57,151 +173,4 @@
     }
 
   </style>
-  <div class="content">
-    <h3>Riwayat Peminjaman</h3>
-    <br>
 
-    <!-- HTML -->
-    <div class="search">
-      <input type="text" class="form-control">
-      <button class="btn btn-primary">
-        Search <i class="fa fa-search"></i> 
-        <img src="asset/search.svg" alt="">  
-      </button>
-    </div>
-
-    <!-- Style -->
-    <style>
-      /* Search */
-      .search button{
-        top: 5px;
-        right: 5px;
-        height: 54px;
-        width: 160px;
-        background: #3C8DBB;
-      }
-
-      .search {
-        display: flex;
-        align-items: center;
-      }
-
-      .search input {
-        height: 54px;
-        width: 734;
-        border-radius: 5px;
-        border: 3px solid #3C8DBB;
-        display: flex;
-        align-items: center;
-        margin-right: 10px;
-      }
-    </style>
-
-    <!-- Table -->
-    <br>
-    <div class="d-flex flex-row mb-2 entries-control">
-      Show 
-      <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
-      entries
-    </div>
-    <table class="table table-hover">
-      <thead>
-        <tr class="bg-primary">
-          <th>ID</th>
-          <th>Status peminjaman</th>
-          <th>Barang</th>
-          <th>Tanggal Pinjam</th>
-          <th>Tanggal Pengembalian</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody class="text-primary">
-        <tr class="bg-white">
-          <td>ID</td>
-          <td><span class="badge rounded-pill bg-primary">dipinjam</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
-          <td>Tanggal Pengembalian</td>
-          <td>
-            <a href="" class="icon_edit"><img src="asset/edit.svg" alt="edit"></a>
-            <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
-            <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
-          </td>
-        </tr>
-        <tr class="bg-white">
-          <td>ID</td>
-          <td><span class="badge rounded-pill bg-secondary">Menunggu Konfirmasi</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
-          <td>Tanggal Pengembalian</td>
-          <td>
-            <a href="" class="icon_edit"><img src="asset/edit.svg" alt="edit"></a>
-            <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
-            <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
-          </td>
-        </tr>
-        </tr>
-        <tr class="bg-white">
-          <td>ID</td>
-          <td><span class="badge rounded-pill bg-warning text-dark">Menunggu diambil</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
-          <td>Tanggal Pengembalian</td>
-          <td>
-            <a href="" class="icon_edit"><img src="asset/edit.svg" alt="edit"></a>
-            <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
-            <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
-          </td>
-        </tr>
-        <tr class="bg-white">
-          <td>ID</td>
-          <td><span class="badge rounded-pill bg-danger">Ditolak</span></td>
-          <td>Barang</td>
-          <td>Tanggal Pinjam</td>
-          <td>Tanggal Pengembalian</td>
-          <td>
-            <a href="" class="icon_edit"><img src="asset/edit.svg" alt="edit"></a>
-            <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
-            <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
-          </td>
-        </tr>
-        <tr class="bg-white">
-          <td>ID</td>
-          <td><span class="badge rounded-pill bg-success">Selesai</span></td>
-          <td>Barang</td><s></s>
-          <td>Tanggal Pinjam</td>
-          <td>Tanggal Pengembalian</td>
-          <td>
-            <a href="" class="icon_edit"><img src="asset/edit.svg" alt="edit"></a>
-            <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
-            <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
-          </td>
-        </tr>
-        <tr class="bg-white">
-          <td>ID</td>
-          <td><span class="badge rounded-pill bg-info text-dark">Terlambat</span></td>
-          <td>Barang</td><s></s>
-          <td>Tanggal Pinjam</td>
-          <td>Tanggal Pengembalian</td>
-          <td>
-            <a href="" class="icon_edit"><img src="asset/edit.svg" alt="edit"></a>
-            <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
-            <a href="" class="icon_rincian"><img src="asset/rincian.svg" alt="rincian"></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pagination-wrapper d-flex flex-row justify-content-between">
-      <div class="intries-showed mt-2"> 
-        Showing 1 to 10 of 100 entries
-      </div>
-      <nav class="navigation">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#table">1</a></li>
-          <li class="page-item"><a class="page-link" href="#table">2</a></li>
-          <li class="page-item"><a class="page-link" href="#table">3</a></li>
-          <li class="page-item"><a class="page-link" href="#table">Next</a></li>
-        </ul>
-      </nav>
-    </div>

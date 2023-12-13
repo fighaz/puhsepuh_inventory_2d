@@ -29,7 +29,7 @@ class Peminjaman
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_user=:iduser');
         $this->db->bind('iduser', $iduser);
-        return $this->db->single();
+        return $this->db->resultSet();
     }
 
     public function tambahDataPeminjaman($data, $iduser)

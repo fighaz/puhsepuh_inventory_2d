@@ -19,12 +19,10 @@ class User extends Controller
     {
         if ($this->model('Keranjang')->tambahItemKeranjang($_SESSION['id_user'], $id) > 0) {
             // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-            header('Location: ' . BASEURL . '/User');
-            exit;
+            http_response_code(200);
         } else {
             // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/User');
-            exit;
+            http_response_code(400);
         }
 
     }
@@ -71,6 +69,20 @@ class User extends Controller
         //$data = $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['iduser']);
         //$this->view('user/peminjaman', $data);
         $this->view('user/riwayat');
+    }
+    public function getAllPeminjaman() {
+        echo json_encode([ 'data' => $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['id_user'])]);
+    }
+    public function getDetailPeminjaman($id) {
+        echo json_encode($this->model('Detail_Peminjaman')->getDetailPeminjaman($id));
+    }
+    public function getBarangFromPeminjaman($id) {
+        $detail = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
+        $data = [];
+        foreach ($detail as $key => $value) {
+            $data[] = $this->model('Barang_model')->getBarangById($value['id_barang'])['nama'];
+        }
+        echo json_encode($data);
     }
     public function detailPeminjaman($id)
     {
