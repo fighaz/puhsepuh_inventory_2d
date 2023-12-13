@@ -9,9 +9,10 @@
 <body>
 <div class="container">
 
-<h1>Contoh Pop-up Alert Menggunakan SweetAlert</h1>
+<h1>Pop-up SweetAlert</h1>
 
-<button class="btn btn-primary" onclick="berhasil()">Klik disini</button>
+<button class="btn btn-primary" onclick="berhasil()">Peminjaman berhasil</button>
+<button class="btn btn-primary" onclick="gagal()">Peminjaman Gagal</button>
 
 </div>
 
@@ -24,6 +25,14 @@ function berhasil() {
         title: "Berhasil!",
         text: "Peminjaman berhasil diajukan",
         icon: "success",
+        button: true
+    });
+}
+function gagal() {
+   Swal.fire({
+        title: "Berhasil!",
+        text: "Peminjaman tidak berhasil",
+        icon: "error",
         button: true
     });
 }
