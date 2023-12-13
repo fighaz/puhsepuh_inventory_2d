@@ -1,7 +1,7 @@
 <div class="container">
     <form action="<?=BASEURL?>/User/tambah" method="post">
         <div class="content">
-            <p class="judul">Proses Peminjaman</p>
+            <p class="judul fw-semibold">Proses Peminjaman</p>
                 <div class="mb-2 row">
                     <label for="Nama Peminjam" class="col-sm-3 col-form-label fw-normal">Nama Peminjam</label>
                     <div class="col-sm-6">
@@ -89,7 +89,7 @@
                 targets: 2,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<input type="number" class="jumlah form-control-sm w-25" value="1">`;
+                    return `<input type="number" class="jumlah form-control-sm w-25 text-center" value="1">`;
                 }
             },
             {
