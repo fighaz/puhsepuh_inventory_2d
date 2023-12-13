@@ -37,15 +37,18 @@
     function confirmDel() {
         Swal.fire({
             title: "Apakah Anda yakin untuk menghapus Data Barang berikut?",
-            showDenyButton: true,
-            icon: "question",
-            confirmButtonText: "Yakin",
-            denyButtonText: `Batal`
-    }).then((result) => {
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yakin"
+        }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire("Berhasil dihapus!", "", "success");
-        } else if (result.isDenied) {
-            Swal.fire("dibatalkan", "", "");
+            Swal.fire({
+            title: "Terhapus!",
+            text: "Barang berhasil dihapus.",
+            icon: "success"
+            });
         }
         });
     }
