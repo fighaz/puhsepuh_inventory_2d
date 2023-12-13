@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2023 at 03:56 PM
+-- Generation Time: Dec 13, 2023 at 07:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -44,12 +44,12 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `nama`, `jumlah`, `tersedia`, `kondisi`, `asal`, `keterangan`, `maintainer`, `gambar`) VALUES
-(1, 'Spidol', 100, 20, 'Baik', 1, 'Keterangan1', 'Pak Jadi', 'gambar1.jpg'),
+(1, 'Spidol', 100, 15, 'Baik', 1, 'Keterangan1', 'Pak Jadi', 'gambar1.jpg'),
 (2, 'Remote AC', 50, 20, 'Rusak', 2, 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
 (3, 'Proyektor', 70, 20, 'Baik', 2, 'Keterangan3', 'Mas Wowon', 'gambar3.jpg'),
 (4, 'Remote Proyektor', 30, 20, 'Baik', 2, 'Keterangan4', 'Mbak Novi', 'gambar4.jpg'),
 (5, 'Penghapus', 100, 20, 'Rusak', 2, 'Keterangan5', 'Mas Wowon', 'gambar5.jpg'),
-(6, 'Keyboard', 93, 20, 'Baik', 1, 'Keterangan5', 'Mas Wowon', 'gambar6.jpg'),
+(6, 'Keyboard', 93, 15, 'Baik', 1, 'Keterangan5', 'Mas Wowon', 'gambar6.jpg'),
 (9, 'd', 21, 21, 'Baik', 2, 'sad', 'sad', '65717367d8d94.png'),
 (10, 'sasdj', 12, 11, 'Baik', 2, 'asdsad', 'asdsad', '6572b85b147ea.png'),
 (12, 'sad', 3, 1, 'Baik', 1, 'sdf', 'sdf', '6572c9662b33f.png'),
@@ -64,41 +64,66 @@ INSERT INTO `barang` (`id`, `nama`, `jumlah`, `tersedia`, `kondisi`, `asal`, `ke
 CREATE TABLE `detail_peminjaman` (
   `id_peminjaman` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
-  `jumlah` int(11) DEFAULT NULL
+  `jumlah` int(11) DEFAULT NULL,
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `detail_peminjaman`
 --
 
-INSERT INTO `detail_peminjaman` (`id_peminjaman`, `id_barang`, `jumlah`) VALUES
-(1, 1, 2),
-(1, 4, 5),
-(2, 3, 1),
-(3, 5, 2),
-(4, 4, 1),
-(5, 2, 3),
-(6, 1, 4),
-(7, 2, 2),
-(8, 3, 1),
-(9, 5, 2);
-
--- --------------------------------------------------------
+INSERT INTO `detail_peminjaman` (`id_peminjaman`, `id_barang`, `jumlah`, `keterangan`) VALUES
+(1, 1, 2, ''),
+(1, 4, 5, ''),
+(2, 3, 1, ''),
+(3, 5, 2, ''),
+(4, 4, 1, ''),
+(5, 2, 3, ''),
+(6, 1, 4, ''),
+(7, 2, 2, ''),
+(8, 3, 1, ''),
+(9, 5, 2, ''),
+(25, 1, 1, 'fd'),
+(26, 1, 1, 'ssdas'),
+(26, 6, 1, 'asdsad'),
+(27, 1, 1, 'dsfsdf'),
+(27, 6, 1, 'sdfsdfsfd'),
+(28, 1, 5, 'sdfsdf'),
+(28, 6, 5, 'sdfds');
 
 --
--- Stand-in structure for view `detail_pinjam_barang`
--- (See below for the actual view)
+-- Triggers `detail_peminjaman`
 --
-CREATE TABLE `detail_pinjam_barang` (
-`id` int(11)
-,`nama` varchar(255)
-,`status` enum('menunggu','dipinjam','terlambat','selesai','ditolak')
-,`keterangan` varchar(255)
-,`tanggal_pinjam` date
-,`tanggal_kembali` date
-,`nama_barang` varchar(255)
-,`jumlah` int(11)
-);
+DELIMITER $$
+CREATE TRIGGER `after_insert_detail_peminjaman` AFTER INSERT ON `detail_peminjaman` FOR EACH ROW BEGIN
+    -- Update the 'tersedia' field in the 'barang' table
+    UPDATE barang
+    SET tersedia = tersedia - NEW.jumlah
+    WHERE id = NEW.id_barang;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_update_detail_peminjaman` AFTER UPDATE ON `detail_peminjaman` FOR EACH ROW BEGIN
+    -- Calculate the difference in quantity
+    DECLARE selisih INT;
+    SET selisih = NEW.jumlah - OLD.jumlah;
+
+    -- Update 'tersedia' field in 'barang' table based on the quantity difference
+    IF selisih > 0 THEN
+        -- If the new quantity is greater than the old quantity, reduce 'tersedia'
+        UPDATE barang
+        SET tersedia = tersedia - selisih
+        WHERE id = NEW.id_barang;
+    ELSE
+        -- If the new quantity is less than or equal to the old quantity, increase 'tersedia'
+        UPDATE barang
+        SET tersedia = tersedia + ABS(selisih)
+        WHERE id = NEW.id_barang;
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -131,14 +156,6 @@ CREATE TABLE `keranjang` (
   `id_barang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `keranjang`
---
-
-INSERT INTO `keranjang` (`id_user`, `id_barang`) VALUES
-(2, 6),
-(2, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -149,26 +166,66 @@ CREATE TABLE `peminjaman` (
   `id` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `status` enum('menunggu','dipinjam','terlambat','selesai','ditolak') DEFAULT 'menunggu',
-  `keterangan` varchar(255) DEFAULT NULL,
-  `tanggal_pinjam` date DEFAULT NULL,
-  `tanggal_kembali` date DEFAULT NULL
+  `tanggal_peminjaman` date DEFAULT NULL,
+  `tanggal_pengembalian` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `keterangan`, `tanggal_pinjam`, `tanggal_kembali`) VALUES
-(1, 2, 'menunggu', 'Peminjaman laptop untuk keperluan praktikum', '2023-11-27', '2023-12-05'),
-(2, 2, 'dipinjam', 'Peminjaman proyektor untuk presentasi', '2023-11-28', '2023-12-06'),
-(3, 2, 'terlambat', 'Peminjaman mouse untuk kegiatan seminar', '2023-11-29', '2023-12-07'),
-(4, 2, 'selesai', 'Peminjaman penghapus untuk kelas', '2023-11-30', '2023-12-08'),
-(5, 2, 'ditolak', 'Peminjaman remote AC yang rusak', '2023-12-01', '2023-12-09'),
-(6, 2, 'menunggu', 'Peminjaman keyboard untuk kegiatan workshop', '2023-12-02', '2023-12-10'),
-(7, 2, 'dipinjam', 'Peminjaman spidol untuk keperluan kuliah', '2023-12-03', '2023-12-11'),
-(8, 2, 'selesai', 'Peminjaman remote proyektor', '2023-12-04', '2023-12-12'),
-(9, 2, 'ditolak', 'Peminjaman penghapus yang rusak', '2023-12-05', '2023-12-13'),
-(10, 2, 'terlambat', 'Peminjaman mouse untuk kegiatan pelatihan', '2023-12-06', '2023-12-14');
+INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tanggal_pengembalian`) VALUES
+(1, 2, 'menunggu', '2023-11-27', '2023-12-05'),
+(2, 2, 'dipinjam', '2023-11-28', '2023-12-06'),
+(3, 2, 'terlambat', '2023-11-29', '2023-12-07'),
+(4, 2, 'selesai', '2023-11-30', '2023-12-08'),
+(5, 2, 'ditolak', '2023-12-01', '2023-12-09'),
+(6, 2, 'menunggu', '2023-12-02', '2023-12-10'),
+(7, 2, 'dipinjam', '2023-12-03', '2023-12-11'),
+(8, 2, 'selesai', '2023-12-04', '2023-12-12'),
+(9, 2, 'ditolak', '2023-12-05', '2023-12-13'),
+(10, 2, 'terlambat', '2023-12-06', '2023-12-14'),
+(11, 2, 'menunggu', '2023-12-15', '2023-12-14'),
+(12, 2, 'menunggu', '2023-12-15', '2023-12-15'),
+(13, 2, 'menunggu', '2023-12-14', '2023-12-15'),
+(14, 2, 'menunggu', '2023-12-13', '2023-12-14'),
+(15, 2, 'menunggu', '2023-12-13', '2023-12-14'),
+(16, 2, 'menunggu', NULL, NULL),
+(17, 2, 'menunggu', '2023-12-13', '2023-12-13'),
+(18, 2, 'menunggu', NULL, NULL),
+(19, 2, 'menunggu', '2023-12-15', '2023-12-16'),
+(20, 2, 'menunggu', '2023-12-13', '2023-12-13'),
+(21, 2, 'menunggu', '2023-12-13', '2023-12-14'),
+(22, 2, 'menunggu', '2023-12-14', '2023-12-16'),
+(23, 2, 'menunggu', '2023-12-14', '2023-12-16'),
+(24, 2, 'menunggu', '2023-12-15', '2023-12-20'),
+(25, 2, 'menunggu', '2023-12-15', '2023-12-20'),
+(26, 2, 'menunggu', '2023-12-15', '2023-12-20'),
+(27, 2, 'menunggu', '2023-12-15', '2023-12-20'),
+(28, 2, 'menunggu', '2023-12-20', '2023-12-25');
+
+--
+-- Triggers `peminjaman`
+--
+DELIMITER $$
+CREATE TRIGGER `after_update_peminjaman` AFTER UPDATE ON `peminjaman` FOR EACH ROW BEGIN
+    IF NEW.status = 'selesai' OR NEW.status = 'ditolak' THEN
+        -- Update the 'tersedia' field in the 'barang' table based on the completed or rejected loan
+        UPDATE barang
+        SET tersedia = tersedia + (
+            SELECT jumlah
+            FROM detail_peminjaman
+            WHERE id_peminjaman = NEW.id
+        )
+        WHERE id IN (
+            SELECT id_barang
+            FROM detail_peminjaman
+            WHERE id_peminjaman = NEW.id
+        );
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -194,15 +251,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `nama`, `role`, `isChangePass
 (2, 'user', '$2y$10$r47QADWCNjdYiezczCs.7Oye.h2CvPeop9gHN53Qe3czZKMQb4wy2', 'user', 'User', NULL),
 (5, 'fighaz', '$2y$10$q68Izt7YjJAb2GMKQZHfvu1Mc1WgQ5e6G5uDe8irNg7vxZ416l7Za', 'fighaz', 'User', 0),
 (8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', 'User', 0);
-
--- --------------------------------------------------------
-
---
--- Structure for view `detail_pinjam_barang`
---
-DROP TABLE IF EXISTS `detail_pinjam_barang`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detail_pinjam_barang`  AS SELECT `p`.`id` AS `id`, `u`.`nama` AS `nama`, `p`.`status` AS `status`, `p`.`keterangan` AS `keterangan`, `p`.`tanggal_pinjam` AS `tanggal_pinjam`, `p`.`tanggal_kembali` AS `tanggal_kembali`, `b`.`nama` AS `nama_barang`, `dp`.`jumlah` AS `jumlah` FROM (((`peminjaman` `p` join `users` `u` on(`p`.`id_user` = `u`.`id`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `p`.`id` = `dp`.`id_peminjaman``id_peminjaman`  ;
 
 --
 -- Indexes for dumped tables
@@ -232,8 +280,8 @@ ALTER TABLE `kategori`
 -- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_barang` (`id_barang`);
+  ADD PRIMARY KEY (`id_barang`,`id_user`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `peminjaman`
@@ -269,7 +317,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
