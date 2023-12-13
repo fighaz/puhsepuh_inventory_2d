@@ -34,12 +34,13 @@
         });
     }
 
-    function confirmDel({
-        title: "Apakah Anda yakin untuk menghapus Data Barang berikut?",
-        showDenyButton: true,
-        icon: "question",
-        confirmButtonText: "Yakin",
-        denyButtonText: `Batal`
+    function confirmDel() {
+        Swal.fire({
+            title: "Apakah Anda yakin untuk menghapus Data Barang berikut?",
+            showDenyButton: true,
+            icon: "question",
+            confirmButtonText: "Yakin",
+            denyButtonText: `Batal`
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire("Berhasil dihapus!", "", "success");
@@ -47,6 +48,7 @@
             Swal.fire("dibatalkan", "", "");
         }
         });
+    }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
