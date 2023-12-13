@@ -136,7 +136,6 @@
                   <?= $no++ ?>
                 </td>
                 <td>
-
                   <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" class="object-fit-cover border rounded" alt="" width="98px" height="70px">
                 </td>
 

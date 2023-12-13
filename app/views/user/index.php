@@ -80,14 +80,14 @@
                 targets: 1,
                 sortable: false,
                 render: function(data, type, row) {
-                    return `<div class="td-wrapper"> ${data} </div>`
+                    return `<div class="td-wrapper text-primary"> ${data} </div>`
                 }
             },
             {
                 targets: 2,
                 sortable: false,
                 render: function(data, type, row) {
-                    return `<div class="td-wrapper"> ${data} </div>`
+                    return `<div class="td-wrapper text-primary"> ${data} </div>`
                 }
             },
             {
