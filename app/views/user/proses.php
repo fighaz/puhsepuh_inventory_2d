@@ -59,7 +59,7 @@
     });
 
     let table = new DataTable('#table', {
-        scrollY: '190px',
+        scrollY: '310px',
         dom: 't',
         columns: [
             { data: 'gambar', },
@@ -75,7 +75,7 @@
                 targets: 0,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<img src="<?=BASEURL?>/img/${data}" alt="Gambar" width="100px">`;
+                    return `<img src="<?=BASEURL?>/img/${data}" alt="Gambar" class="object-fit-cover border rounded" width="98px" height="70px">`;
                 }
             },
             {
