@@ -31,10 +31,14 @@ class Detail_Peminjaman
     }
     public function getDetailPeminjaman($id)
     {
-        $query = "SELECT p.id,p.id_user,p.status,p.keterangan,p.tanggal_peminjaman,p.tanggal_pengembalian,dp.id_barang,dp.jumlah
-        FROM detail_peminjaman JOIN ON p.id = dp.id_peminjaman WHERE p.id = $id";
+        $query = " SELECT p.id, p.id_user, p.status, p.tanggal_peminjaman, p.tanggal_pengembalian, dp.id_barang, dp.jumlah, dp.keterangan
+            FROM peminjaman p
+            JOIN detail_peminjaman dp
+            ON p.id = dp.id_peminjaman
+            WHERE p.id = :id";
         $this->db->query($query);
-        $this->db->execute();
+        $this->db->bind('id', $id);
+        return $this->db->resultSet();
     }
     public function updateDetailPeminjaman($data, $id)
     {
