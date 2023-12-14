@@ -67,16 +67,17 @@
                         <tbody>
                             <tr>
                                 <td><label for="nama_barang" class="form-label">Nama Barang</label></td>
-                                <td><input type="text" name="nama" id="nama_barang" class="form-control">
+                                <td><input type="text" name="nama" id="nama_barang" class="form-control" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td><label for="qty" class="form-label">Jumlah</label></td>
-                                <td><input type="number" name="jumlah" id="jumlah" class="form-control"></td>
+                                <td><input type="number" name="jumlah" id="jumlah" class="form-control" required></td>
                             </tr>
                             <tr>
                                 <td><label for="qty" class="form-label">Tersedia</label></td>
-                                <td><input type="number" name="tersedia" id="tersedia" class="form-control"></td>
+                                <td><input type="number" name="tersedia" id="tersedia" class="form-control" required>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="maks_pinjam" class="form-label">Kondisi</label></td>
@@ -95,7 +96,17 @@
                             </tr>
                             <tr>
                                 <td><label for="asal" class="form-label">Asal</label></td>
-                                <td><input type="text" name="asal" id="asal" class="form-control"></td>
+                                <td>
+                                    <select class="form-select custom-button bg-white border-2"
+                                        aria-label="Default select example" name="asal">
+                                        <?php foreach ($data['asal'] as $asal): ?>
+                                            <option value="<?= $asal['id'] ?>">
+                                                <?= $asal['nama'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="keterangan" class="form-label">Keterangan</label></td>

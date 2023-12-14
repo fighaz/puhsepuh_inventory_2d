@@ -18,7 +18,7 @@ class Barang_model
 
     public function getBarangById($id)
     {
-        $this->db->query('SELECT b.id,b.nama,b.jumlah,b.tersedia,b.kondisi,k.nama as asal,b.keterangan,b.maintainer,b.gambar FROM `barang` as b INNER JOIN kategori as k ON b.asal =k.id WHERE b.id=:id');
+        $this->db->query('SELECT b.id as id_barang,b.nama as nama,b.jumlah as jumlah,b.tersedia as tersedia,b.kondisi as kondisi,b.asal as id_asal,k.nama as asal,b.keterangan,b.maintainer,b.gambar FROM `barang` as b INNER JOIN kategori as k ON b.asal =k.id WHERE b.id=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
