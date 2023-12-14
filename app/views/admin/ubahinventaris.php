@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventaris</title>
-    <link href="<?= BASEURL; ?>/css/style.css" rel="stylesheet">
-    <link href="<?= BASEURL; ?>/css/bootstrap.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
+<style>
         :root {
             font-family: Montserrat, sans-serif;
         }
 
-        * {
+        html, body {
             background-color: #EBEFF5;
             font-family: inherit;
         }
@@ -51,10 +41,17 @@
             text-align: center;
             margin-top: 20px;
         }
-    </style>
-</head>
 
-<body>
+        .custom-button {
+            width: 610px; 
+            height: 50px;
+            background-color: white;
+            color: #3C8DBB; 
+            border-color: #3C8DBB;
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+    </style>
     <header>
         <h1>Ubah Barang</h1>
     </header>
@@ -100,8 +97,19 @@
                             </tr>
                             <tr>
                                 <td><label for="asal" class="form-label">Asal</label></td>
-                                <td><input type="text" name="asal" id="asal" class="form-control"
-                                        value="<?= $data['brg']['asal'] ?>"></td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="dropdown">
+                                            <button class="custom-button dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Pilih
+                                            </button>
+                                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenu2">
+                                                <li><button class="dropdown-item" type="button">Pembelian</button></li>
+                                                <li><button class="dropdown-item" type="button">Hibah</button></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="keterangan" class="form-label">Keterangan</label></td>
@@ -142,6 +150,12 @@
             preview.src = URL.createObjectURL(e.target.files[0]);
         });
     </script>
-</body>
-
-</html>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-item').on('click', function() {
+                var selectedText = $(this).text();
+                
+                $('#dropdownMenu2').text(selectedText);
+            });
+        });
+    </script>
