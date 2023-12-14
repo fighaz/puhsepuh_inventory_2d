@@ -196,7 +196,7 @@
 
 </script>
 <style>
-    body {
+    * {
         font-family: 'Montserrat';
     }
 

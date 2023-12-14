@@ -64,6 +64,8 @@
   <h2>Selamat Datang</h2>
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
   <!-- SearchBar -->
+
+
   <div class="d-flex flex-row mb-2 entries-control">
     Show
     <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
@@ -92,7 +94,7 @@
         </tr>
       <?php else:
         foreach ($data['pnj'] as $pnj): ?>
-          <tr class="bg-white">
+          <tr class="bg-white align-middle">
             <td>
               <?= $pnj['id_peminjaman']; ?>
             </td>
