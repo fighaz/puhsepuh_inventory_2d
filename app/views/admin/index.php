@@ -64,14 +64,13 @@
   <h2>Selamat Datang</h2>
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
   <!-- SearchBar -->
-
-  <!-- Table -->
   <div class="d-flex flex-row mb-2 entries-control">
     Show
     <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
     entries
   </div>
-  <table class="table table-hover">
+  <!-- Table -->
+  <table class="table table-hover" id="table">
     <thead>
       <tr class="bg-primary">
         <th>ID</th>
@@ -82,7 +81,6 @@
         <th>Aksi</th>
       </tr>
     </thead>
-    <tbody>
     <tbody class="text-primary">
       <?php if (empty($data['pnj'])): ?>
         <tr>
@@ -111,8 +109,10 @@
               <?= $pnj['tanggal_pengembalian']; ?>
             </td>
             <td>
-              <a href="" class="icon_terima"><img src="asset/terima.svg" alt="Terima"></a>
-              <a href="" class="icon_tolak"><img src="asset/tolak.svg" alt="Tolak"></a>
+              <a href="<?= BASEURL; ?>/Admin/approve/<?= $pnj['id_peminjaman']; ?>" class="icon_terima"><img
+                  src="<?= BASEURL; ?>/assets/terima.svg" alt="Terima"></a>
+              <a href="<?= BASEURL; ?>/Admin/tolak/<?= $pnj['id_peminjaman']; ?>" class="icon_tolak"><img
+                  src="<?= BASEURL; ?>/assets/tolak.svg" alt="Tolak"></a>
             </td>
           </tr>
         <?php endforeach;
