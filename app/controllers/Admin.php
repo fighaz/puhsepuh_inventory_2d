@@ -10,9 +10,9 @@ class Admin extends Controller
     }
     public function index()
     {
-        // $data['admin'] = $this->model('Peminjaman')->getPeminjamanToApprove();
+        $data['pnj'] = $this->model('Peminjaman')->getPeminjamanToApprove();
         $this->active_sidebar = "home";
-        $this->view('admin/index');
+        $this->view('admin/index', $data);
     }
     public function inventaris()
     {

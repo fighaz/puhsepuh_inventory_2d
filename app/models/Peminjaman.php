@@ -15,7 +15,9 @@ class Peminjaman
     }
     public function getPeminjamanToApprove()
     {
-        $this->db->query("SELECT * FROM ' . $this->table . ' WHERE status='menungggu'");
+        $this->db->query("SELECT * FROM all_peminjaman WHERE status = :status");
+        $status = "menunggu_konfirmasi";
+        $this->db->bind('status', $status);
         return $this->db->resultSet();
     }
 
@@ -39,7 +41,7 @@ class Peminjaman
                   (NULL, :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian);
                      SELECT LAST_INSERT_ID() as last_insert_id;";
 
-        $status = "menunggu";
+        $status = "menunggu_konfirmasi";
         $this->db->query($query);
         $this->db->bind('id_user', $iduser);
         $this->db->bind('status', $status);
