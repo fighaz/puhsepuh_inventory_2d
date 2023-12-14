@@ -10,9 +10,9 @@
 </head>
 
 <body>
-    <div class="container mt-5 w-25">
-        <form id="login-form" class="" action="<?= BASEURL; ?>/Auth/login" method="post">
-            <div class="d-flex justify-content-center">
+<div class="container d-flex align-items-center justify-content-center vh-100">
+        <form id="login-form" class="w-25" action="<?= BASEURL; ?>/Auth/login" method="post">
+            <div class="d-flex justify-content-center mb-3">
                 <img src="assets/jti-logo.png" alt="logo" class="img-fluid w-25 h-25">
             </div>
             <div class="form-group">
