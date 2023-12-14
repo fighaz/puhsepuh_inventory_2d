@@ -82,7 +82,7 @@
                 targets: 1,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<p>${data}</p>`;
+                    return `<p class="text-primary align-middle">${data}</p>`;
                 }
             },
             {
