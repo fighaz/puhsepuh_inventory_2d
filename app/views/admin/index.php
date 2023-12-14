@@ -57,7 +57,7 @@ tbody td{
     }
 </style>
 <div class="content">
-  <h3>Beranda</h3>
+  <h3 class="fw-bold">Beranda</h3>
   <h2>Selamat Datang</h2>
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
   <!-- SearchBar -->
