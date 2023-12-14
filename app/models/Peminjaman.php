@@ -56,6 +56,16 @@ class Peminjaman
 
     public function approvePeminjaman($id)
     {
+        $query = "UPDATE peminjaman SET status='menunggu_diambil' WHERE id= :id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+    public function approveAmbilPeminjaman($id)
+    {
         $query = "UPDATE peminjaman SET status='dipinjam' WHERE id= :id";
         $this->db->query($query);
         $this->db->bind('id', $id);

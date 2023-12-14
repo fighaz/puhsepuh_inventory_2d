@@ -36,9 +36,14 @@ class Admin extends Controller
         $this->model('Peminjaman')->approvePeminjaman($id);
         header('Location: ' . BASEURL . '/Admin');
     }
+    public function approveAmbil($id)
+    {
+        $this->model('Peminjaman')->approveAmbilPeminjaman($id);
+        header('Location: ' . BASEURL . '/Admin');
+    }
     public function tolak($id)
     {
-        $this->model('Peminjaman')->tolakePeminjaman($id);
+        $this->model('Peminjaman')->tolakPeminjaman($id);
         header('Location: ' . BASEURL . '/Admin');
     }
     public function detailPeminjaman($id)
