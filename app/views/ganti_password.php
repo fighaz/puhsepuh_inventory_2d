@@ -2,7 +2,6 @@
     :root {
       font-family: Montserrat;
     }
-
     body {
       display: flex;
       justify-content: center;
@@ -33,7 +32,6 @@
             gap: 1rem;
         }
   </style>
-  
   <div class="container d-flex align-items-center justify-content-center vh-100">
     <form action="<?= BASEURL; ?>/UbahPassword/ubah" method="post">
       <div class="form-group">
