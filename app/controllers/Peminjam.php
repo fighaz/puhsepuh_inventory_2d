@@ -1,8 +1,19 @@
 <?php
 class Peminjam extends Controller
 {
+    public $sidebar;
+    public $active_sidebar;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        session_start();
+        $this->sidebar = $this->sidebar_admin;
+    }
     public function index()
     {
+        $this->active_sidebar = "peminjam";
         $data['peminjam'] = $this->model('User')->getAllPeminjam();
         $this->view('admin/peminjam', $data);
     }

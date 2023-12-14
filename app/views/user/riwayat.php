@@ -57,9 +57,9 @@
                 render: function(data, type, row, meta) {
                     if (data == 'dipinjam') {
                         return `<span class="badge rounded-pill bg-primary">dipinjam</span>`;
-                    } else if (data == 'menunggu konfirmasi') {
+                    } else if (data == 'menunggu_konfirmasi') {
                         return `<span class="badge rounded-pill bg-secondary">Menunggu Konfirmasi</span>`;
-                    } else if (data == 'menunggu diambil') {
+                    } else if (data == 'menunggu_diambil') {
                         return `<span class="badge rounded-pill bg-warning text-dark">Menunggu diambil</span>`;
                     } else if (data == 'ditolak') {
                         return `<span class="badge rounded-pill bg-danger">Ditolak</span>`;
