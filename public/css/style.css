@@ -1,5 +1,5 @@
 :root {
-    font-family: Montserrat;
+    font-family: Montserrat !important;
     --background-global: #EBEFF5;
     --table-row-height: 75px;
     --secondary: #E7AE0E;
@@ -7,10 +7,7 @@
 
 html, body {
     color: var(--bs-primary);
-}
-
-body, html {
-    background-color: var(--background-global);
+    background-color: var(--background-global) !important;
 }
 
 a {
