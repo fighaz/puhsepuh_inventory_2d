@@ -59,7 +59,7 @@
     });
 
     let table = new DataTable('#table', {
-        scrollY: '310px',
+        scrollY: '190px',
         dom: 't',
         columns: [
             { data: 'gambar', },

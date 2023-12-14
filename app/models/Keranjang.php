@@ -23,8 +23,13 @@ class Keranjang
         $this->db->bind('id_user', $_SESSION['id_user']);
         $this->db->bind('id_barang', $idbarang);
 
-        $this->db->execute();
-
+        try {
+            $this->db->execute();
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) {
+                return 0;
+            }
+        }
         return $this->db->rowCount();
     }
     public function hapusItemKeranjangByUserId($iduser, $idbarang)
