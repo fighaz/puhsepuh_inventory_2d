@@ -24,7 +24,7 @@ class Controller
                 "id" => "ganti_password",
                 "title" => "Ganti Password",
                 "icon" => "kunci.svg",
-                "url" => "User/ganti_password"
+                "url" => "UbahPassword"
             ]
         ];
 
@@ -51,13 +51,13 @@ class Controller
                 "id" => "peminjam",
                 "title" => "Peminjam",
                 "icon" => "groups.svg",
-                "url" => "Admin/peminjam"
+                "url" => "Peminjam"
             ],
             [
                 "id" => "ganti_password",
                 "title" => "Ganti Password",
                 "icon" => "kunci.svg",
-                "url" => "Admin/ganti_password"
+                "url" => "UbahPassword"
             ]
         ];
     }
