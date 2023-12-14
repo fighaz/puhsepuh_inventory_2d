@@ -59,7 +59,7 @@
     });
 
     let table = new DataTable('#table', {
-        scrollY: '190px',
+        scrollY: '310px',
         dom: 't',
         columns: [
             { data: 'gambar', },
@@ -219,6 +219,10 @@
         border: none;
     }
 
+    .button:hover {
+        background-color: #f2b91c;
+    }
+
     .tombol {
         background-color: #3C8DBB;
         width: 918px;
@@ -228,6 +232,10 @@
         background: #00B152;
         color: #fff;
         border: none;
+    }
+
+    .tombol:hover {
+        background-color: #00bd58;
     }
 
     .judulTabel {
