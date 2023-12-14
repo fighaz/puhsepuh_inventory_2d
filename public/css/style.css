@@ -147,6 +147,7 @@ tbody {
         margin-top: 29px;
     }
 */
+
 .proses {
     margin-top: 23px;
 }
@@ -158,6 +159,10 @@ tbody {
     text-justify: center;
 }
 
+.proses>button:hover {
+    border: 3px solid var(--bs-success);
+    box-shadow: 0 0 10px var(--bs-success);
+}
 .alt-button {
     padding: 0;
     background-color: transparent;
@@ -167,12 +172,16 @@ tbody {
     height: 50px;
 }
 
-.alt-button:active {
+.alt-button:active:not(.disabled) { 
     background-color: var(--bs-primary);
 }
 
-.alt-button.tambah:hover {
+.alt-button.tambah:hover:not(.disabled) {
     border: 3px solid #00B152;
+}
+
+.alt-button.tambah.disabled {
+    cursor: not-allowed;
 }
 
 .alt-button.rincian:hover {
@@ -197,3 +206,5 @@ tbody {
 .alt-button.hapus:active {
     background-color: red;
 }
+
+

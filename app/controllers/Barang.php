@@ -1,8 +1,23 @@
 <?php
 class Barang extends Controller
 {
+    public $sidebar = [];
+    public $active_sidebar;
+    public function __construct()
+    {
+        parent::__construct();
+        session_start();
+        if ($_SESSION['role'] == 'Admin') {
+            $this->sidebar = $this->sidebar_admin;
+        } elseif ($_SESSION['role'] == 'User') {
+            $this->sidebar = $this->sidebar_user;
+        } else {
+            header('Location: ' . BASEURL . '/');
+        }
+    }
     public function index()
     {
+        $this->active_sidebar = "inventaris";
         $data['brg'] = $this->model('Barang_model')->getAllBarang();
         $this->view('admin/list_inventory', $data);
     }

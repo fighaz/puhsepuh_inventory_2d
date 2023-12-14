@@ -2,37 +2,26 @@
     :root {
       font-family: Montserrat;
     }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
 
-    .content {
-      padding-top: 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    #content {
+        padding: 127px;
     }
-
-    
 
     .btn-primary {
-      width: 300px;
-      height: 40px;
-      margin-top: 30px;
+        height: 40px;
+        width: 300px;
+        margin-top: 30px;
     }
 
-    #login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+    .form-group {
+        margin-top: 5px;
+    }
+
+    label {
+        margin-bottom: 0 !important;
+    }
   </style>
-  <div class="container d-flex align-items-center justify-content-center vh-100">
+  <div class="container d-flex align-items-center justify-content-center">
     <form action="<?= BASEURL; ?>/UbahPassword/ubah" method="post">
       <div class="form-group">
         <label for="pastPassword" class="form-label">Masukkan Password Lama :</label>
@@ -49,4 +38,3 @@
       <button type="submit" class="btn btn-primary text-white">Simpan</button>
     </form>
   </div>
-  </form>

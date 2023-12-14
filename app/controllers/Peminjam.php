@@ -1,9 +1,18 @@
 <?php
 class Peminjam extends Controller
 {
+    public $sidebar = [];
+    public $active_sidebar;
+    public function __construct()
+    {
+        parent::__construct();
+        session_start();
+        $this->sidebar = $this->sidebar_admin;
+    }
     public function index()
     {
         $data['peminjam'] = $this->model('User')->getAllPeminjam();
+        $this->active_sidebar = 'peminjam';
         $this->view('admin/peminjam', $data);
     }
     public function tambah()
@@ -28,6 +37,9 @@ class Peminjam extends Controller
     {
         $data['peminjam'] = $this->model('User')->getPeminjamById($id);
         $this->view('admin/peminjam', $data);
+    }
+    public function getNama($id) {
+        echo json_encode($this->model('User')->getPeminjamById($id)['nama']);
     }
     public function getUbah()
     {
