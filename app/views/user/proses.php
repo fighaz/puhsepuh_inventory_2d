@@ -59,7 +59,7 @@
     });
 
     let table = new DataTable('#table', {
-        scrollY: '190px',
+        scrollY: '355px',
         dom: 't',
         columns: [
             { data: 'gambar', },
@@ -82,7 +82,7 @@
                 targets: 1,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<p>${data}</p>`;
+                    return `<p class="text-primary align-middle">${data}</p>`;
                 }
             },
             {
@@ -196,16 +196,14 @@
 
 </script>
 <style>
-    /* Custom styles for your form and table */
-    body {
-        font-family: 'Arial', sans-serif;
+    * {
+        font-family: 'Montserrat';
     }
 
     .judul {
         font-size: 30px;
         font-style: normal;
-        font-weight: 700;
-        line-height: normal;
+        font-weight: bold;
         color: #E7AE0E;
     }
 
@@ -219,6 +217,10 @@
         border: none;
     }
 
+    .button:hover {
+        background-color: #f2b91c;
+    }
+
     .tombol {
         background-color: #3C8DBB;
         width: 918px;
@@ -230,10 +232,12 @@
         border: none;
     }
 
+    .tombol:hover {
+        background-color: #00bd58;
+    }
+
     .judulTabel {
-        font-size: 20px;
-        font-weight: 600;
-        font-style: normal;
+        font-size: 18px;
         line-height: normal;
         color: #3C8DBB;
     }
@@ -285,17 +289,6 @@
         background-color: #3C8DBB;
         color: #fff;
         ;
-    }
-
-    /* Styles for table cells */
-    .table td,
-    .table th {
-        text-align: center;
-    }
-
-    /* Styles for table actions */
-    .table a {
-        margin-right: 5px;
     }
 </style>
 

@@ -18,6 +18,7 @@ class Auth extends Controller
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['login_success'] = true;
             header('Location: ' . BASEURL . '/' . $_SESSION['role']);
         } else {
             header('Location: ' . BASEURL . '/');

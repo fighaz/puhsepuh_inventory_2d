@@ -34,7 +34,7 @@
                 </thead>
             </table>
             <div class="proses">
-                <button class="btn btn-success text-white">
+                <button class="p-1 btn btn-success btn-lg text-white">
                     Proses
                 </button>
             </div>
@@ -54,7 +54,7 @@
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Barang/getAll",
         //data: dataBarang,
-        scrollY: "43vh",
+        scrollY: "455px",
         scrollX: true,
         dom: "lrtip",
         columns: [
@@ -108,7 +108,7 @@
 
 
     let keranjangTable = new DataTable('#keranjang',{
-        scrollY: "33vh",
+        scrollY: "445px",
         scrollX: true,
         dom: "t",
         columns: [
@@ -226,5 +226,20 @@
     });
 
     $('thead th').removeClass('sorting_asc');
+
+
+    // Flasher sweetalert
+    <?php
+    if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
+        unset($_SESSION['login_success']); 
+    ?>
+        Swal.fire({
+            title: 'Login Berhasil',
+            text: 'Selamat Datang!',
+            icon: 'success',
+            timer: 2000,
+            timerProgressBar: true,
+        });
+    <?php } ?>
 
 </script>

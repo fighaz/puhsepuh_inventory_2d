@@ -10,23 +10,23 @@
 </head>
 
 <body>
-    <div class="container mt-5 w-25">
-        <form id="login-form" class="" action="<?= BASEURL; ?>/Auth/login" method="post">
-            <div class="d-flex justify-content-center">
+<div class="container d-flex align-items-center justify-content-center vh-100">
+        <form id="login-form" class="w-25" action="<?= BASEURL; ?>/Auth/login" method="post">
+            <div class="d-flex justify-content-center mb-3">
                 <img src="assets/jti-logo.png" alt="logo" class="img-fluid w-25 h-25">
             </div>
             <div class="form-group">
-                <input type="username" name="username" class="form-control border border-primary" id="username-input"
+                <input type="username" name="username" class="form-control border border-primary shadow-sm border-3" id="username-input"
                     aria-describedby="usernameHelp" placeholder="Username" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control border border-primary" id="password-input"
+                <input type="password" name="password" class="form-control border border-primary shadow-sm border-3" id="password-input"
                     placeholder="Password" required>
             </div>
             <div class="d-flex justify-content-end forgot-password">
                 <a href="#" class="text-primary"><small>Lupa Password?</small></a>
             </div>
-            <button type="submit" class="text-white btn btn-primary">Masuk</button>
+            <button type="submit" class="text-white btn btn-primary btn-lg shadow-sm">Masuk</button>
         </form>
     </div>
     <script>
