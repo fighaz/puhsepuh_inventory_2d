@@ -1,13 +1,24 @@
 <?php
 class UbahPassword extends Controller
 {
+    public $sidebar = [];
+    public $active_sidebar;
     public function __construct()
     {
+        parent::__construct();
         session_start();
+        if ($_SESSION['role'] == 'Admin') {
+            $this->sidebar = $this->sidebar_admin;
+        } elseif ($_SESSION['role'] == 'User') {
+            $this->sidebar = $this->sidebar_user;
+        } else {
+            header('Location: ' . BASEURL . '/');
+        }
     }
     public function index()
     {
         if (isset($_SESSION['id_user'])) {
+            $this->active_sidebar = "ganti_password";
             $this->view('ganti_password');
         } else {
             header('Location: ' . BASEURL . '/');
@@ -35,6 +46,7 @@ class UbahPassword extends Controller
             }
         } else {
             echo "<script> alert('Masukkan Password yang sesuai')</script>";
+            header('Location: ' . BASEURL . '/UbahPassword');
         }
 
     }
