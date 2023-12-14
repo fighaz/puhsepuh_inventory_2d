@@ -1,6 +1,6 @@
 <!-- HTML -->
 <div class="search">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control form-control-lg">
         <button class="btn btn-primary">
         Search <i class="fa fa-search"></i> 
         <img src="asset/search.svg" alt="">  
