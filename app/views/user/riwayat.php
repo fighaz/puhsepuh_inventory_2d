@@ -47,30 +47,13 @@
         dom: "lrtip",
         scrollY: '300px',
         columns: [
-            {data: "id"},
-            {data: "status"},
             {
-                data: null,
-                createdCell: async function(cell, cellData, rowData, rowIndex, colIndex) {
-                    try {
-                        let barangs = [];
-                        barangs = await getBarangs(rowData.id);
-                        let barangs_str = barangs.length == 0 ? "Something went wrong" :
-                            barangs.join("<br>");
-                        $(cell).html(barangs_str);
-                    } catch (err) {
-                        console.log(err);
-                        $(cell).text("Something went wrong");
-                    }
-                }
+                data: "id",
+                sortable: false,
             },
-            {data: "tanggal_peminjaman"},
-            {data: "tanggal_pengembalian"},
-            {data: null}
-        ],
-        columnDefs: [
             {
-                targets: 1,
+                data: "status",
+                sortable: false,
                 render: function(data, type, row, meta) {
                     if (data == 'dipinjam') {
                         return `<span class="badge rounded-pill bg-primary">dipinjam</span>`;
@@ -90,13 +73,35 @@
                 }
             },
             {
-                targets: 2,
-                render: async function(data, type, row, meta) {
+                data: null,
+                sortable: false,
+                render: function(data, type, row, meta) {
                     return `<span>loading...</span>`;
                 },
+                createdCell: async function(cell, cellData, rowData, rowIndex, colIndex) {
+                    try {
+                        let barangs = [];
+                        barangs = await getBarangs(rowData.id);
+                        let barangs_str = barangs.length == 0 ? "Something went wrong" :
+                            barangs.join("<br>");
+                        $(cell).html(barangs_str);
+                    } catch (err) {
+                        console.log(err);
+                        $(cell).text("Something went wrong");
+                    }
+                }
             },
             {
-                targets: 5,
+                data: "tanggal_peminjaman",
+                sortable: false,
+            },
+            {
+                data: "tanggal_pengembalian",
+                sortable: false,
+            },
+            {
+                data: null,
+                sortable: false,
                 className: "aksi",
                 render: function(data, type, row, meta) {
                     return `
@@ -159,18 +164,13 @@
       border-bottom: 1px solid #3C8DBB;
     }
 
-    /* Entries */
-    #num-of-entries {
-      background-color: var(--background-global);
-      color: var(--bs-primary);
-      max-width: 50px;
-      max-height: 10px;
-      height: 10px;
-      margin: 0 5px;
-      font-size: 12px;
-      padding: 0 0 0 15px;
-      border: 1px solid var(--bs-primary);
-    }
 
+    .alt-button {
+        margin: 0;
+        border: none;
+        border-radius: 40px;
+        width:  35px;
+        height: 35px;
+    }
   </style>
 
