@@ -8,7 +8,8 @@ class Barang extends Controller
     }
     public function viewTambah()
     {
-        $this->view('admin/tambahinventaris');
+        $data['asal'] = $this->model('Kategori')->getAllKategori();
+        $this->view('admin/tambahinventaris', $data);
     }
     function upload()
     {
@@ -79,7 +80,7 @@ class Barang extends Controller
     }
     public function getUbah($id)
     {
-
+        $data['asal'] = $this->model('Kategori')->getAllKategori();
         $data['brg'] = $this->model('Barang_model')->getBarangById($id);
         $this->view('admin/ubahinventaris', $data);
     }
