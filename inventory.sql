@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 14, 2023 at 02:14 AM
+-- Generation Time: Dec 15, 2023 at 09:57 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -59,9 +59,9 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `nama`, `jumlah`, `tersedia`, `kondisi`, `asal`, `keterangan`, `maintainer`, `gambar`) VALUES
-(1, 'Spidol', 100, 15, 'Baik', 1, 'Keterangan1', 'Pak Jadi', 'gambar1.jpg'),
+(1, 'Spidol', 100, 20, 'Baik', 2, 'Keterangan1', 'Keterangan1', 'gambar1.jpg'),
 (2, 'Remote AC', 50, 20, 'Rusak', 2, 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
-(3, 'Proyektor', 70, 20, 'Baik', 2, 'Keterangan3', 'Mas Wowon', 'gambar3.jpg'),
+(3, 'Proyektor', 70, 20, 'Baik', 1, 'Keterangan3', 'Keterangan3', 'gambar3.jpg'),
 (4, 'Remote Proyektor', 30, 20, 'Baik', 2, 'Keterangan4', 'Mbak Novi', 'gambar4.jpg'),
 (5, 'Penghapus', 100, 20, 'Rusak', 2, 'Keterangan5', 'Mas Wowon', 'gambar5.jpg'),
 (6, 'Keyboard', 93, 15, 'Baik', 1, 'Keterangan5', 'Mas Wowon', 'gambar6.jpg'),
@@ -191,43 +191,45 @@ CREATE TABLE `peminjaman` (
   `id_user` int(11) DEFAULT NULL,
   `status` enum('dipinjam','terlambat','selesai','ditolak','menunggu_konfirmasi','menunggu_diambil') DEFAULT 'menunggu_konfirmasi',
   `tanggal_peminjaman` date DEFAULT NULL,
-  `tanggal_pengembalian` date DEFAULT NULL
+  `tanggal_pengembalian` date DEFAULT NULL,
+  `perubahan_status` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tanggal_pengembalian`) VALUES
-(1, 2, 'menunggu_konfirmasi', '2023-11-27', '2023-12-05'),
-(2, 2, 'dipinjam', '2023-11-28', '2023-12-06'),
-(3, 2, 'terlambat', '2023-11-29', '2023-12-07'),
-(4, 2, 'selesai', '2023-11-30', '2023-12-08'),
-(5, 2, 'ditolak', '2023-12-01', '2023-12-09'),
-(6, 2, 'menunggu_konfirmasi', '2023-12-02', '2023-12-10'),
-(7, 2, 'dipinjam', '2023-12-03', '2023-12-11'),
-(8, 2, 'selesai', '2023-12-04', '2023-12-12'),
-(9, 2, 'ditolak', '2023-12-05', '2023-12-13'),
-(10, 2, 'terlambat', '2023-12-06', '2023-12-14'),
-(11, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-14'),
-(12, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-15'),
-(13, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-15'),
-(14, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14'),
-(15, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14'),
-(16, 2, 'menunggu_konfirmasi', NULL, NULL),
-(17, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-13'),
-(18, 2, 'menunggu_konfirmasi', NULL, NULL),
-(19, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-16'),
-(20, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-13'),
-(21, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14'),
-(22, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-16'),
-(23, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-16'),
-(24, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20'),
-(25, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20'),
-(26, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20'),
-(27, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20'),
-(28, 2, 'menunggu_konfirmasi', '2023-12-20', '2023-12-25'),
-(29, NULL, 'selesai', NULL, NULL);
+INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tanggal_pengembalian`, `perubahan_status`) VALUES
+(1, 2, 'dipinjam', '2023-11-27', '2023-12-05', '2023-12-15 08:49:15'),
+(2, 2, 'dipinjam', '2023-11-28', '2023-12-06', '2023-12-15 08:49:15'),
+(3, 2, 'terlambat', '2023-11-29', '2023-12-07', '2023-12-15 08:49:15'),
+(4, 2, 'selesai', '2023-11-30', '2023-12-08', '2023-12-15 08:49:15'),
+(5, 2, 'ditolak', '2023-12-01', '2023-12-09', '2023-12-15 08:49:15'),
+(6, 2, 'ditolak', '2023-12-02', '2023-12-10', '2023-12-15 08:49:15'),
+(7, 2, 'dipinjam', '2023-12-03', '2023-12-11', '2023-12-15 08:49:15'),
+(8, 2, 'selesai', '2023-12-04', '2023-12-12', '2023-12-15 08:49:15'),
+(9, 2, 'ditolak', '2023-12-05', '2023-12-13', '2023-12-15 08:49:15'),
+(10, 2, 'terlambat', '2023-12-06', '2023-12-14', '2023-12-15 08:49:15'),
+(11, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-14', '2023-12-15 08:49:15'),
+(12, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-15', '2023-12-15 08:49:15'),
+(13, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-15', '2023-12-15 08:49:15'),
+(14, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14', '2023-12-15 08:49:15'),
+(15, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14', '2023-12-15 08:49:15'),
+(16, 2, 'menunggu_konfirmasi', NULL, NULL, '2023-12-15 08:49:15'),
+(17, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-13', '2023-12-15 08:49:15'),
+(18, 2, 'menunggu_konfirmasi', NULL, NULL, '2023-12-15 08:49:15'),
+(19, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-16', '2023-12-15 08:49:15'),
+(20, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-13', '2023-12-15 08:49:15'),
+(21, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14', '2023-12-15 08:49:15'),
+(22, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-16', '2023-12-15 08:49:15'),
+(23, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-16', '2023-12-15 08:49:15'),
+(24, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
+(25, 2, 'ditolak', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
+(26, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
+(27, 2, 'menunggu_diambil', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
+(28, 2, 'menunggu_konfirmasi', '2023-12-20', '2023-12-25', '2023-12-15 08:49:15'),
+(29, NULL, 'ditolak', NULL, NULL, '2023-12-15 08:49:15'),
+(30, 2, 'menunggu_konfirmasi', '2023-12-16', '2023-12-19', '2023-12-15 08:49:15');
 
 --
 -- Triggers `peminjaman`
@@ -274,7 +276,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `nama`, `role`, `isChangePassword`) VALUES
 (1, 'admin', '$2y$10$46EDYWnooobvaq.K2I5TiOgZwSk3vo4f/OTWqKd1zlf92qh7PT91y', 'admin', 'Admin', NULL),
 (2, 'user', '$2y$10$r47QADWCNjdYiezczCs.7Oye.h2CvPeop9gHN53Qe3czZKMQb4wy2', 'user', 'User', NULL),
-(5, 'fighaz', '$2y$10$2ipcThkxuzC./Ra/I0GNbeBky5uCq7OBwyRFD2jgmVwfePgYYIuoO', 'fighaz', 'User', 1),
+(5, 'fighaz', '$2y$10$ZCZl1IY6k/41Pfq4njN0aue/3XUCHaUhn/Z5UUehlaIVsIBhoqL0m', 'fighaz', 'User', 1),
 (8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', 'User', 0);
 
 -- --------------------------------------------------------
@@ -284,7 +286,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `nama`, `role`, `isChangePass
 --
 DROP TABLE IF EXISTS `all_peminjaman`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id``id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id` ;
 
 --
 -- Indexes for dumped tables
@@ -351,7 +353,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `users`
