@@ -25,20 +25,48 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title text-center">Modal Heading</h4>
+        <h4 class="col-12 modal-title text-center">Data Barang</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+        <div class="d-flex justify-content-end">
+          <img class="border border-2 border-primary rounded mt-3 me-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nuon-N2000-Remote-Control.jpg/800px-Nuon-N2000-Remote-Control.jpg" alt="Remote Control" style="max-width: 280px; max-height: 200px; position: absolute; top: 0; right: 0;">
+        </div>
+        <div class="text mt-2">
+          <table class="table text-primary">
+            <tr>
+              <th>ID</th>
+              <td>B11</td>
+            </tr>
+            <tr>
+              <th>Nama Barang</th>
+              <td>Spidol</td>
+            </tr>
+            <tr>
+              <th>Kuantitas</th>
+              <td>12</td>
+            </tr>
+            <tr>
+              <th>Penanggung Jawab</th>
+              <td>B11</td>
+            </tr>
+            <tr>
+              <th>Asal</th>
+              <td>Hibah</td>
+            </tr>
+            <tr>
+              <th>Keterangan</th>
+              <td>
+                Air Conditioner dapat ditemukan dalam peminjaman, sehingga dapat
+                dilakukan peminjaman kembali tanpa harus berharap dipasangin,
+                jangan manja pasang sendiri ya teman teman. Terimakasih
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-
     </div>
   </div>
 </div>
