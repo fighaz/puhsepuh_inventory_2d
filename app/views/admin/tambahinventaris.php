@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventaris</title>
-    <link href="<?= BASEURL; ?>/css/style.css" rel="stylesheet">
-    <link href="<?= BASEURL; ?>/css/bootstrap.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             font-family: Montserrat, sans-serif;
         }
 
-        * {
+        html, body {
             background-color: #EBEFF5;
             font-family: inherit;
         }
@@ -52,9 +43,8 @@
             margin-top: 20px;
         }
     </style>
-</head>
 
-<body>
+
     <header>
         <h1>Tambah Barang</h1>
     </header>
@@ -84,7 +74,7 @@
                                 <td>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kondisi" id="inlineRadio1"
-                                            value="Baik">
+                                            value="Baik" required>
                                         <label class="form-check-label" for="inlineRadio1">Baik</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -98,12 +88,15 @@
                                 <td><label for="asal" class="form-label">Asal</label></td>
                                 <td>
                                     <select class="form-select custom-button bg-white border-2"
-                                        aria-label="Default select example" name="asal">
+                                        aria-label="Default select example" name="asal" id="asalSelect">
                                         <?php foreach ($data['asal'] as $asal): ?>
                                             <option value="<?= $asal['id'] ?>">
                                                 <?= $asal['nama'] ?>
                                             </option>
                                         <?php endforeach; ?>
+                                        <option value="advance">
+                                            advance...
+                                        </option>
                                     </select>
                                 </td>
                                 </td>
@@ -115,7 +108,7 @@
                             </tr>
                             <tr>
                                 <td><label for="maintainer" class="form-label">Maintainer</label></td>
-                                <td><input type="text" name="maintainer" id="maintainer" class="form-control"></td>
+                                <td><input type="text" name="maintainer" id="maintainer" class="form-control" required></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -130,7 +123,7 @@
                     <div class="form-group border rounded p-4">
                         <!-- Tambahkan class untuk area gambar -->
                         <div class="image-upload-container border border-primary rounded">
-                            <input type="file" name="gambar" id="gambar" class="form-control">
+                            <input type="file" name="gambar" id="gambar" class="form-control" required>
                             <img id="preview" src="#" alt="Upload Gambar">
                         </div>
                     </div>
@@ -143,7 +136,19 @@
             var preview = document.getElementById('preview');
             preview.src = URL.createObjectURL(e.target.files[0]);
         });
-    </script>
-</body>
 
-</html>
+        $(document).ready(function() {
+        $('#asalSelect').on('change', function() {
+            var selectedValue = $(this).val();
+
+            if (selectedValue === 'advance') {
+               
+                 window.location.href = 'AsalKategori.php';
+            } else {
+
+            }
+        });
+    });
+
+    </script>
+

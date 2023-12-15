@@ -49,7 +49,10 @@ class Admin extends Controller
     public function detailPeminjaman($id)
     {
         $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
-        $this->view('admin/peminjaman', $data);
+        $this->view('admin/detail_peminjaman', $data);
+    }
+    public function getDetailPeminjaman($id) {
+        echo json_encode($this->model('Detail_Peminjaman')->getDetailPeminjaman($id));
     }
     public function cari()
     {
