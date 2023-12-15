@@ -141,9 +141,9 @@
                 render: function(data, type, row) {
                     return `
                         <div class="td-wrapper">
-                          <a href="<?= BASEURL; ?>/Admin/approve/<?= $pnj['id_peminjaman']; ?>" class="icon_terima"><img
-                              src="<?= BASEURL; ?>/assets/terima.svg" alt="Terima"></a>
-                          <a href="<?= BASEURL; ?>/Admin/tolak/<?= $pnj['id_peminjaman']; ?>" class="icon_tolak"><img
+                          <a class="terima"><img class="alt-button terima"
+                              src="<?= BASEURL; ?>/assets/check.svg" alt="Terima"></a>
+                          <a class="tolak"><img class="alt-button tolak"
                               src="<?= BASEURL; ?>/assets/tolak.svg" alt="Tolak"></a>
                         </div>
                     `;
@@ -156,6 +156,16 @@
 
             search.on("keyup", () => {
                 table.search(search.val(), false, true).draw();
+            });
+
+            table.on('click', 'tbody .terima', function() {
+                let data = table.row($(this).parents('tr')).data();
+                window.location.href = `<?=BASEURL?>/Admin/approve/${data.id_peminjaman}`;
+            });
+
+            table.on('click', 'tbody .tolak', function() {
+                let data = table.row($(this).parents('tr')).data();
+                window.location.href = `<?=BASEURL?>/Admin/tolak/${data.id_peminjaman}`;
             });
         }
     });

@@ -179,7 +179,7 @@
                         table.row.add({
                             gambar: barang.gambar,
                             nama: barang.nama,
-                            id: barang.id,
+                            id: item.id_barang,
                         }).draw(false);
                     } catch (err) {
                         console.log(err);
