@@ -102,41 +102,40 @@
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body">
-        <div class="d-flex justify-content-end">
-          <img class="modal-img border border-2 border-primary rounded mt-3 me-3" src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="Remote Control" style="max-width: 280px; max-height: 200px; position: absolute; top: 0; right: 0;">
-        </div>
-        <div class="text mt-2">
-          <table class="table text-primary">
-            <tr>
-              <th>ID</th>
-              <td class="modal-id"></td>
-            </tr>
-            <tr>
-              <th>Nama Barang</th>
-              <td class="modal-nama"></td>
-            </tr>
-            <tr>
-              <th>Kuantitas</th>
-              <td class="modal-qty"></td>
-            </tr>
-            <tr>
-              <th>Penanggung Jawab</th>
-              <td class="modal-pnggjawab"></td>
-            </tr>
-            <tr>
-              <th>Asal</th>
-              <td class="modal-asal"></td>
-            </tr>
-            <tr>
-              <th>Keterangan</th>
-              <td class="modal-keterangan">
-
-              </td>
-            </tr>
-          </table>
-        </div>
+      <div class="modal-body d-flex">
+            <table class="table borderless text-primary">
+                <tbody style="background-color: #EBEFF5;">
+                <tr>
+                    <th>ID</th>
+                    <td class="modal-id"></td>
+                </tr>
+                <tr>
+                    <th>Nama Barang</th>
+                    <td class="modal-nama"></td>
+                </tr>
+                <tr>
+                    <th>Kuantitas</th>
+                    <td class="modal-qty"></td>
+                </tr>
+                <tr>
+                    <th>Penanggung Jawab</th>
+                    <td class="modal-pnggjawab"></td>
+                </tr>
+                <tr>
+                    <th>Asal</th>
+                    <td class="modal-asal"></td>
+                </tr>
+                <tr>
+                    <th>Keterangan</th>
+                    <td class="modal-keterangan"></td>
+                </tr>
+                </tbody>
+            </table>
+          <div class="d-flex justify-content-end">
+            <img id="modal-img" class="border border-2 border-primary rounded mt-3 me-3" src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="Gambar Barang" style="max-width: 280px; max-height: 200px;">
+          </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -236,7 +235,7 @@
                     }
 
                     console.log("", response);
-                    $(".modal-img").attr("src", response.gambar);
+                    $("#modal-img").attr("src", response.gambar);
                     $(".modal-id").text(response.id_barang);
                     $(".modal-nama").text(response.nama);
                     $(".modal-qty").text(response.jumlah);
@@ -258,6 +257,7 @@
   :root {
     font-family: Montserrat;
   }
+  
 
   body {
     background-color: #EBEFF5;
@@ -341,29 +341,51 @@
     }
 
     /* Style modal */
-    .modal-content {
-    width: 774px; 
-    height: 550px; 
-    border-radius: 5px;
-    border: 3px solid #3C8DBB;
-    background: #EBEFF5;
-    margin: auto; 
-    }
+    .borderless table {
+      border-top-style: none;
+      border-left-style: none;
+      border-right-style: none;
+      border-bottom-style: none;
+    s}
+
 
     .modal-body {
-        width: 696px;
-        height: 409px; 
+      width: 696px;
+      height: 409px; 
+      border-radius: 5px;
+      border: 3px solid #3C8DBB;
+      background: #EBEFF5;
+      margin: 27px 39px 46px 39px;
+    }
+
+    .d-flex {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .text {
+        flex: 1;
+        padding: 0 10px;
+    }
+
+    .modal-content {
+        width: 774px; 
+        height: 550px; 
         border-radius: 5px;
         border: 3px solid #3C8DBB;
         background: #EBEFF5;
-        margin: 27px 39px 46px 39px;
+        margin: auto; 
     }
 
     .modal-header h4 {
-        color: #E7AD0E;
-    font-family: Montserrat;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 600;
+      color: #E7AD0E;
+      font-family: Montserrat;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .borderless th, .borderless td {
+    border: none !important;
     }
 </style>

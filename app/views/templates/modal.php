@@ -71,6 +71,34 @@
   </div>
 </div>
 
+<style>
 
+  /* Style modal */
+  .modal-content {
+    width: 774px; 
+    height: 550px; 
+    border-radius: 5px;
+    border: 3px solid #3C8DBB;
+    background: #EBEFF5;
+    margin: auto; 
+    }
+
+    .modal-body {
+        width: 696px;
+        height: 409px; 
+        border-radius: 5px;
+        border: 3px solid #3C8DBB;
+        background: #EBEFF5;
+        margin: 27px 39px 46px 39px;
+    }
+
+    .modal-header h4 {
+        color: #E7AD0E;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    }
+</style>
 </body>
 </html>

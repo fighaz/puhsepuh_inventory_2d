@@ -92,6 +92,7 @@ class Barang extends Controller
     public function detail($id)
     {
         // echo json_encode($this->model('Barang_model')->getBarangById($id));
+        
         $barangModel = $this->model('Barang_model');
         $barang = $barangModel->getBarangById($id);
 
