@@ -38,7 +38,7 @@ class Peminjaman
     {
         $query = "INSERT INTO peminjaman
                     VALUES
-                  (NULL, :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian);
+                  (NULL, :id_user, :status, :tanggal_peminjaman, :tanggal_pengembalian, NULL);
                      SELECT LAST_INSERT_ID() as last_insert_id;";
 
         $status = "menunggu_konfirmasi";
@@ -56,7 +56,7 @@ class Peminjaman
 
     public function approvePeminjaman($id)
     {
-        $query = "UPDATE peminjaman SET status='menunggu_diambil' WHERE id= :id";
+        $query = "UPDATE peminjaman SET status='menunggu_diambil',perubahan_status = CURRENT_TIMESTAMP WHERE id= :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
 
@@ -66,7 +66,7 @@ class Peminjaman
     }
     public function approveAmbilPeminjaman($id)
     {
-        $query = "UPDATE peminjaman SET status='dipinjam' WHERE id= :id";
+        $query = "UPDATE peminjaman SET status='dipinjam',perubahan_status = CURRENT_TIMESTAMP WHERE id= :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
 
@@ -76,7 +76,7 @@ class Peminjaman
     }
     public function tolakPeminjaman($id)
     {
-        $query = "UPDATE peminjaman SET status='ditolak' WHERE id= :id";
+        $query = "UPDATE peminjaman SET status='ditolak',perubahan_status = CURRENT_TIMESTAMP WHERE id= :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
 
