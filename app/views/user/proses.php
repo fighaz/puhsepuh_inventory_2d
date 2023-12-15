@@ -1,55 +1,48 @@
-<div class="container">
-    <form action="<?=BASEURL?>/User/tambah" method="post">
-        <div class="content">
-            <p class="judul fw-semibold">Proses Peminjaman</p>
-                <div class="mb-2 row">
-                    <label for="Nama Peminjam" class="col-sm-3 col-form-label fw-normal">Nama Peminjam</label>
-                    <div class="col-sm-6">
-                    <input type="text" class="form-control" id="Nama Peminjam" value="<?=$_SESSION['nama']?>" readonly>
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-                <div class="mb-2 row">
-                    <label for="NIM/NIP" class="col-sm-3 col-form-label fw-normal">NIM/NIP</label>
-                    <div class="col-sm-6">
-                    <input type="text" class="form-control" id="username" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-                <div class="mb-2 row">
-                    <label for="Mulai" class="col-sm-3 col-form-label fw-normal">Mulai Pinjam</label>
-                    <div class="col-sm-3">
-                        <input type="date" class="form-control" id="tgl_pinjam" name="tanggal_peminjaman">
-                    </div>
-                    <label id="label-sampai" for="Sampai" class="col-sm-1 col-form-label fw-normal">Sampai</label>
-                    <div class="col-sm-3">
-                        <input type="date" class="form-control" id="tgl_kembali" name="tanggal_pengembalian">
-                    </div>
-                </div>
-
-
-
-            <p class="judulTabel fw-normal">Item Dipinjam</p>
-            <table id="table" class="table table-hover">
-                <thead>
-                    <tr class="table-primary">
-                        <th class="fw-normal">Gambar</th>
-                        <th class="fw-normal">Nama</th>
-                        <th class="fw-normal">Jumlah Pinjam</th>
-                        <th class="fw-normal">Catatan</th>
-                        <th class="fw-normal">Aksi</th>
-                    </tr>
-                </thead>
-
-            </table>
-            <div class="d-grid gap-2 d-md-block mt-2">
-                <button class="button kembali" type="button">Kembali</button>
-                <button class="tombol pinjam" type="button">Pinjam!</button>
-            </div>
-
+<form action="<?=BASEURL?>/User/tambah" method="post">
+    <p class="judul fw-semibold">PROSES PEMINJAMAN</p>
+    <div class="mb-1 row">
+        <label for="Nama Peminjam" class="col-sm-2 col-form-label fw-normal">Nama Peminjam</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" id="Nama Peminjam" value="<?=$_SESSION['nama']?>" readonly>
         </div>
-    </form>
-</div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="mb-1 row">
+        <label for="NIM/NIP" class="col-sm-2 col-form-label fw-normal">NIM/NIP</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" id="username" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="mb-1 row">
+        <label for="Mulai" class="col-sm-2 col-form-label fw-normal">Mulai Pinjam</label>
+        <div class="col-sm-3">
+            <input type="date" class="form-control" id="tgl_pinjam" name="tanggal_peminjaman">
+        </div>
+        <label id="label-sampai" for="Sampai" class="col-sm-1 col-form-label fw-normal">Sampai</label>
+        <div class="col-sm-3">
+            <input type="date" class="form-control" id="tgl_kembali" name="tanggal_pengembalian">
+        </div>
+    </div>
+
+    <p class="d-block judulTabel fw-normal text-center">Item Dipinjam:</p>
+    <table id="table" class="table rounded">
+        <thead class="rounded-top">
+            <tr class="table-primary">
+                <th class="fw-normal" style="border-top-left-radius: 5px;">Gambar</th>
+                <th class="fw-normal">Nama</th>
+                <th class="fw-normal">Jumlah Pinjam</th>
+                <th class="fw-normal">Catatan</th>
+                <th class="fw-normal" style="border-top-right-radius: 5px;">Aksi</th>
+            </tr>
+        </thead>
+
+    </table>
+    <div class="aksi-page mt-3">
+        <button class="button kembali" type="button">Kembali</button>
+        <button class="tombol pinjam" type="button">Pinjam!</button>
+    </div>
+</form>
 <script>
     // Path: proses.php
 
@@ -59,7 +52,7 @@
     });
 
     let table = new DataTable('#table', {
-        scrollY: '355px',
+        scrollY: '235px',
         dom: 't',
         columns: [
             { data: 'gambar', },
@@ -67,7 +60,6 @@
             { data: null, },
             { data: null, },
             { data: null, },
-            { data: 'id', },
         ],
         columnDefs: [
 
@@ -82,14 +74,22 @@
                 targets: 1,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<p class="text-primary align-middle">${data}</p>`;
+                    return `
+                        <div class="td-wrapper">
+                            <p class="text-primary align-middle">${data}</p>
+                        </div>
+                    `;
                 }
             },
             {
                 targets: 2,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<input type="number" class="jumlah form-control-sm w-25 text-center" value="1">`;
+                    return `
+                        <div class="td-wrapper">
+                            <input type="number" class="jumlah form-control-sm w-25 text-center" value="1">
+                        </div>
+                    `;
                 }
             },
             {
@@ -103,12 +103,12 @@
                 targets: 4,
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<img src="<?=BASEURL?>/assets/hapus.svg" alt="hapus" class="alt-button hapus">`;
+                    return `
+                        <div class="td-wrapper">
+                            <img src="<?=BASEURL?>/assets/hapus.svg" alt="hapus" class="alt-button hapus">
+                        </div>
+                    `;
                 }
-            },
-            {
-                targets: 5,
-                visible: false,
             },
         ],
         createdRow: function(row, data, dataIndex) {
@@ -167,7 +167,7 @@
 
     $(document).ready(function() {
         $.ajax({
-        url: '<?=BASEURL?>/User/getCart',
+            url: '<?=BASEURL?>/User/getCart',
             type: 'GET',
             dataType: 'json',
             success: async function(data) {
@@ -200,8 +200,12 @@
         font-family: 'Montserrat';
     }
 
+    #content {
+        font-size: 14px !important;
+    }
+
     .judul {
-        font-size: 30px;
+        font-size: 20px;
         font-style: normal;
         font-weight: bold;
         color: #E7AE0E;
@@ -209,8 +213,7 @@
 
     .button {
         background-color: #E7AE0E;
-        width: 193px;
-        height: 51px;
+        height: 100%;
         flex-shrink: 0;
         border-radius: 5px;
         color: #fff;
@@ -218,13 +221,13 @@
     }
 
     .button:hover {
-        background-color: #f2b91c;
+        background-color: #f2c92c;
+        box-shadow: 0px 0px 10px #f2c92c;
     }
 
     .tombol {
         background-color: #3C8DBB;
-        width: 918px;
-        height: 51px;
+        height: 100%;
         flex-shrink: 0;
         border-radius: 5px;
         background: #00B152;
@@ -234,12 +237,14 @@
 
     .tombol:hover {
         background-color: #00bd58;
+        box-shadow: 0px 0px 10px #00bd58;
     }
 
     .judulTabel {
         font-size: 18px;
         line-height: normal;
         color: #3C8DBB;
+        margin: 12px 0 5px 0;
     }
 
     #label-sampai {
@@ -284,11 +289,30 @@
         border: 3px solid #3C8DBB;
     }
 
+    .table_wrapper {
+        border: 3px solid #3C8DBB;
+        border-radius: 3px;
+    }
+
     /* Styles for the table */
     .table-primary th {
         background-color: #3C8DBB;
-        color: #fff;
-        ;
+        color: #fff; ;
+    }
+
+    .dataTables_scrollHead thead th {
+        padding: 6px !important;
+    }
+
+    thead th {
+      border: 1px solid #fff;
+    }
+
+    .aksi-page {
+        height: 41px;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: 10px;
     }
 </style>
 

@@ -1,6 +1,3 @@
-<body>
-    <div class="container mt-3 ms-2">
-
         <div class="row">
             <div class="col-lg-6">
                 <?php Flasher::flash(); ?>
@@ -159,6 +156,3 @@
     background-color: #3C8DBB !important;
   }
         </style>
-</body>
-
-</html>

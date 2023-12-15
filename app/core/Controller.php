@@ -39,7 +39,7 @@ class Controller
                 "id" => "inventaris",
                 "title" => "Inventaris",
                 "icon" => "inventaris.svg",
-                "url" => "Admin/inventaris"
+                "url" => "Barang/index"
             ],
             [
                 "id" => "peminjaman",

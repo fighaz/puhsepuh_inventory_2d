@@ -1,76 +1,34 @@
-<style>
-  :root {
-    font-family: Montserrat;
-  }
-
-  html,
-  body {
-    background-color: #EBEFF5;
-  }
-
-  .content {
-    padding: 14px 42px 14px 42px;
-  }
-
-  .content h2 {
-    font-size: 40px;
-    color: #E7AE0E;
-  }
-
-  .content h3 {
-    font-size: 30px;
-    color: #E7AE0E;
-  }
-
-  .content p {
-    color: #3C8DBB;
-  }
-
-  /* Table */
-  thead {
-    font-size: 16px;
-    color: #fff;
-    font-weight: normal;
-    text-align: center;
-  }
-
-  thead th {
-    border: 2px solid #fff;
-  }
-
-  tbody {
-    text-align: center;
-  }
-
-  tbody td {
-    border-bottom: 1px solid #3C8DBB;
-  }
-
-  /* Entries */
-  #num-of-entries {
-    background-color: var(--background-global);
-    color: var(--bs-primary);
-    max-width: 50px;
-    max-height: 10px;
-    height: 10px;
-    margin: 0 5px;
-    font-size: 12px;
-    padding: 0 0 0 15px;
-    border: 1px solid var(--bs-primary);
-  }
-</style>
-<div class="content">
-  <h3 class="fw-bold">Beranda</h3>
-  <h2>Selamat Datang</h2>
+  <h4 class="fw-bold">Beranda</h4>
+  <h3>Selamat Datang</h3>
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
+  <div class="search-wrapper d-flex flex-row">
+      <input type="text" class="form-control" id="search" placeholder="Cari barang">
+      <button class="btn btn-primary text-white d-flex flex-row">
+          Cari
+          <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
+      </button>
+  </div>
   <!-- SearchBar -->
-  <div class="d-flex flex-row mb-2 entries-control">
+
+  <table class="table rounded" id="table">
+    <thead class="rounded-top">
+      <tr class="bg-primary">
+        <th style="border-top-left-radius: 5px;">ID</th>
+        <th>Detail Peminjam</th>
+        <th>Barang</th>
+        <th>Tanggal Pinjam</th>
+        <th>Tanggal Pengembalian</th>
+        <th style="border-top-right-radius: 5px;">Aksi</th>
+      </tr>
+    </thead>
+  </table>
+  <div class="d-flex flex-row mb-2 mt-5 entries-control">
     Show
     <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
     entries
   </div>
   <!-- Table -->
-  <table class="table table-hover" id="table">
+  <table class="table table-hover">
     <thead>
       <tr class="bg-primary">
         <th>ID</th>
@@ -133,9 +91,75 @@
       </ul>
     </nav>
   </div>
-</div>
 
 <script>
+
+    let table = new DataTable("#table", {
+        ajax: "<?=BASEURL?>/Admin/getPeminjamanToApprove",
+        scrollY: "270px",
+        scrollX: true,
+        dom: "lrtip",
+        columns: [
+            {
+                data: "id_peminjaman",
+                sortable: false,
+                render: function(data, type, row) {
+                    return ` <div class="td-wrapper"> ${data} </div> `;
+                }
+            },
+            {
+                data: "nama_peminjam",
+                sortable: false,
+                render: function(data, type, row) {
+                    return `<div class="td-wrapper text-primary"> ${data} </div>`
+                }
+            },
+            {
+                data: "nama_barang",
+                sortable: false,
+                render: function(data, type, row) {
+                    return `<div class="td-wrapper text-primary">${data}</div>`
+                },
+            },
+            {
+                data: "tanggal_peminjaman",
+                sortable: false,
+                render: function(data, type, row) {
+                    return ` <div class="td-wrapper">${data}</div>`;
+                },
+            },
+            {
+                data: "tanggal_pengembalian",
+                sortable: false,
+                render: function(data, type, row) {
+                    return ` <div class="td-wrapper">${data}</div>`;
+                },
+            },
+            {
+                data: null,
+                sortable: false,
+                render: function(data, type, row) {
+                    return `
+                        <div class="td-wrapper">
+                          <a href="<?= BASEURL; ?>/Admin/approve/<?= $pnj['id_peminjaman']; ?>" class="icon_terima"><img
+                              src="<?= BASEURL; ?>/assets/terima.svg" alt="Terima"></a>
+                          <a href="<?= BASEURL; ?>/Admin/tolak/<?= $pnj['id_peminjaman']; ?>" class="icon_tolak"><img
+                              src="<?= BASEURL; ?>/assets/tolak.svg" alt="Tolak"></a>
+                        </div>
+                    `;
+                },
+
+            },
+        ],
+        initComplete: () => {
+            let search = $("#search");
+
+            search.on("keyup", () => {
+                table.search(search.val(), false, true).draw();
+            });
+        }
+    });
+
   <?php
     if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
         unset($_SESSION['login_success']); 
@@ -149,3 +173,76 @@
         });
     <?php } ?>
 </script>
+<style>
+  :root {
+    font-family: Montserrat;
+  }
+
+  html,
+  body {
+    background-color: #EBEFF5;
+  }
+
+    table {
+        color: var(--bs-primary) !important;
+    }
+
+
+  #content h3 {
+    font-size: 30px;
+    color: #E7AE0E;
+  }
+
+  #content h4 {
+    font-size: 20px;
+    color: #E7AE0E;
+  }
+
+  #content p {
+    color: #3C8DBB;
+    margin-bottom: 7px;
+  }
+    .search-wrapper {
+        margin: 3px 0 21px 0;
+    }
+
+
+  /* Table 
+  thead {
+    font-size: 16px;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  thead th {
+    border: 2px solid #fff;
+  }
+
+  tbody {
+    text-align: center;
+  }
+
+  tbody td {
+    border-bottom: 1px solid #3C8DBB;
+  }
+    */
+
+  /* Entries */
+  #num-of-entries {
+    background-color: var(--background-global);
+    color: var(--bs-primary);
+    max-width: 50px;
+    max-height: 10px;
+    height: 10px;
+    margin: 0 5px;
+    font-size: 12px;
+    padding: 0 0 0 15px;
+    border: 1px solid var(--bs-primary);
+  }
+
+    .td-wrapper {
+        height: 40px;
+    }
+
+</style>

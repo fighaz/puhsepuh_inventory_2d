@@ -16,9 +16,9 @@ class Admin extends Controller
     }
     public function inventaris()
     {
-        //$data['barang'] = $this->model('Barang')->getAllBarang();
+        $data['brg'] = $this->model('Barang_model')->getAllBarang();
         $this->active_sidebar = "inventaris";
-        $this->view('admin/list_inventory');
+        $this->view('admin/list_inventory', $data);
     }
     public function peminjaman()
     {
@@ -56,6 +56,19 @@ class Admin extends Controller
         $data['barang'] = $this->model('Barang')->cariDataBarang();
         $this->view('barang/index', $data);
     }
-
+    public function getPeminjamanToApprove() {
+        echo json_encode([ 'data' => $this->model('Peminjaman')->getPeminjamanToApprove()]);
+    }
+    public function getAllPeminjaman() {
+        echo json_encode([ 'data' => $this->model('Peminjaman')->getAllPeminjaman()]);
+    }
+    public function getBarangFromPeminjaman($id) {
+        $detail = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
+        $data = [];
+        foreach ($detail as $key => $value) {
+            $data[] = $this->model('Barang_model')->getBarangById($value['id_barang'])['nama'];
+        }
+        echo json_encode($data);
+    }
 }
 ?>

@@ -29,7 +29,6 @@
                 <thead class="bg-primary rounded-top">
                     <tr>
                         <th class="rounded-top">Keranjang</th>
-                        <th>Id</th>
                     </tr>
                 </thead>
             </table>
@@ -54,18 +53,12 @@
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Barang/getAll",
         //data: dataBarang,
-        scrollY: "455px",
+        scrollY: "43vh",
         scrollX: true,
         dom: "lrtip",
         columns: [
-            { data: "gambar" },
-            { data: "nama" },
-            { data: "jumlah" },
-            { data: null },
-        ],
-        columnDefs: [
             {
-                targets: 0,
+                data: "gambar",
                 sortable: false,
                 className: "img-clm",
                 render: function(data, type, row) {
@@ -77,21 +70,28 @@
                 }
             },
             {
-                targets: 1,
+                data: "nama",
                 sortable: false,
                 render: function(data, type, row) {
                     return `<div class="td-wrapper text-primary"> ${data} </div>`
                 }
             },
             {
-                targets: 2,
+                data: "jumlah",
                 sortable: false,
                 render: function(data, type, row) {
-                    return `<div class="td-wrapper text-primary"> ${data} </div>`
+                    return `<div class="td-wrapper text-primary">loading...</div>`
+                },
+                createdCell: async function(cell, cellData, rowData, rowIndex, colIndex) {
+                    $(cell).html(`
+                        <div class="td-wrapper text-primary">` +
+                            rowData.tersedia + " / " + rowData.jumlah + `
+                        </div>
+                    `);
                 }
             },
             {
-                targets: 3,
+                data: null,
                 sortable: false,
                 render: function(data, type, row) {
                     return `
@@ -100,6 +100,11 @@
                             <img src="<?=BASEURL?>/assets/tambah.svg" alt="tambah" class="alt-button tambah img-fluid">
                         </div>
                     `;
+                },
+                createdCell: async function(cell, cellData, rowData, rowIndex, colIndex) {
+                    if (rowData.tersedia == 0) {
+                        $(cell).find('.tambah').addClass('disabled');
+                    }
                 }
             },
         ],
@@ -108,12 +113,11 @@
 
 
     let keranjangTable = new DataTable('#keranjang',{
-        scrollY: "445px",
+        scrollY: "33vh",
         scrollX: true,
         dom: "t",
         columns: [
             { data: "nama" },
-            { data: "id" },
         ],
         columnDefs: [
             {
@@ -128,11 +132,6 @@
                     `;
                 }
             },
-            {
-                targets: 1,
-                sortable: false,
-                visible: false,
-            },
         ],
         initComplete: function() {
             $(this).on('click', '.alt-button.hapus', function() {
@@ -143,13 +142,15 @@
                     success: function(_) {
                         console.log("success");
                         row.remove().draw();
+                        $('th.sorting_asc').removeClass('sorting_asc');
                     },
                     error: function(err) {
                         console.log(err);
+                        $('th.sorting_asc').removeClass('sorting_asc');
                     }
                 });
+                $('th.sorting_asc').removeClass('sorting_asc');
             });
-            $('thead th').removeClass('sorting_asc');
         }
     });
 
@@ -160,7 +161,7 @@
             table.column(1).search(search.val(), false, true).draw();
         });
 
-        $(this).on('click', '.alt-button.tambah', function() {
+        $(this).on('click', '.alt-button.tambah:not(.disabled)', function() {
             let data = table.row($(this).parents('tr')).data();
             $.ajax({
                 url: "<?=BASEURL?>/User/addCart/" + data.id,
@@ -178,7 +179,7 @@
                     console.log(err);
                 },
             });
-            $('thead th').removeClass('sorting_asc');
+            $('th.sorting_asc').removeClass('sorting_asc');
         });
         
     }
@@ -211,13 +212,12 @@
                     console.log(barang);
                     keranjangTable.row.add({
                         nama: barang.nama,
-                        id: barang.id
                     }).draw(false);
                 } catch(err) {
                     console.log(err);
                 }
             }
-            $('thead th').removeClass('sorting_asc');
+            $('th.sorting_asc').removeClass('sorting_asc');
         },
         error: function(err) {
             console.log("error");
@@ -225,7 +225,7 @@
         }
     });
 
-    $('thead th').removeClass('sorting_asc');
+    $('th.sorting_asc').removeClass('sorting_asc');
 
 
     // Flasher sweetalert
@@ -243,3 +243,5 @@
     <?php } ?>
 
 </script>
+<style> 
+</style>
