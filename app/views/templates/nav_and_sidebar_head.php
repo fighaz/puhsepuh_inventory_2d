@@ -122,6 +122,7 @@
     }
 
     #content {
+        position: relative;
         flex: 1;
         padding: 20px;
         width: 100%;

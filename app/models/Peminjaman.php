@@ -27,6 +27,84 @@ class Peminjaman
         $this->db->bind('id', $id);
         return $this->db->single();
     }
+    public function getDetailPeminjaman($id)
+    {
+        $this->db->query("
+            SELECT
+                p.id,
+                p.id_user,
+                u.nama AS nama_user,
+                u.username AS username_user,
+                p.status,
+                p.tanggal_peminjaman,
+                p.tanggal_pengembalian,
+                p.perubahan_status
+            FROM
+                peminjaman p
+            JOIN users u ON p.id_user = u.id
+            WHERE
+                p.id = :id
+
+            GROUP BY
+                p.id, p.id_user, u.nama, u.username, p.status, p.tanggal_peminjaman, p.tanggal_pengembalian, p.perubahan_status;
+        ");
+        $this->db->bind('id', $id);
+        return $this->db->single();
+    }
+    public function getDetailBarangById($id)
+    {
+        $this->db->query("
+            SELECT
+                dp.id_barang,
+                b.nama AS nama_barang,
+                b.gambar AS gambar_barang,
+                b.tersedia AS barang_tersedia,
+                dp.jumlah,
+                dp.keterangan
+            FROM
+                detail_peminjaman dp
+            JOIN barang b ON dp.id_barang = b.id
+            WHERE
+                dp.id_peminjaman = :id; 
+        ");
+        $this->db->bind('id', $id);
+        return $this->db->resultset();
+    }
+    public function getDetailedPeminjamanById($id)
+    {
+        $this->db->query("SELECT
+            p.id,
+            p.id_user,
+            u.nama AS nama_user,
+            u.username AS username_user,
+            p.status,
+            p.tanggal_peminjaman,
+            p.tanggal_pengembalian,
+            p.perubahan_status,
+            CONCAT('[', GROUP_CONCAT(
+                CONCAT(
+                    '{\"id_barang\":', dp.id_barang,
+                    ',\"nama_barang\":\"', b.nama,
+                    '\",\"gambar_barang\":\"', b.gambar,
+                    '\",\"jumlah\":', dp.jumlah,
+                    ',\"keterangan\":\"', dp.keterangan,
+                    '\"}'
+                    )
+            ), ']') AS detail
+            FROM
+                peminjaman p
+            JOIN users u ON p.id_user = u.id
+            JOIN detail_peminjaman dp ON p.id = dp.id_peminjaman
+            JOIN barang b ON dp.id_barang = b.id
+            WHERE
+                p.id = :id
+
+            GROUP BY
+                p.id, p.id_user, u.nama, u.username, p.status, p.tanggal_peminjaman, p.tanggal_pengembalian, p.perubahan_status;
+        ");
+        $this->db->bind('id', $id);
+        return $this->db->single();
+    }
     public function getPeminjamanByUserId($iduser)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_user=:iduser');

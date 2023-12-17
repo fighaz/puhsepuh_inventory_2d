@@ -30,11 +30,11 @@ class User extends Controller
     {
         if ($this->model('Keranjang')->hapusItemKeranjangByUserId($_SESSION['id_user'], $id) > 0) {
             // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-            header('Location: ' . BASEURL . '/User');
+            http_response_code(200);
             exit;
         } else {
             // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/User');
+            http_response_code(400);
             exit;
         }
     }

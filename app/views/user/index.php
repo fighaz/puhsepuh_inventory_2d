@@ -1,3 +1,10 @@
+<div id="alert" class="alert alert-danger d-flex justify-content-between" role="alert" style="height: 30px; padding: 0.2rem 1.25rem;">
+    <div class="message">
+      Password belum diganti.
+      Mohon untuk segera mengganti password.
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="max-width: 5px; max-height: 5px; margin-top: 5px;"></button>
+</div>
 <div id="welcome" class="title text-accent">
     SELAMAT DATANG
     <span class="nama"> Alim </span>
@@ -44,10 +51,6 @@
 
     $(document).ready(() => {
         
-    });
-
-    $(".proses button").on('click', () => {
-        window.location.href = "<?=BASEURL?>/User/proses";
     });
 
     let table = new DataTable("#table", {
@@ -102,7 +105,7 @@
                     `;
                 },
                 createdCell: async function(cell, cellData, rowData, rowIndex, colIndex) {
-                    if (rowData.tersedia == 0) {
+                    if (rowData.tersedia <= 0) {
                         $(cell).find('.tambah').addClass('disabled');
                     }
                 }
@@ -137,6 +140,7 @@
             $(this).on('click', '.alt-button.hapus', function() {
                 let row = keranjangTable.row($(this).parents('tr'));
                 let data = row.data();
+                console.log(data);
                 $.ajax({
                     url: "<?=BASEURL?>/User/removeFromCart/" + data.id,
                     success: function(_) {
@@ -150,6 +154,15 @@
                     }
                 });
                 $('th.sorting_asc').removeClass('sorting_asc');
+            });
+            $(".proses button").on('click', () => {
+                let $data = keranjangTable.rows().data();
+                console.log($data);
+                if ($data.length <= 0) {
+                    alert("Keranjang kosong!");
+                    return;
+                }
+                window.location.href = "<?=BASEURL?>/User/proses";
             });
         }
     });
@@ -212,6 +225,7 @@
                     console.log(barang);
                     keranjangTable.row.add({
                         nama: barang.nama,
+                        id: item.id_barang,
                     }).draw(false);
                 } catch(err) {
                     console.log(err);

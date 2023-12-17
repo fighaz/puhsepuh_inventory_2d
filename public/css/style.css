@@ -111,7 +111,7 @@ tbody {
 }
 
 .dataTables_paginate {
-    margin-top: -25px !important;
+    margin-top: 10px !important;
 }
 
 .dataTables_info, .dataTables_paginate {
@@ -164,12 +164,13 @@ tbody {
     box-shadow: 0 0 10px var(--bs-success);
 }
 .alt-button {
+    cursor: pointer;
     padding: 0;
     background-color: transparent;
     border: 3px solid transparent;
     border-radius: 40px;
-    width:  50px;
-    height: 50px;
+    width:  40px;
+    height: 40px;
 }
 
 .alt-button:active:not(.disabled) { 
@@ -186,6 +187,18 @@ tbody {
 
 .alt-button.rincian:hover {
     border: 3px solid #E7AE0E;
+}
+
+.alt-button.terima:hover {
+    border: 3px solid #4ECB71;
+}
+
+.alt-button.tolak:hover {
+    border: 3px solid #F44336;
+}
+
+.alt-button.edit:hover {
+    border: 3px solid var(--bs-primary);
 }
 
 .alt-button.search {
@@ -207,4 +220,34 @@ tbody {
     background-color: red;
 }
 
+button.btn {
+    min-width: 150px;
+    border: 3px solid transparent;
+}
+
+button.btn:hover {
+    border: 3px solid var(--bs-primary);
+    font-weight: 600;
+    color: white;
+}
+
+button.kembali {
+    background-color: var(--bs-accent);
+    color: #fff;
+}
+
+button.edit {
+    background-color: var(--bs-primary);
+    color: #fff;
+}
+
+button.tolak {
+    background-color: var(--bs-red);
+    color: #fff;
+}
+
+button.terima, button.simpan {
+    background-color: var(--bs-success);
+    color: #fff;
+}
 

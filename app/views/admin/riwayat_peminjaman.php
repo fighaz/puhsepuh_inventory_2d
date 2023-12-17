@@ -3,27 +3,27 @@
     <br>
       <!-- NavTabs -->
         <ul class="nav nav-pills primary nav-fill rounded">
-        <li class="nav-item rounded-start">
-            <a id="semua" class="nav-link active text-white" >Semua</a>
-        </li>
-        <li class="nav-item">
-            <a id="menunggu_konfirmasi" class="nav-link text-white" >Menunggu Konfirmasi</a>
-        </li>
-        <li class="nav-item">
-            <a id="menunggu_diambil" class="nav-link text-white" >Menunggu Diambil</a>
-        </li>
-        <li class="nav-item">
-            <a id="dipinjam" class="nav-link text-white" >Dipinjam</a>
-        </li>
-        <li class="nav-item">
-            <a id="terlambat" class="nav-link text-white" >Terlambat</a>
-        </li>
-        <li class="nav-item rounded-end">
-            <a id="selesai" class="nav-link text-white" >Selesai</a>
-        </li>
-        <li class="nav-item rounded-end">
-            <a id="ditolak" class="nav-link text-white" >Ditolak</a>
-        </li>
+            <li class="nav-item rounded-start">
+                <a id="semua" class="nav-link active text-white" >Semua</a>
+            </li>
+            <li class="nav-item">
+                <a id="menunggu_konfirmasi" class="nav-link text-white" >Menunggu Konfirmasi</a>
+            </li>
+            <li class="nav-item">
+                <a id="menunggu_diambil" class="nav-link text-white" >Menunggu Diambil</a>
+            </li>
+            <li class="nav-item">
+                <a id="dipinjam" class="nav-link text-white" >Dipinjam</a>
+            </li>
+            <li class="nav-item">
+                <a id="terlambat" class="nav-link text-white" >Terlambat</a>
+            </li>
+            <li class="nav-item rounded-end">
+                <a id="selesai" class="nav-link text-white" >Selesai</a>
+            </li>
+            <li class="nav-item rounded-end">
+                <a id="ditolak" class="nav-link text-white" >Ditolak</a>
+            </li>
         </ul>
     <br>
 
@@ -39,6 +39,7 @@
       </tr>
     </thead>
   </table>
+
 <script>
     function getNamaUser(id) {
         return new Promise((resolve, reject) => {
@@ -55,11 +56,12 @@
             });
         });
     }
+
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Admin/getAllPeminjaman",
+        order: [[0, "desc"]],
         scrollY: "290px",
         scrollX: true,
-        dom: "lrtip",
         columns: [
             {
                 data: "id",
@@ -143,10 +145,25 @@
                 data: null,
                 sortable: false,
                 render: function(data, type, row) {
+                    const rincian_button = '<a class=""><img class="alt-button rincian" src="<?=BASEURL?>/assets/rincian.svg" alt="rincian" title="rincian"></a>';
+                    let edit_button = '<a class=""><img class="alt-button edit" src="<?=BASEURL?>/assets/edit.svg" alt="edit" title="edit"></a>';
+                    let approve_button = "";
+                    if (row.status == "menunggu_konfirmasi") {
+                        approve_button = '<a class=""><img class="alt-button terima" src="<?=BASEURL?>/assets/check.svg" alt="terima" title="terima"></a>';
+                    } else if (row.status == "menunggu_diambil") {
+                        approve_button = '<a class=""><img class="alt-button ambil" src="<?=BASEURL?>/assets/check.svg" alt="ambil" title="ambil"></a>';
+                    } else if (row.status == "dipinjam" || row.status == "terlambat") {
+                        approve_button = '<a class=""><img class="alt-button selesai" src="<?=BASEURL?>/assets/check.svg" alt="selesai" title="selesai"></a>';
+                        edit_button = "";
+                    } else {
+                        edit_button = "";
+                    }
+
                     return `
                         <div class="td-wrapper">
-                            <a href="" class=""><img class="alt-button rincian" src="<?=BASEURL?>/assets/rincian.svg" alt="rincian"></a>
-                            <a href="" class=""><img class="alt-button terima" src="<?=BASEURL?>/assets/check.svg" alt="Selesai"></a>
+                            ${rincian_button}
+                            ${edit_button}
+                            ${approve_button}
                         </div>
                     `;
                 },
@@ -171,6 +188,18 @@
                 }
                 table.search(id, false, true).draw();
                 $("#"+ev.target.id).addClass("active");
+            });
+
+            table.on('click', 'tbody .alt-button.edit', (event) => {
+                let data = table.row(event.target.closest('tr')).data();
+                <?php $_SESSION['prev_page'] = '/Admin/peminjaman' ?>
+                window.location.href = "<?=BASEURL?>/Admin/ubahPeminjaman/" + data.id;
+            });
+
+            table.on('click', 'tbody .alt-button.rincian', (event) => {
+                let data = table.row(event.target.closest('tr')).data();
+                <?php $_SESSION['prev_page'] = '/Admin/peminjaman' ?>
+                window.location.href = "<?=BASEURL?>/Admin/detailPeminjaman/" + data.id;
             });
         }
     });
@@ -290,4 +319,8 @@
         height: auto;
         min-height: 40px;
     }
+.alt-button {
+    width:  40px;
+    height: 40px;
+}
   </style>

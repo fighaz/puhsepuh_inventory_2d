@@ -22,81 +22,11 @@
       </tr>
     </thead>
   </table>
-  <div class="d-flex flex-row mb-2 mt-5 entries-control">
-    Show
-    <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
-    entries
-  </div>
-  <!-- Table -->
-  <table class="table table-hover">
-    <thead>
-      <tr class="bg-primary">
-        <th>ID</th>
-        <th>Detail Peminjam</th>
-        <th>Barang</th>
-        <th>Tanggal Pinjam</th>
-        <th>Tanggal Pengembalian</th>
-        <th>Aksi</th>
-      </tr>
-    </thead>
-    <tbody class="text-primary">
-      <?php if (empty($data['pnj'])): ?>
-        <tr>
-          <td colspan="7">
-            <div class="alert alert-danger" role="alert">
-              Tidak ada data terkait.
-            </div>
-          </td>
-        </tr>
-      <?php else:
-        foreach ($data['pnj'] as $pnj): ?>
-          <tr class="bg-white align-middle">
-            <td>
-              <?= $pnj['id_peminjaman']; ?>
-            </td>
-            <td>
-              <?= $pnj['nama_peminjam']; ?>
-            </td>
-            <td>
-              <?= $pnj['nama_barang']; ?>
-            </td>
-            <td>
-              <?= $pnj['tanggal_peminjaman']; ?>
-            </td>
-            <td>
-              <?= $pnj['tanggal_pengembalian']; ?>
-            </td>
-            <td>
-              <a href="<?= BASEURL; ?>/Admin/approve/<?= $pnj['id_peminjaman']; ?>" class="icon_terima"><img
-                  src="<?= BASEURL; ?>/assets/terima.svg" alt="Terima"></a>
-              <a href="<?= BASEURL; ?>/Admin/tolak/<?= $pnj['id_peminjaman']; ?>" class="icon_tolak"><img
-                  src="<?= BASEURL; ?>/assets/tolak.svg" alt="Tolak"></a>
-            </td>
-          </tr>
-        <?php endforeach;
-      endif; ?>
-    </tbody>
-  </table>
-  <div class="pagination-wrapper d-flex flex-row justify-content-between">
-    <div class="intries-showed mt-2 text-primary">
-      Showing 1 to 10 of 100 entries
-    </div>
-    <nav class="navigation">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#table">1</a></li>
-        <li class="page-item"><a class="page-link" href="#table">2</a></li>
-        <li class="page-item"><a class="page-link" href="#table">3</a></li>
-        <li class="page-item"><a class="page-link" href="#table">Next</a></li>
-      </ul>
-    </nav>
-  </div>
-
 <script>
 
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Admin/getPeminjamanToApprove",
-        scrollY: "270px",
+        scrollY: "260px",
         scrollX: true,
         dom: "lrtip",
         columns: [
@@ -141,10 +71,14 @@
                 render: function(data, type, row) {
                     return `
                         <div class="td-wrapper">
-                          <a class="terima"><img class="alt-button terima"
+                          <a class="terima"><img class="alt-button terima" title="Terima"
                               src="<?= BASEURL; ?>/assets/check.svg" alt="Terima"></a>
-                          <a class="tolak"><img class="alt-button tolak"
+                          <a class="tolak"><img class="alt-button tolak" title="Tolak"
                               src="<?= BASEURL; ?>/assets/tolak.svg" alt="Tolak"></a>
+                          <a class="edit"><img class="alt-button edit" title="Edit"
+                              src="<?= BASEURL; ?>/assets/edit.svg" alt="Edit"></a>
+                          <a class="rincian"><img class="alt-button rincian" title="Rincian"
+                              src="<?= BASEURL; ?>/assets/rincian.svg" alt="Rincian"></a>
                         </div>
                     `;
                 },
@@ -166,6 +100,16 @@
             table.on('click', 'tbody .tolak', function() {
                 let data = table.row($(this).parents('tr')).data();
                 window.location.href = `<?=BASEURL?>/Admin/tolak/${data.id_peminjaman}`;
+            });
+
+            table.on('click', 'tbody .edit', function() {
+                let data = table.row($(this).parents('tr')).data();
+                window.location.href = `<?=BASEURL?>/Admin/editPeminjaman/${data.id_peminjaman}`;
+            });
+
+            table.on('click', 'tbody .rincian', function() {
+                let data = table.row($(this).parents('tr')).data();
+                window.location.href = `<?=BASEURL?>/Admin/detailPeminjaman/${data.id_peminjaman}`;
             });
         }
     });
@@ -254,5 +198,9 @@
     .td-wrapper {
         height: 40px;
     }
+.alt-button {
+    width:  35px;
+    height: 35px;
+}
 
 </style>

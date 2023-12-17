@@ -34,13 +34,18 @@ class Keranjang
     }
     public function hapusItemKeranjangByUserId($iduser, $idbarang)
     {
-        $query = "DELETE FROM kategori WHERE id_user = :id_user AND id_barang = :id_barang";
+        $query = "DELETE FROM keranjang WHERE id_user = :id_user AND id_barang = :id_barang";
 
         $this->db->query($query);
         $this->db->bind('id_user', $iduser);
         $this->db->bind('id_barang', $idbarang);
 
-        $this->db->execute();
+        try {
+            $this->db->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return 0;
+        }
 
         return $this->db->rowCount();
     }

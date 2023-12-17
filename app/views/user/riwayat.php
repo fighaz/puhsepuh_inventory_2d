@@ -104,8 +104,8 @@
                 className: "aksi",
                 render: function(data, type, row, meta) {
                     return `
-                        <a class="icon_edit"><img src="<?=BASEURL?>/assets/edit.svg" class="alt-button" alt="edit"></a>
-                        <a class="icon_tolak"><img src="<?=BASEURL?>/assets/tolak.svg" class="alt-button" alt="Tolak"></a>
+                        <!--<a class="icon_edit"><img src="<?=BASEURL?>/assets/edit.svg" class="alt-button" alt="edit"></a>
+                        <a class="icon_tolak"><img src="<?=BASEURL?>/assets/tolak.svg" class="alt-button" alt="Tolak"></a>-->
                         <a class="icon_rincian"><img src="<?=BASEURL?>/assets/rincian.svg" class="alt-button" alt="rincian"></a>
                     `;
                 }

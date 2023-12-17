@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="<?=BASEURL?>/js/jquery.js"></script>
     <script src="<?=BASEURL?>/js/datatables.min.js"></script>
+    <script src="<?=BASEURL?>/js/bootstrap.min.js"></script>
     <link  href="<?=BASEURL?>/css/datatables.min.css" rel="stylesheet">
     <link  href="<?=BASEURL?>/css/bootstrap.css" rel="stylesheet">
     <link  href="<?=BASEURL?>/css/style.css" rel="stylesheet">
