@@ -121,7 +121,6 @@
                 </section>
                 <section class="col-md-4 p-4">
                     <div class="form-group border rounded p-4">
-                        <!-- Tambahkan class untuk area gambar -->
                         <div class="image-upload-container border border-primary rounded">
                             <input type="file" name="gambar" id="gambar" class="form-control" required>
                             <img id="preview" src="#" alt="Upload Gambar">
