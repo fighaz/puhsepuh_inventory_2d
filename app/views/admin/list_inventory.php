@@ -92,7 +92,7 @@
       </div>
 
   <!-- The Modal -->
-  <div class="modal" id="modal-id">
+  <div class="modal fade" id="modal-id">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
