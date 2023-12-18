@@ -33,10 +33,45 @@ class Peminjam extends Controller
             }
         }
     }
+    public function tambahUser()
+    {
+        if ($this->model('User')->getUserByUsername($_POST['username'])) {
+            $response['status'] = 'gagal';
+            $response['message'] = 'Username telah dipakai';
+            echo json_encode($response);
+            http_response_code(400);
+        } else {
+            if ($this->model('User')->tambahDataPeminjam($_POST) > 0) {
+                $response['status'] = 'berhasil';
+                $response['message'] = 'Data Peminjam berhasil ditambahkan!';
+                echo json_encode($response);
+                http_response_code(200);
+            } else {
+                $response['status'] = 'gagal';
+                $response['message'] = 'Data Peminjam gagal ditambahkan!';
+                echo json_encode($response);
+                http_response_code(400);
+            }
+        }
+    }
     public function detail($id)
     {
         $data['peminjam'] = $this->model('User')->getPeminjamById($id);
         $this->view('admin/peminjam', $data);
+    }
+    public function getDetail($id)
+    {
+        try {
+            echo json_encode($this->model('User')->getPeminjamById($id));
+            http_response_code(200);
+        } catch (Exception $e) {
+            echo json_encode($e);
+            http_response_code(400);
+        }
+    }
+    public function getAll()
+    {
+        echo json_encode([ 'data' => $this->model('User')->getAllPeminjam()]);
     }
     public function getNama($id) {
         echo json_encode($this->model('User')->getPeminjamById($id)['nama']);

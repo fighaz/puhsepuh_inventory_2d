@@ -48,8 +48,13 @@ class Admin extends Controller
     }
     public function detailPeminjaman($id)
     {
-        $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
-        $this->view('admin/peminjaman', $data);
+        $data['peminjaman'] = $this->model('Peminjaman')->getDetailPeminjaman($id);
+        $this->view('admin/detail_peminjaman', $data);
+    }
+    public function ubahPeminjaman($id)
+    {
+        $data['peminjaman'] = $this->model('Peminjaman')->getDetailPeminjaman($id);
+        $this->view('admin/ubah_peminjaman', $data);
     }
     public function cari()
     {
@@ -62,6 +67,11 @@ class Admin extends Controller
     public function getAllPeminjaman() {
         echo json_encode([ 'data' => $this->model('Peminjaman')->getAllPeminjaman()]);
     }
+    public function getDetailedPeminjaman($id) {
+        $result = $this->model('Peminjaman')->getDetailedPeminjamanById($id);
+        $result['detail'] = json_decode($result['detail'], true);
+        echo json_encode([ 'data' => $result]);
+    }
     public function getBarangFromPeminjaman($id) {
         $detail = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
         $data = [];
@@ -69,6 +79,14 @@ class Admin extends Controller
             $data[] = $this->model('Barang_model')->getBarangById($value['id_barang'])['nama'];
         }
         echo json_encode($data);
+    }
+    public function getDetailBarangFromPeminjaman($id) {
+        $result['data'] = $this->model('Peminjaman')->getDetailBarangById($id);
+        echo json_encode($result);
+    }
+    public function rincianPeminjaman($id) {
+        $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
+        $this->view('admin/rincian_peminjaman', $data);
     }
 }
 ?>

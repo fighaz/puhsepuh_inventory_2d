@@ -31,7 +31,6 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    console.log(id + " : " + data);
                     resolve(data);
                 },
                 error: function(err) {
@@ -57,9 +56,9 @@
                 render: function(data, type, row, meta) {
                     if (data == 'dipinjam') {
                         return `<span class="badge rounded-pill bg-primary">dipinjam</span>`;
-                    } else if (data == 'menunggu konfirmasi') {
+                    } else if (data == 'menunggu_konfirmasi') {
                         return `<span class="badge rounded-pill bg-secondary">Menunggu Konfirmasi</span>`;
-                    } else if (data == 'menunggu diambil') {
+                    } else if (data == 'menunggu_diambil') {
                         return `<span class="badge rounded-pill bg-warning text-dark">Menunggu diambil</span>`;
                     } else if (data == 'ditolak') {
                         return `<span class="badge rounded-pill bg-danger">Ditolak</span>`;
@@ -105,8 +104,8 @@
                 className: "aksi",
                 render: function(data, type, row, meta) {
                     return `
-                        <a class="icon_edit"><img src="<?=BASEURL?>/assets/edit.svg" class="alt-button" alt="edit"></a>
-                        <a class="icon_tolak"><img src="<?=BASEURL?>/assets/tolak.svg" class="alt-button" alt="Tolak"></a>
+                        <!--<a class="icon_edit"><img src="<?=BASEURL?>/assets/edit.svg" class="alt-button" alt="edit"></a>
+                        <a class="icon_tolak"><img src="<?=BASEURL?>/assets/tolak.svg" class="alt-button" alt="Tolak"></a>-->
                         <a class="icon_rincian"><img src="<?=BASEURL?>/assets/rincian.svg" class="alt-button" alt="rincian"></a>
                     `;
                 }

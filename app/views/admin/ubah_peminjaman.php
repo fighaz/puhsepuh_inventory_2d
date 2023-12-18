@@ -1,31 +1,35 @@
-<form action="<?=BASEURL?>/User/tambah" method="post">
-    <p class="judul fw-semibold">PROSES PEMINJAMAN</p>
-    <div class="mb-1 row">
-        <label for="Nama Peminjam" class="col-sm-2 col-form-label fw-normal">Nama Peminjam</label>
-        <div class="col-sm-6">
-        <input type="text" class="form-control" id="Nama Peminjam" value="<?=$_SESSION['nama']?>" readonly>
-        </div>
-        <div class="col-sm-3"></div>
-    </div>
-    <div class="mb-1 row">
-        <label for="NIM/NIP" class="col-sm-2 col-form-label fw-normal">NIM/NIP</label>
-        <div class="col-sm-6">
-        <input type="text" class="form-control" id="username" name="id_user" value="<?=$_SESSION['id_user']?>" disabled>
-        </div>
-        <div class="col-sm-3"></div>
-    </div>
-    <div class="mb-1 row">
-        <label for="Mulai" class="col-sm-2 col-form-label fw-normal">Mulai Pinjam</label>
-        <div class="col-sm-3">
-            <input type="date" class="form-control" id="tgl_pinjam" name="tanggal_peminjaman" onchange="on_change_tgl_pinjam_kembali(this)">
-        </div>
-        <label id="label-sampai" for="Sampai" class="col-sm-1 col-form-label fw-normal">Sampai</label>
-        <div class="col-sm-3">
-            <input type="date" class="form-control" id="tgl_kembali" name="tanggal_pengembalian" onchange="on_change_tgl_pinjam_kembali(this)">
-        </div>
-    </div>
+<form> <!-- action="<?=BASEURL?>/User/tambah" method="post">-->
+    <p class="judul fw-semibold">DETAIL PEMINJAMAN</p>
+    <table class="info display">
+        <tr>
+            <td>Nama Peminjam</td>
+            <td>:</td>
+            <td colspan="2">
+                <input value="<?=$data['peminjaman']['nama_user']?>" class="form-control-sm w-100" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>NIM/NIP</td>
+            <td>:</td>
+            <td colspan="2">
+                <input value="<?=$data['peminjaman']['username_user']?>" class="form-control-sm w-100" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>Mulai Pinjam</td>
+            <td>:</td>
+            <td>
+                <input value="<?=$data['peminjaman']['tanggal_peminjaman']?>" class="form-control-sm w-75" type="date">
+            </td>
+            <td>Sampai</td>
+            <td>:</td>
+            <td>
+                <input value="<?=$data['peminjaman']['tanggal_pengembalian']?>" class="form-control-sm w-75" type="date">
+            </td>
+        </tr>
+    </table>
 
-    <p class="d-block judulTabel fw-normal text-center">Item Dipinjam:</p>
+    <p class="d-block judulTabel fw-semibold text-center">ITEM DIPINJAM:</p>
     <table id="table" class="table rounded">
         <thead class="rounded-top">
             <tr class="table-primary">
@@ -39,26 +43,19 @@
 
     </table>
     <div class="aksi-page mt-3">
+        <div>
+            <button class="btn kembali" type="button">Kembali</button>
+        </div>
+        <div>
+            <button class="btn simpan" type="button" style="min-width: 300px;">Simpan</button>
+        </div>
+<!--
         <button class="button kembali" type="button">Kembali</button>
         <button class="tombol pinjam" type="button">Pinjam!</button>
+-->
     </div>
 </form>
 <script>
-    // Path: proses.php
-
-    //function on_change_tgl_pinjam_kembali(obj) {
-    //    let today = new Date();
-    //    let date = new Date(obj.value);
-    //    if (date < today) {
-    //        obj.value = today.toISOString().substr(0, 10);
-    //        alert("Tanggal tidak boleh lebih awal dari hari ini");
-    //        return;
-    //    }
-
-    //    let $tgl_pinjam = $('#tgl_pinjam');
-    //    let $tgl_kembali = $('#tgl_kembali');
-    //    console.log($tgl_pinjam.val(), $tgl_kembali.val());
-    //}
 
     $("#tgl_pinjam").on("change", function() {
         let today = new Date();
@@ -95,30 +92,29 @@
     });
 
     $('.kembali').click(function() {
-        window.location.href = "<?=BASEURL?>/User";
+        window.location.href = "<?php
+            if (isset($_SESSION['prev_page'])) {
+                echo BASEURL . $_SESSION['prev_page'];
+            } else {
+                echo BASEURL;
+            }
+        ?>";
     });
 
     let table = new DataTable('#table', {
+        ajax: '<?=BASEURL?>/Admin/getDetailBarangFromPeminjaman/' + "<?=$data['peminjaman']['id']?>",
         scrollY: '235px',
         dom: 't',
         columns: [
-            { data: 'gambar', },
-            { data: 'nama', },
-            { data: null, },
-            { data: null, },
-            { data: null, },
-        ],
-        columnDefs: [
-
             {
-                targets: 0,
+                data: 'gambar_barang', 
                 sortable: false,
                 render: function(data, type, row, meta) {
                     return `<img src="<?=BASEURL?>/img/${data}" alt="Gambar" class="object-fit-cover border rounded" width="98px" height="70px">`;
                 }
             },
-            {
-                targets: 1,
+            { 
+                data: 'nama_barang', 
                 sortable: false,
                 render: function(data, type, row, meta) {
                     return `
@@ -129,25 +125,29 @@
                 }
             },
             {
-                targets: 2,
+                data: 'jumlah', 
                 sortable: false,
                 render: function(data, type, row, meta) {
                     return `
                         <div class="td-wrapper">
-                            <input type="number" class="jumlah form-control-sm w-25 text-center" value="1">
+                            <input type="number" class="jumlah form-control-sm w-25 text-center" value="${data}">
                         </div>
                     `;
                 }
             },
             {
-                targets: 3,
+                data: 'keterangan', 
                 sortable: false,
                 render: function(data, type, row, meta) {
-                    return `<textarea class="catatan form-control-lg" rows="2"></textarea>`;
+                    return `
+                        <div class="td-wrapper">
+                            <textarea class="catatan form-control-lg" rows="2">${data}</textarea>
+                        </div>
+                    `;
                 }
             },
             {
-                targets: 4,
+                data: null, 
                 sortable: false,
                 render: function(data, type, row, meta) {
                     return `
@@ -229,35 +229,11 @@
     });
 
     $(document).ready(function() {
-        $.ajax({
-            url: '<?=BASEURL?>/User/getCart',
-            type: 'GET',
-            dataType: 'json',
-            success: async function(data) {
-                for (let item of data) {
-                    try {
-                        let barang = await getItem(item.id_barang);
-                        table.row.add({
-                            id: item.id_barang,
-                            gambar: barang.gambar,
-                            nama: barang.nama,
-                            tersedia: barang.tersedia,
-                        }).draw(false);
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }
-            },
-            error: function(err) {
-                console.log("error");
-                console.log(err);
-            }
-        });
         table.on('keyup', 'tbody input.jumlah', (ev) => {
             let input = ev.target;
             let data = table.row($(input).parents('tr')).data();
-            if ($(input).val() > data.tersedia) {
-                $(input).val(data.tersedia);
+            if ($(input).val() > data.barang_tersedia) {
+                $(input).val(data.barang_tersedia);
             } else if ($(input).val() < 1) {
                 $(input).val(1);
             }
@@ -304,6 +280,10 @@
         font-size: 14px !important;
     }
 
+    .top-container {
+        font-size: 15px !important;
+    }
+
     .judul {
         font-size: 20px;
         font-style: normal;
@@ -341,16 +321,13 @@
     }
 
     .judulTabel {
-        font-size: 18px;
+        font-size: 17px;
+        font-weight: 600;
         line-height: normal;
         color: #3C8DBB;
         margin: 12px 0 5px 0;
     }
 
-    #label-sampai {
-        margin-top: 6px;
-        margin-right: 20px;
-    }
 
     /* Styles for the form 
     form {
@@ -409,10 +386,20 @@
     }
 
     .aksi-page {
-        height: 41px;
-        display: grid;
-        grid-template-columns: 1fr 4fr;
-        gap: 10px;
+        display: flex;
+        justify-content: space-between;
     }
+
+    table.info {
+        max-width: 60%;
+    }
+
+    table.info tr {
+        border: none;
+        background-color: var(--background-global);
+        padding: 11px !important;
+        text-align: left;
+    }
+
 </style>
 
