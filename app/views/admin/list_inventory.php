@@ -1,94 +1,150 @@
-    <h3 class="fw-semibold text-accent">LIST BARANG</h3>
-    <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
-<div class="search-wrapper d-flex flex-row">
-    <input type="text" class="form-control" id="search" placeholder="Cari barang">
-    <button class="btn btn-primary text-white d-flex flex-row">
-        Cari
-        <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
-    </button>
-</div>
-  <table class="table rounded" id="table">
-    <thead class="rounded-top">
-      <tr class="bg-primary">
-        <th style="border-top-left-radius: 5px;">ID</th>
-        <th>Gambar</th>
-        <th>Nama Barang</th>
-        <th>Kuantitas</th>
-        <th>Penanggung Jawab</th>
-        <th>Asal</th>
-        <th style="border-top-right-radius: 5px;">Aksi</th>
-      </tr>
-    </thead>
-  </table>
-    <!-- Table -->
-    <div class="container-table">
-      <div class="d-flex flex-row mb-2 entries-control">
-        Show
-        <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
-        entries
-      </div>
-      <table class=" table-hover">
-        <tbody class="text-primary">
-          <?php $no = 1;
-          if (empty($data['brg'])): ?>
-            <tr>
-              <td colspan="7">
-                <div class="alert alert-danger" role="alert">
-                  Tidak ada data terkait.
-                </div>
-              </td>
-            </tr>
-          <?php else:
-            foreach ($data['brg'] as $brg): ?>
-              <tr class="bg-white text-primary align-middle">
-                <td>
-                  <?= $no++ ?>
-                </td>
-                <td>
-                  <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" class="object-fit-cover border rounded" alt="" width="98px" height="70px">
-                </td>
-
-                <td>
-                  <?= $brg['nama']; ?>
-                </td>
-                <td>
-                  <?= $brg['tersedia']; ?> /
-                  <?= $brg['jumlah']; ?>
-                </td>
-                <td>
-                  <?= $brg['maintainer']; ?>
-                </td>
-                <td>
-                  <?= $brg['asal']; ?>
-                </td>
-                <td>
-                  <a href="/" class="icon_info"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
-                  <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
-                      src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
-                  <a href="<?= BASEURL; ?>/Barang/hapus/<?= $brg['id']; ?>" class="icon_remove"><img
-                      src="<?= BASEURL; ?>/assets/hapus.svg" alt=""
-                      onclick="return confirm('Apakah Anda yakin untuk menghapus Data Barang berikut?');"></a>
+<div class="container-md">
+  <h3 class="fw-semibold text-accent">LIST BARANG</h3>
+      <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
+  <div class="search-wrapper d-flex flex-row">
+      <input type="text" class="form-control" id="search" placeholder="Cari barang">
+      <button class="btn btn-primary text-white d-flex flex-row">
+          Cari
+          <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
+      </button>
+  </div>
+    <table class="table rounded" id="table">
+      <thead class="rounded-top">
+        <tr class="bg-primary">
+          <th style="border-top-left-radius: 5px;">ID</th>
+          <th>Gambar</th>
+          <th>Nama Barang</th>
+          <th>Kuantitas</th>
+          <th>Penanggung Jawab</th>
+          <th>Asal</th>
+          <th style="border-top-right-radius: 5px;">Aksi</th>
+        </tr>
+      </thead>
+    </table>
+      <!-- Table -->
+      <div class="container-table">
+        <div class="d-flex flex-row mb-2 entries-control">
+          Show
+          <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
+          entries
+        </div>
+        <table class=" table-hover">
+          <tbody class="text-primary">
+            <?php $no = 1;
+            if (empty($data['brg'])): ?>
+              <tr>
+                <td colspan="7">
+                  <div class="alert alert-danger" role="alert">
+                    Tidak ada data terkait.
+                  </div>
                 </td>
               </tr>
-            <?php endforeach;
-          endif; ?>
-        </tbody>
-      </table>
-      <div class="pagination-wrapper d-flex flex-row justify-content-between">
-        <div class="intries-showed mt-2 text-primary">
-          Showing 1 to 10 of 100 entries
+            <?php else:
+              foreach ($data['brg'] as $brg): ?>
+                <tr class="bg-white text-primary align-middle">
+                  <td>
+                    <?= $no++ ?>
+                  </td>
+                  <td>
+                    <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" class="object-fit-cover border rounded" alt="" width="98px" height="70px">
+                  </td>
+
+                  <td>
+                    <?= $brg['nama']; ?>
+                  </td>
+                  <td>
+                    <?= $brg['tersedia']; ?> /
+                    <?= $brg['jumlah']; ?>
+                  </td>
+                  <td>
+                    <?= $brg['maintainer']; ?>
+                  </td>
+                  <td>
+                    <?= $brg['asal']; ?>
+                  </td>
+                  <td>
+                    <a href="/" class="icon_info"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
+                    <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
+                        src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
+                    <a href="<?= BASEURL; ?>/Barang/hapus/<?= $brg['id']; ?>" class="icon_remove"><img
+                        src="<?= BASEURL; ?>/assets/hapus.svg" alt=""
+                        onclick="return confirm('Apakah Anda yakin untuk menghapus Data Barang berikut?');"></a>
+                  </td>
+                </tr>
+              <?php endforeach;
+            endif; ?>
+          </tbody>
+        </table>
+        <div class="pagination-wrapper d-flex flex-row justify-content-between">
+          <div class="intries-showed mt-2 text-primary">
+            Showing 1 to 10 of 100 entries
+          </div>
+          <nav class="navigation">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#table">1</a></li>
+              <li class="page-item"><a class="page-link" href="#table">2</a></li>
+              <li class="page-item"><a class="page-link" href="#table">3</a></li>
+              <li class="page-item"><a class="page-link" href="#table">Next</a></li>
+            </ul>
+          </nav>
         </div>
-        <nav class="navigation">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#table">1</a></li>
-            <li class="page-item"><a class="page-link" href="#table">2</a></li>
-            <li class="page-item"><a class="page-link" href="#table">3</a></li>
-            <li class="page-item"><a class="page-link" href="#table">Next</a></li>
-          </ul>
-        </nav>
+      </div>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="modal-id">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <div class="col-10 text-center mx-auto">
+          <h4 class="modal-title">Data Barang</h4>
+        </div>
+        <div class="col-2 text-end">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body d-flex">
+              <table class="table borderless text-primary fw-semibold">
+                  <tbody style="background-color: #EBEFF5;">
+                  <tr>
+                      <th>ID</th>
+                      <td class="modal-id"></td>
+                  </tr>
+                  <tr>
+                      <th>Nama Barang</th>
+                      <td class="modal-nama"></td>
+                  </tr>
+                  <tr>
+                      <th>Kuantitas</th>
+                      <td class="modal-qty"></td>
+                  </tr>
+                  <tr>
+                      <th>Penanggung Jawab</th>
+                      <td class="modal-pnggjawab"></td>
+                  </tr>
+                  <tr>
+                      <th>Asal</th>
+                      <td class="modal-asal"></td>
+                  </tr>
+                  <tr>
+                      <th>Keterangan</th>
+                      <td class="modal-keterangan"></td>
+                  </tr>
+                  </tbody>
+              </table>
+            <div class="d-flex justify-content-end">
+              <img id="modal-img" class="border border-2 border-primary rounded mt-3 me-3" src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="Gambar Barang" style="max-width: 280px; max-height: 200px;">
+            </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
 
 <script> 
     let table = new DataTable("table#table.table", {
@@ -149,7 +205,8 @@
                 render: function(data, type, row) {
                     return `
                         <div class="td-wrapper">
-                          <a href="/" class="icon_info"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
+                        <!-- Tombol untuk memanggil modal -->
+                        <a href="<?= BASEURL; ?>/Barang/detail/<?= $brg['id']; ?>" class="icon_info" data-bs-toggle="modal" data-bs-target="#modal-id"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
                           <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
                               src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
                           <a href="<?= BASEURL; ?>/Barang/hapus/<?= $brg['id']; ?>" class="icon_remove"><img
@@ -171,14 +228,42 @@
             search.on("keyup", () => {
                 table.search(search.val(), false, true).draw();
             });
+            
+            table.on('click', 'tbody .icon_info', function () {
+            let data = table.row($(this).parents('tr')).data();
+            $.ajax({
+                url: "<?= BASEURL; ?>/Barang/detail/" + data.id,
+                dataType: "json",
+                success: function (response, status, xhr) {
+                    if (xhr.status != 200) {
+                        return;
+                    }
+
+                    console.log("", response);
+                    $("#modal-img").attr("src", response.gambar);
+                    $(".modal-id").text(response.id_barang);
+                    $(".modal-nama").text(response.nama);
+                    $(".modal-qty").text(response.jumlah);
+                    $(".modal-pnggjawab").text(response.maintainer);
+                    $(".modal-asal").text(response.asal);
+                    $(".modal-keterangan").text(response.keterangan);
+
+                    // Tampilkan modal
+                    $("#modal-id").modal('show');
+                }
+            });
+        });
+
         }
     });
+    
 </script>
 
 <style>
   :root {
     font-family: Montserrat;
   }
+  
 
   body {
     background-color: #EBEFF5;
@@ -259,5 +344,50 @@
 
     .td-wrapper {
         color: var(--bs-primary) !important;
+    }
+
+    /* Style modal */
+    .modal-body {
+      width: 696px;
+      height: 409px; 
+      border-radius: 5px;
+      border: 3px solid #3C8DBB;
+      background: #EBEFF5;
+      margin: 27px 39px 46px 39px;
+    }
+
+    .text {
+        flex: 1;
+        padding: 0 10px;
+    }
+
+    .modal-content {
+        width: 774px; 
+        height: 550px; 
+        border-radius: 5px;
+        border: 3px solid #3C8DBB;
+        background: #EBEFF5;
+        margin: auto; 
+    }
+
+    .modal-header h4 {
+      color: #E7AD0E;
+      font-family: Montserrat;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .borderless th, .borderless td {
+      border: none !important;
+    }
+
+    .modal-content {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .modal {
+      position: fixed;
     }
 </style>
