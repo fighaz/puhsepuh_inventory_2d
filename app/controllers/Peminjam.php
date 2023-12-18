@@ -71,9 +71,10 @@ class Peminjam extends Controller
     }
     public function getAll()
     {
-        echo json_encode([ 'data' => $this->model('User')->getAllPeminjam()]);
+        echo json_encode(['data' => $this->model('User')->getAllPeminjam()]);
     }
-    public function getNama($id) {
+    public function getNama($id)
+    {
         echo json_encode($this->model('User')->getPeminjamById($id)['nama']);
     }
     public function getUbah()
@@ -83,11 +84,11 @@ class Peminjam extends Controller
     public function ubah()
     {
         if ($this->model('User')->ubahDataPeminjam($_POST) > 0) {
-            // Flasher::setFlash('berhasil', 'diubah', 'success');
+            Flasher::setFlash('berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Peminjam');
             exit;
         } else {
-            // Flasher::setFlash('gagal', 'diubah', 'danger');
+            Flasher::setFlash('gagal', 'diubah', 'danger');
             header('Location: ' . BASEURL . '/Peminjam');
             exit;
         }
@@ -95,11 +96,23 @@ class Peminjam extends Controller
     public function hapus($id)
     {
         if ($this->model('User')->hapusDataPeminjam($id) > 0) {
-            // Flasher::setFlash('berhasil', 'dihapus', 'success');
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Peminjam');
             exit;
         } else {
-            // Flasher::setFlash('gagal', 'dihapus', 'danger');
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/Peminjam');
+            exit;
+        }
+    }
+    public function resetPassword($id)
+    {
+        if ($this->model('User')->resetPassword($id) > 0) {
+            Flasher::setFlash('berhasil', 'reset', 'success');
+            header('Location: ' . BASEURL . '/Peminjam');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'reset', 'danger');
             header('Location: ' . BASEURL . '/Peminjam');
             exit;
         }

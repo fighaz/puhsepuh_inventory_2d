@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 15, 2023 at 09:57 AM
+-- Generation Time: Dec 18, 2023 at 12:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -192,7 +192,7 @@ CREATE TABLE `peminjaman` (
   `status` enum('dipinjam','terlambat','selesai','ditolak','menunggu_konfirmasi','menunggu_diambil') DEFAULT 'menunggu_konfirmasi',
   `tanggal_peminjaman` date DEFAULT NULL,
   `tanggal_pengembalian` date DEFAULT NULL,
-  `perubahan_status` timestamp NOT NULL DEFAULT current_timestamp()
+  `perubahan_status` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -265,6 +265,8 @@ CREATE TABLE `users` (
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `nama` varchar(255) DEFAULT NULL,
+  `notelp` varchar(15) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `role` enum('Admin','User') DEFAULT 'User',
   `isChangePassword` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -273,11 +275,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `nama`, `role`, `isChangePassword`) VALUES
-(1, 'admin', '$2y$10$46EDYWnooobvaq.K2I5TiOgZwSk3vo4f/OTWqKd1zlf92qh7PT91y', 'admin', 'Admin', NULL),
-(2, 'user', '$2y$10$r47QADWCNjdYiezczCs.7Oye.h2CvPeop9gHN53Qe3czZKMQb4wy2', 'user', 'User', NULL),
-(5, 'fighaz', '$2y$10$ZCZl1IY6k/41Pfq4njN0aue/3XUCHaUhn/Z5UUehlaIVsIBhoqL0m', 'fighaz', 'User', 1),
-(8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', 'User', 0);
+INSERT INTO `users` (`id`, `username`, `password`, `nama`, `notelp`, `email`, `role`, `isChangePassword`) VALUES
+(1, 'admin', '$2y$10$46EDYWnooobvaq.K2I5TiOgZwSk3vo4f/OTWqKd1zlf92qh7PT91y', 'admin', '', '', 'Admin', NULL),
+(2, 'user', '$2y$10$pEbmSoC82qRpj5GmEAIWfu9tzaIZ7u4TwcLsKDE29UXexVO77fC0m', 'user', '3225425', 'user', 'User', NULL),
+(5, 'fighaz', '$2y$10$ZCZl1IY6k/41Pfq4njN0aue/3XUCHaUhn/Z5UUehlaIVsIBhoqL0m', 'fighaz', '', '', 'User', 1),
+(8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', '', '', 'User', 0),
+(9, 'saya', '$2y$10$HljiWWsimIuT9/yHECSiB.BeWpUnKAlKsLSYjBrpBKil/3raP4i3.', 'saya', '325245', 'saya', 'User', 0);
 
 -- --------------------------------------------------------
 
@@ -286,7 +289,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `nama`, `role`, `isChangePass
 --
 DROP TABLE IF EXISTS `all_peminjaman`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id`  ;
 
 --
 -- Indexes for dumped tables
@@ -359,7 +362,7 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
