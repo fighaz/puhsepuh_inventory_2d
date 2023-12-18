@@ -48,7 +48,7 @@ class User
     {
         $query = "INSERT INTO users
                     VALUES
-                  (NULL, :username, :password, :nama, :role, :isChangePassword)";
+                  (NULL, :username, :password, :nama, :notelp, :email, :role, :isChangePassword)";
 
         $password = password_hash($data['username'], PASSWORD_BCRYPT);
         $role = "User";
@@ -57,6 +57,8 @@ class User
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $password);
         $this->db->bind('nama', $data['nama']);
+        $this->db->bind('notelp', $data['notelp']);
+        $this->db->bind('email', $data['email']);
         $this->db->bind('role', $role);
         $this->db->bind('isChangePassword', $isChangePassword);
         $this->db->execute();
@@ -78,17 +80,36 @@ class User
 
     public function ubahDataPeminjam($data)
     {
-        $query = "UPDATE barang SET
-                    username = :username,nama :nama WHERE id = :id";
+        $query = "UPDATE users SET
+                    username = :username,password = :password,nama = :nama ,notelp = :notelp,email = :email WHERE id = :id";
+
 
         $this->db->query($query);
+        $password = password_hash($data['username'], PASSWORD_BCRYPT);
         $this->db->bind('username', $data['username']);
+        $this->db->bind('password', $password);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('notelp', $data['notelp']);
+        $this->db->bind('email', $data['email']);
+        $this->db->bind('id', $data['id']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
+    public function resetPassword($id)
+    {
+        $query = "UPDATE users SET
+        password = :password WHERE id = :id";
 
+        $password = password_hash("password", PASSWORD_BCRYPT);
+        $this->db->query($query);
+        $this->db->bind('password', $password);
+        $this->db->bind('id', $id);
+        $this->db->execute();
 
+        return $this->db->rowCount();
+
+    }
     public function cariDataPeminjam()
     {
         $keyword = $_POST['keyword'];
