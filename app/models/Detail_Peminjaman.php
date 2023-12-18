@@ -40,6 +40,16 @@ class Detail_Peminjaman
         $this->db->bind('id', $id);
         return $this->db->resultSet();
     }
+    public function getDetailBarangPeminjaman($id)
+    {
+        $query = " SELECT dp.id_peminjaman as id_peminjaman,dp.id_barang as id_barang,dp.jumlah as jumlah ,dp.keterangan as keterangan,b.nama as nama_barang,b.gambar as gambar
+        FROM detail_peminjaman as dp
+        JOIN barang as b ON dp.id_barang = b.id
+            WHERE dp.id_peminjaman = :id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        return $this->db->resultSet();
+    }
     public function updateDetailPeminjaman($data, $id)
     {
         for ($i = 0; $i < count($data); $i++) {
