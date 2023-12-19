@@ -6,6 +6,12 @@ class Admin extends Controller
     {
         parent::__construct();
         session_start();
+        if (!isset($_SESSION['role'])) {
+            header('Location: ' . BASEURL . '/');
+        } else if ($_SESSION['role'] != 'Admin') {
+            header("HTTP/1.1 403 Forbidden");
+            die();
+        }
         $this->sidebar = $this->sidebar_admin;
     }
     public function index()
