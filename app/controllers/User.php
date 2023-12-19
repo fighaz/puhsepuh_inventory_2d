@@ -8,6 +8,9 @@ class User extends Controller
     {
         parent::__construct();
         session_start();
+        if (!isset($_SESSION['role'])) {
+            header('Location: ' . BASEURL . '/');
+        }
         $this->sidebar = $this->sidebar_user;
     }
     public function index()
@@ -70,13 +73,16 @@ class User extends Controller
         //$this->view('user/peminjaman', $data);
         $this->view('user/riwayat');
     }
-    public function getAllPeminjaman() {
-        echo json_encode([ 'data' => $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['id_user'])]);
+    public function getAllPeminjaman()
+    {
+        echo json_encode(['data' => $this->model('Peminjaman')->getPeminjamanByUserId($_SESSION['id_user'])]);
     }
-    public function getDetailPeminjaman($id) {
+    public function getDetailPeminjaman($id)
+    {
         echo json_encode($this->model('Detail_Peminjaman')->getDetailPeminjaman($id));
     }
-    public function getBarangFromPeminjaman($id) {
+    public function getBarangFromPeminjaman($id)
+    {
         $detail = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
         $data = [];
         foreach ($detail as $key => $value) {

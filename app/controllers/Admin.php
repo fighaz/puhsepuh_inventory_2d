@@ -6,6 +6,12 @@ class Admin extends Controller
     {
         parent::__construct();
         session_start();
+        if (!isset($_SESSION['role'])) {
+            header('Location: ' . BASEURL . '/');
+        } else if ($_SESSION['role'] != 'Admin') {
+            header("HTTP/1.1 403 Forbidden");
+            die();
+        }
         $this->sidebar = $this->sidebar_admin;
     }
     public function index()
@@ -46,6 +52,11 @@ class Admin extends Controller
         $this->model('Peminjaman')->tolakPeminjaman($id);
         header('Location: ' . BASEURL . '/Admin');
     }
+    public function pinjamSelesai($id)
+    {
+        $this->model('Peminjaman')->peminjamanSelesai($id);
+        header('Location: ' . BASEURL . '/Admin');
+    }
     public function detailPeminjaman($id)
     {
         $data['peminjaman'] = $this->model('Peminjaman')->getDetailPeminjaman($id);
@@ -61,18 +72,16 @@ class Admin extends Controller
         $data['barang'] = $this->model('Barang')->cariDataBarang();
         $this->view('barang/index', $data);
     }
-    public function getPeminjamanToApprove() {
-        echo json_encode([ 'data' => $this->model('Peminjaman')->getPeminjamanToApprove()]);
+    public function getPeminjamanToApprove()
+    {
+        echo json_encode(['data' => $this->model('Peminjaman')->getPeminjamanToApprove()]);
     }
-    public function getAllPeminjaman() {
-        echo json_encode([ 'data' => $this->model('Peminjaman')->getAllPeminjaman()]);
+    public function getAllPeminjaman()
+    {
+        echo json_encode(['data' => $this->model('Peminjaman')->getAllPeminjaman()]);
     }
-    public function getDetailedPeminjaman($id) {
-        $result = $this->model('Peminjaman')->getDetailedPeminjamanById($id);
-        $result['detail'] = json_decode($result['detail'], true);
-        echo json_encode([ 'data' => $result]);
-    }
-    public function getBarangFromPeminjaman($id) {
+    public function getBarangFromPeminjaman($id)
+    {
         $detail = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
         $data = [];
         foreach ($detail as $key => $value) {
@@ -80,11 +89,13 @@ class Admin extends Controller
         }
         echo json_encode($data);
     }
-    public function getDetailBarangFromPeminjaman($id) {
+    public function getDetailBarangFromPeminjaman($id)
+    {
         $result['data'] = $this->model('Peminjaman')->getDetailBarangById($id);
         echo json_encode($result);
     }
-    public function rincianPeminjaman($id) {
+    public function rincianPeminjaman($id)
+    {
         $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
         $this->view('admin/rincian_peminjaman', $data);
     }
