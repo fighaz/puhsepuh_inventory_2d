@@ -1,9 +1,13 @@
   <h4 class="fw-bold">Beranda</h4>
-  <h3>Selamat Datang</h3>
+  <h3>Selamat Datang
+      <span id="nama_user">
+          <?=$_SESSION['nama']?>
+      </span>
+  </h3>
   <p>Berikut adalah peminjaman barang yang diajukan di website</p>
   <div class="search-wrapper d-flex flex-row">
       <input type="text" class="form-control" id="search" placeholder="Cari barang">
-      <button class="btn btn-primary text-white d-flex flex-row">
+      <button class="btn search btn-primary text-white d-flex flex-row">
           Cari
           <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
       </button>
@@ -104,7 +108,7 @@
 
             table.on('click', 'tbody .edit', function() {
                 let data = table.row($(this).parents('tr')).data();
-                window.location.href = `<?=BASEURL?>/Admin/editPeminjaman/${data.id_peminjaman}`;
+                window.location.href = `<?=BASEURL?>/Admin/ubahPeminjaman/${data.id_peminjaman}`;
             });
 
             table.on('click', 'tbody .rincian', function() {
@@ -201,6 +205,10 @@
 .alt-button {
     width:  35px;
     height: 35px;
+}
+
+#nama_user {
+    font-weight: 900;
 }
 
 </style>

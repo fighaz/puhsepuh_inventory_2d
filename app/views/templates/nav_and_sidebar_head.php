@@ -25,6 +25,12 @@
         min-height: 100vh;
     }
 
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     #logo {
         padding: 3px 20px;
     }
@@ -43,6 +49,25 @@
         font-weight: 550;
         color: #fff;
         margin-left: 10px;
+    }
+
+    #user {
+        padding: 3px 20px;
+    }
+
+    #user .separator {
+        margin: 0 10px;
+    }
+
+    #user img {
+        margin: 0 5px;
+    }
+
+    #user a:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: #ffffff00;
+        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
     }
 
     #bottom {
@@ -136,6 +161,15 @@
             <div id="logo">
                 <img src="<?= BASEURL ?>/assets/jti-logo.png">
                 <span>Inventaris JTI</span>
+            </div>
+            <div id="user" class="d-flex">
+                <img src="<?= BASEURL ?>/assets/person.svg">
+                <span class="text-white"><?= "  " . $_SESSION['nama'] . "(" . $_SESSION['role'] . ")  " ?></span>
+                <span class="separator text-white">|</span>
+                <a href="<?= BASEURL ?>/Auth/logout">
+                    Logout
+                    <img src="<?= BASEURL ?>/assets/logout.svg">
+                </a>
             </div>
         </nav>
     </div>

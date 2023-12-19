@@ -1,4 +1,4 @@
-<div id="alert" class="alert alert-danger d-flex justify-content-between" role="alert" style="height: 30px; padding: 0.2rem 1.25rem;">
+<div id="alert" class="<alert alert-danger d-flex justify-content-between" role="alert" style="height: 30px; padding: 0.2rem 1.25rem;">
     <div class="message">
       Password belum diganti.
       Mohon untuk segera mengganti password.
@@ -12,7 +12,7 @@
 <div class="subtitle mb-4">Berikut ini daftar barang yang tersedia di JTI</div>
 <div class="search-wrapper d-flex flex-row">
     <input type="text" class="form-control" id="search" placeholder="Cari barang">
-    <button class="btn btn-primary text-white d-flex flex-row">
+    <button class="btn search btn-primary text-white d-flex flex-row">
         Cari
         <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
     </button>
@@ -51,6 +51,10 @@
 
     $(document).ready(() => {
         
+        <?php if ($_SESSION['has_changed_password']) { ?>
+            $("#alert").addClass("d-none");
+        <?php }  ?>
+
     });
 
     let table = new DataTable("#table", {
@@ -258,4 +262,12 @@
 
 </script>
 <style> 
+.dataTables_paginate {
+    margin-top: -25px !important;
+}
+
+.alt-button.hapus {
+    width:  30px;
+    height: 30px;
+}
 </style>

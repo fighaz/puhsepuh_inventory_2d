@@ -3,7 +3,7 @@
 
     <div class="search-wrapper d-flex flex-row mb-3">
         <input type="text" class="form-control" id="search" placeholder="Cari barang">
-        <button class="btn btn-primary text-white d-flex flex-row">
+        <button class="btn search btn-primary text-white d-flex flex-row">
             Cari
             <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
         </button>

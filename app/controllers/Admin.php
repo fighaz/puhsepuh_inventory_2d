@@ -26,11 +26,13 @@ class Admin extends Controller
         $this->active_sidebar = "inventaris";
         $this->view('admin/list_inventory', $data);
     }
-    public function peminjaman()
+    public function peminjaman($id = null, $text = null)
     {
         //$data['admin'] = $this->model('Peminjaman')->getAllPeminjaman();
         $this->active_sidebar = "peminjaman";
-        $this->view('admin/riwayat_peminjaman');
+        $data['id_tab'] = $id;
+        $data['text_tab'] = $text;
+        $this->view('admin/riwayat_peminjaman', $data);
     }
     public function peminjam()
     {
@@ -40,22 +42,42 @@ class Admin extends Controller
     public function approve($id)
     {
         $this->model('Peminjaman')->approvePeminjaman($id);
-        header('Location: ' . BASEURL . '/Admin');
+        $http_referer = $_SERVER['HTTP_REFERER'];
+        if ($http_referer == BASEURL . '/Admin/peminjaman') {
+            header('Location: ' . $http_referer . '/' . $_GET['id_tab'] . '/' . $_GET['text_tab']);
+        } else {
+            header('Location: ' . $http_referer);
+        }
     }
     public function approveAmbil($id)
     {
         $this->model('Peminjaman')->approveAmbilPeminjaman($id);
-        header('Location: ' . BASEURL . '/Admin');
+        $http_referer = $_SERVER['HTTP_REFERER'];
+        if ($http_referer == BASEURL . '/Admin/peminjaman') {
+            header('Location: ' . $http_referer . '/' . $_GET['id_tab'] . '/' . $_GET['text_tab']);
+        } else {
+            header('Location: ' . $http_referer);
+        }
     }
     public function tolak($id)
     {
         $this->model('Peminjaman')->tolakPeminjaman($id);
-        header('Location: ' . BASEURL . '/Admin');
+        $http_referer = $_SERVER['HTTP_REFERER'];
+        if ($http_referer == BASEURL . '/Admin/peminjaman') {
+            header('Location: ' . $http_referer . '/' . $_GET['id_tab'] . '/' . $_GET['text_tab']);
+        } else {
+            header('Location: ' . $http_referer);
+        }
     }
     public function pinjamSelesai($id)
     {
         $this->model('Peminjaman')->peminjamanSelesai($id);
-        header('Location: ' . BASEURL . '/Admin');
+        $http_referer = $_SERVER['HTTP_REFERER'];
+        if ($http_referer == BASEURL . '/Admin/peminjaman') {
+            header('Location: ' . $http_referer . '/' . $_GET['id_tab'] . '/' . $_GET['text_tab']);
+        } else {
+            header('Location: ' . $http_referer);
+        }
     }
     public function detailPeminjaman($id)
     {
