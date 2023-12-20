@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2023 at 12:21 PM
+-- Generation Time: Dec 20, 2023 at 03:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -59,8 +59,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `nama`, `jumlah`, `tersedia`, `kondisi`, `asal`, `keterangan`, `maintainer`, `gambar`) VALUES
-(1, 'Spidol', 100, 20, 'Baik', 2, 'Keterangan1', 'Keterangan1', 'gambar1.jpg'),
-(2, 'Remote AC', 50, 20, 'Rusak', 2, 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
+(1, 'Spidol', 100, 31, 'Baik', 2, 'Keterangan1', 'Keterangan1', 'gambar1.jpg'),
+(2, 'Remote AC', 50, 30, 'Rusak', 2, 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
 (3, 'Proyektor', 70, 20, 'Baik', 1, 'Keterangan3', 'Keterangan3', 'gambar3.jpg'),
 (4, 'Remote Proyektor', 30, 20, 'Baik', 2, 'Keterangan4', 'Mbak Novi', 'gambar4.jpg'),
 (5, 'Penghapus', 100, 20, 'Rusak', 2, 'Keterangan5', 'Mas Wowon', 'gambar5.jpg'),
@@ -104,7 +104,18 @@ INSERT INTO `detail_peminjaman` (`id_peminjaman`, `id_barang`, `jumlah`, `ketera
 (27, 1, 1, 'dsfsdf'),
 (27, 6, 1, 'sdfsdfsfd'),
 (28, 1, 5, 'sdfsdf'),
-(28, 6, 5, 'sdfds');
+(28, 6, 5, 'sdfds'),
+(31, 1, 5, ''),
+(31, 2, 5, ''),
+(32, 1, 5, ''),
+(32, 2, 5, ''),
+(33, 1, 1, ''),
+(34, 2, 5, ''),
+(34, 3, 5, ''),
+(35, 2, 5, ''),
+(35, 3, 5, ''),
+(36, 1, 1, ''),
+(36, 2, 5, '');
 
 --
 -- Triggers `detail_peminjaman`
@@ -176,7 +187,6 @@ CREATE TABLE `keranjang` (
 --
 
 INSERT INTO `keranjang` (`id_user`, `id_barang`) VALUES
-(2, 1),
 (5, 1),
 (5, 6);
 
@@ -209,7 +219,7 @@ INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tang
 (7, 2, 'dipinjam', '2023-12-03', '2023-12-11', '2023-12-15 08:49:15'),
 (8, 2, 'selesai', '2023-12-04', '2023-12-12', '2023-12-15 08:49:15'),
 (9, 2, 'ditolak', '2023-12-05', '2023-12-13', '2023-12-15 08:49:15'),
-(10, 2, 'terlambat', '2023-12-06', '2023-12-14', '2023-12-15 08:49:15'),
+(10, 2, 'selesai', '2023-12-06', '2023-12-14', '2023-12-20 03:21:32'),
 (11, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-14', '2023-12-15 08:49:15'),
 (12, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-15', '2023-12-15 08:49:15'),
 (13, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-15', '2023-12-15 08:49:15'),
@@ -217,7 +227,7 @@ INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tang
 (15, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14', '2023-12-15 08:49:15'),
 (16, 2, 'menunggu_konfirmasi', NULL, NULL, '2023-12-15 08:49:15'),
 (17, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-13', '2023-12-15 08:49:15'),
-(18, 2, 'menunggu_konfirmasi', NULL, NULL, '2023-12-15 08:49:15'),
+(18, 2, 'ditolak', NULL, NULL, '2023-12-20 00:57:21'),
 (19, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-16', '2023-12-15 08:49:15'),
 (20, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-13', '2023-12-15 08:49:15'),
 (21, 2, 'menunggu_konfirmasi', '2023-12-13', '2023-12-14', '2023-12-15 08:49:15'),
@@ -225,34 +235,92 @@ INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tang
 (23, 2, 'menunggu_konfirmasi', '2023-12-14', '2023-12-16', '2023-12-15 08:49:15'),
 (24, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
 (25, 2, 'ditolak', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
-(26, 2, 'menunggu_konfirmasi', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
+(26, 2, 'selesai', '2023-12-15', '2023-12-20', '2023-12-20 13:03:37'),
 (27, 2, 'menunggu_diambil', '2023-12-15', '2023-12-20', '2023-12-15 08:49:15'),
-(28, 2, 'menunggu_konfirmasi', '2023-12-20', '2023-12-25', '2023-12-15 08:49:15'),
+(28, 2, 'selesai', '2023-12-20', '2023-12-25', '2023-12-20 12:52:22'),
 (29, NULL, 'ditolak', NULL, NULL, '2023-12-15 08:49:15'),
-(30, 2, 'menunggu_konfirmasi', '2023-12-16', '2023-12-19', '2023-12-15 08:49:15');
+(30, 2, 'menunggu_konfirmasi', '2023-12-16', '2023-12-19', '2023-12-15 08:49:15'),
+(31, 2, 'ditolak', '2023-12-22', '2023-12-23', '2023-12-20 11:32:20'),
+(32, 1, 'ditolak', '2023-12-22', '2023-12-23', '2023-12-20 11:33:04'),
+(33, 1, 'ditolak', '2023-12-21', '2023-12-21', '2023-12-20 12:20:51'),
+(34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:14:45'),
+(35, 2, 'selesai', '2023-12-21', '2023-12-21', '2023-12-20 13:56:45'),
+(36, 1, 'ditolak', '2023-12-28', '2023-12-29', '2023-12-20 13:58:39');
 
 --
 -- Triggers `peminjaman`
 --
 DELIMITER $$
-CREATE TRIGGER `after_update_peminjaman` AFTER UPDATE ON `peminjaman` FOR EACH ROW BEGIN
-    IF NEW.status = 'selesai' OR NEW.status = 'ditolak' THEN
-        -- Update the 'tersedia' field in the 'barang' table based on the completed or rejected loan
-        UPDATE barang
-        SET tersedia = tersedia + (
-            SELECT jumlah
-            FROM detail_peminjaman
-            WHERE id_peminjaman = NEW.id
-        )
-        WHERE id IN (
-            SELECT id_barang
-            FROM detail_peminjaman
-            WHERE id_peminjaman = NEW.id
-        );
-    END IF;
+CREATE TRIGGER `log_peminjaman_after_delete` AFTER DELETE ON `peminjaman` FOR EACH ROW BEGIN
+    INSERT INTO peminjaman_log (activity, peminjaman_id, id_user, status, tanggal_peminjaman, tanggal_pengembalian, timestamp)
+    VALUES ('DELETE', OLD.id, OLD.id_user, OLD.status, OLD.tanggal_peminjaman, OLD.tanggal_pengembalian, CURRENT_TIMESTAMP);
 END
 $$
 DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `log_peminjaman_after_insert` AFTER INSERT ON `peminjaman` FOR EACH ROW BEGIN
+    INSERT INTO peminjaman_log (activity, peminjaman_id, id_user, status, tanggal_peminjaman, tanggal_pengembalian, timestamp)
+    VALUES ('INSERT', NEW.id, NEW.id_user, NEW.status, NEW.tanggal_peminjaman, NEW.tanggal_pengembalian, CURRENT_TIMESTAMP);
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `log_peminjaman_after_update` AFTER UPDATE ON `peminjaman` FOR EACH ROW BEGIN
+    INSERT INTO peminjaman_log (activity, peminjaman_id, id_user, status, tanggal_peminjaman, tanggal_pengembalian, timestamp)
+    VALUES ('UPDATE', NEW.id, NEW.id_user, NEW.status, NEW.tanggal_peminjaman, NEW.tanggal_pengembalian, CURRENT_TIMESTAMP);
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `peminjaman_log`
+--
+
+CREATE TABLE `peminjaman_log` (
+  `log_id` int(11) NOT NULL,
+  `activity` varchar(10) DEFAULT NULL,
+  `peminjaman_id` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `tanggal_peminjaman` date DEFAULT NULL,
+  `tanggal_pengembalian` date DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `peminjaman_log`
+--
+
+INSERT INTO `peminjaman_log` (`log_id`, `activity`, `peminjaman_id`, `id_user`, `status`, `tanggal_peminjaman`, `tanggal_pengembalian`, `timestamp`) VALUES
+(1, 'INSERT', 33, 1, 'menunggu_konfirmasi', '2023-12-21', '2023-12-21', '2023-12-20 12:20:39'),
+(2, 'UPDATE', 33, 1, 'ditolak', '2023-12-21', '2023-12-21', '2023-12-20 12:20:51'),
+(3, 'UPDATE', 33, 1, 'ditolak', '2023-12-21', '2023-12-21', '2023-12-20 12:20:51'),
+(5, 'INSERT', 34, 1, 'menunggu_konfirmasi', '2023-12-21', '2023-12-23', '2023-12-20 12:51:26'),
+(6, 'UPDATE', 28, 2, 'selesai', '2023-12-20', '2023-12-25', '2023-12-20 12:52:22'),
+(7, 'UPDATE', 26, 2, 'selesai', '2023-12-15', '2023-12-20', '2023-12-20 13:03:13'),
+(8, 'UPDATE', 26, 2, 'selesai', '2023-12-15', '2023-12-20', '2023-12-20 13:03:37'),
+(9, 'UPDATE', 34, 1, 'menunggu_diambil', '2023-12-21', '2023-12-23', '2023-12-20 13:04:01'),
+(10, 'UPDATE', 34, 1, 'menunggu_diambil', '2023-12-21', '2023-12-23', '2023-12-20 13:04:01'),
+(11, 'UPDATE', 34, 1, 'dipinjam', '2023-12-21', '2023-12-23', '2023-12-20 13:04:22'),
+(12, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:04:27'),
+(13, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:04:51'),
+(14, 'UPDATE', 34, 1, 'dipinjam', '2023-12-21', '2023-12-23', '2023-12-20 13:09:30'),
+(15, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:09:42'),
+(16, 'UPDATE', 34, 1, 'dipinjam', '2023-12-21', '2023-12-23', '2023-12-20 13:11:29'),
+(17, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:11:45'),
+(18, 'UPDATE', 34, 1, 'dipinjam', '2023-12-21', '2023-12-23', '2023-12-20 13:12:49'),
+(19, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:13:00'),
+(20, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:13:54'),
+(21, 'UPDATE', 34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:14:45'),
+(22, 'INSERT', 35, 2, 'menunggu_konfirmasi', '2023-12-21', '2023-12-21', '2023-12-20 13:56:06'),
+(23, 'UPDATE', 35, 2, 'menunggu_diambil', '2023-12-21', '2023-12-21', '2023-12-20 13:56:34'),
+(24, 'UPDATE', 35, 2, 'menunggu_diambil', '2023-12-21', '2023-12-21', '2023-12-20 13:56:34'),
+(25, 'UPDATE', 35, 2, 'dipinjam', '2023-12-21', '2023-12-21', '2023-12-20 13:56:42'),
+(26, 'UPDATE', 35, 2, 'selesai', '2023-12-21', '2023-12-21', '2023-12-20 13:56:45'),
+(27, 'INSERT', 36, 1, 'menunggu_konfirmasi', '2023-12-28', '2023-12-29', '2023-12-20 13:58:30'),
+(28, 'UPDATE', 36, 1, 'ditolak', '2023-12-28', '2023-12-29', '2023-12-20 13:58:39');
 
 -- --------------------------------------------------------
 
@@ -278,9 +346,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `nama`, `notelp`, `email`, `role`, `isChangePassword`) VALUES
 (1, 'admin', '$2y$10$46EDYWnooobvaq.K2I5TiOgZwSk3vo4f/OTWqKd1zlf92qh7PT91y', 'admin', '', '', 'Admin', NULL),
 (2, 'user', '$2y$10$pEbmSoC82qRpj5GmEAIWfu9tzaIZ7u4TwcLsKDE29UXexVO77fC0m', 'user', '3225425', 'user', 'User', NULL),
-(5, 'fighaz', '$2y$10$ZCZl1IY6k/41Pfq4njN0aue/3XUCHaUhn/Z5UUehlaIVsIBhoqL0m', 'fighaz', '', '', 'User', 1),
+(5, 'fighaz', '$2y$10$IexOL7vP.f2ZIw2beCf4Tu5JgYuluMZhOz181qJRXeMT2WEa0ouFe', 'fighaz', '492348', 'fighaz', 'User', 1),
 (8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', '', '', 'User', 0),
-(9, 'saya', '$2y$10$HljiWWsimIuT9/yHECSiB.BeWpUnKAlKsLSYjBrpBKil/3raP4i3.', 'saya', '325245', 'saya', 'User', 0);
+(9, 'saya', '$2y$10$voaQFbygV3zNbyl63jnsj.9Op3nDrQ6.tViPC9ooDUN//NoXUgu.a', 'saya', '24442', 'saya', 'User', 0);
 
 -- --------------------------------------------------------
 
@@ -289,7 +357,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `nama`, `notelp`, `email`, `r
 --
 DROP TABLE IF EXISTS `all_peminjaman`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id` ;
 
 --
 -- Indexes for dumped tables
@@ -330,6 +398,12 @@ ALTER TABLE `peminjaman`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indexes for table `peminjaman_log`
+--
+ALTER TABLE `peminjaman_log`
+  ADD PRIMARY KEY (`log_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -356,7 +430,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `peminjaman_log`
+--
+ALTER TABLE `peminjaman_log`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`

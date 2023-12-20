@@ -50,6 +50,15 @@ class Detail_Peminjaman
         $this->db->bind('id', $id);
         return $this->db->resultSet();
     }
+    public function getDetailPeminjamanData($id)
+    {
+        $query = " SELECT * FROM detail_peminjaman
+            WHERE id_peminjaman = :id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        return $this->db->resultSet();
+    }
+
     public function updateDetailPeminjaman($data, $id)
     {
         for ($i = 0; $i < count($data); $i++) {
