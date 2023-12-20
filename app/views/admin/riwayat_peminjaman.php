@@ -4,25 +4,25 @@
       <!-- NavTabs -->
         <ul class="nav nav-pills primary nav-fill rounded">
             <li class="nav-item rounded-start">
-                <a id="semua" class="nav-link active text-white" >Semua</a>
+                <a id="tab0" class="nav-link active text-white" >Semua</a>
             </li>
             <li class="nav-item">
-                <a id="menunggu_konfirmasi" class="nav-link text-white" >Menunggu Konfirmasi</a>
+                <a id="tab1" class="nav-link text-white" >Menunggu Konfirmasi</a>
             </li>
             <li class="nav-item">
-                <a id="menunggu_diambil" class="nav-link text-white" >Menunggu Diambil</a>
+                <a id="tab2" class="nav-link text-white" >Menunggu Diambil</a>
             </li>
             <li class="nav-item">
-                <a id="dipinjam" class="nav-link text-white" >Dipinjam</a>
+                <a id="tab3" class="nav-link text-white" >Dipinjam</a>
             </li>
             <li class="nav-item">
-                <a id="terlambat" class="nav-link text-white" >Terlambat</a>
+                <a id="tab4" class="nav-link text-white" >Terlambat</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab5" class="nav-link text-white" >Selesai</a>
             </li>
             <li class="nav-item rounded-end">
-                <a id="selesai" class="nav-link text-white" >Selesai</a>
-            </li>
-            <li class="nav-item rounded-end">
-                <a id="ditolak" class="nav-link text-white" >Ditolak</a>
+                <a id="tab6" class="nav-link text-white" >Ditolak</a>
             </li>
         </ul>
     <br>
@@ -35,12 +35,16 @@
         <th>Status</th>
         <th>Barang</th>
         <th>Tanggal Pinjam</th>
-        <th style="border-top-right-radius: 5px;">Aksi</th>
+        <th style="border-top-right-radius: 5px; min-width: 200px;">Aksi</th>
       </tr>
     </thead>
   </table>
 
 <script>
+
+    let id_tab = "semua";
+    let text_tab = "Semua";
+
     function getNamaUser(id) {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -60,7 +64,7 @@
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Admin/getAllPeminjaman",
         order: [[0, "desc"]],
-        scrollY: "290px",
+        scrollY: "310px",
         scrollX: true,
         columns: [
             {
@@ -102,7 +106,7 @@
                     } else if (data == 'selesai') {
                         badge = `<span class="badge rounded-pill bg-success">Selesai</span>`;
                     } else if (data == 'terlambat') {
-                        badge = `<span class="badge rounded-pill bg-info text-dark">Terlambat</span>`;
+                        badge = `<span class="badge rounded-pill bg-info text-white">Terlambat</span>`;
                     } else {
                         badge = `<span class="badge rounded-pill bg-danger">Something went wrong</span>`;
                     }
@@ -148,10 +152,12 @@
                     const rincian_button = '<a class=""><img class="alt-button rincian" src="<?=BASEURL?>/assets/rincian.svg" alt="rincian" title="rincian"></a>';
                     let edit_button = '<a class=""><img class="alt-button edit" src="<?=BASEURL?>/assets/edit.svg" alt="edit" title="edit"></a>';
                     let approve_button = "";
+                    let decline_button = "";
                     if (row.status == "menunggu_konfirmasi") {
                         approve_button = '<a class=""><img class="alt-button terima" src="<?=BASEURL?>/assets/check.svg" alt="terima" title="terima"></a>';
+                        decline_button = '<a class=""><img class="alt-button tolak" src="<?=BASEURL?>/assets/tolak.svg" alt="tolak" title="tolak"></a>';
                     } else if (row.status == "menunggu_diambil") {
-                        approve_button = '<a class=""><img class="alt-button ambil" src="<?=BASEURL?>/assets/check.svg" alt="ambil" title="ambil"></a>';
+                        approve_button = '<a class=""><img class="alt-button ambil" src="<?=BASEURL?>/assets/check.svg" alt="ambil" title="konfirmasi ambil"></a>';
                     } else if (row.status == "dipinjam" || row.status == "terlambat") {
                         approve_button = '<a class=""><img class="alt-button selesai" src="<?=BASEURL?>/assets/check.svg" alt="selesai" title="selesai"></a>';
                         edit_button = "";
@@ -163,6 +169,7 @@
                         <div class="td-wrapper">
                             ${rincian_button}
                             ${edit_button}
+                            ${decline_button}
                             ${approve_button}
                         </div>
                     `;
@@ -178,32 +185,75 @@
             });
 
             $(".nav .nav-link").on('click', (ev) => {
-                let id = ev.target.textContent;
+                let id = ev.target.id;
+                let text = ev.target.textContent;
                 $(".nav .nav-link").removeClass("active");
-                console.log(id);
-                if (id == "Semua") {
+                console.log(text);
+                if (text == "Semua") {
                     table.search("", false, true).draw();
-                    $("#semua").addClass("active");
-                    return;
+                } else {
+                    table.search(text, false, true).draw();
                 }
-                table.search(id, false, true).draw();
-                $("#"+ev.target.id).addClass("active");
+                $("#"+id).addClass("active");
+                id_tab = id;
+                text_tab = text;
             });
 
             table.on('click', 'tbody .alt-button.edit', (event) => {
                 let data = table.row(event.target.closest('tr')).data();
-                <?php $_SESSION['prev_page'] = '/Admin/peminjaman' ?>
                 window.location.href = "<?=BASEURL?>/Admin/ubahPeminjaman/" + data.id;
             });
 
             table.on('click', 'tbody .alt-button.rincian', (event) => {
                 let data = table.row(event.target.closest('tr')).data();
-                <?php $_SESSION['prev_page'] = '/Admin/peminjaman' ?>
                 window.location.href = "<?=BASEURL?>/Admin/detailPeminjaman/" + data.id;
             });
+
+            table.on('click', 'tbody .alt-button.terima', function() {
+                let data = table.row($(this).parents('tr')).data();
+                const encodedIdTab = encodeURIComponent(id_tab);
+                const encodedTextTab = encodeURIComponent(text_tab);
+                window.location.href = `<?=BASEURL?>/Admin/approve/${data.id}?id_tab=${encodedIdTab}&text_tab=${encodedTextTab}`;
+            });
+
+            table.on('click', 'tbody .alt-button.tolak', function() {
+                let data = table.row($(this).parents('tr')).data();
+                const encodedIdTab = encodeURIComponent(id_tab);
+                const encodedTextTab = encodeURIComponent(text_tab);
+                window.location.href = `<?=BASEURL?>/Admin/tolak/${data.id}/${encodedIdTab}/${encodedTextTab}`;
+            });
+
+            table.on('click', 'tbody .alt-button.ambil', function() {
+                let data = table.row($(this).parents('tr')).data();
+                const encodedIdTab = encodeURIComponent(id_tab);
+                const encodedTextTab = encodeURIComponent(text_tab);
+                window.location.href = `<?=BASEURL?>/Admin/approveAmbil/${data.id}/${encodedIdTab}/${encodedTextTab}`;
+            });
+
+            table.on('click', 'tbody .alt-button.selesai', function() {
+                let data = table.row($(this).parents('tr')).data();
+                const encodedIdTab = encodeURIComponent(id_tab);
+                const encodedTextTab = encodeURIComponent(text_tab);
+                window.location.href = `<?=BASEURL?>/Admin/pinjamSelesai/${data.id}/${encodedIdTab}/${encodedTextTab}`;
+            })
         }
     });
 
+    $(document).ready(function() {
+        let id = "<?=isset($data['id_tab']) ? $data['id_tab'] : "tab0"?>";
+        let text = "<?=isset($data['text_tab']) ? $data['text_tab'] : "Semua"?>";
+        $(".nav .nav-link").removeClass("active");
+        console.log("id_tab: ", id);
+        console.log("text_tab: ", text);
+        if (text == "Semua") {
+            table.search("", false, true).draw();
+        } else {
+            table.search(text, false, true).draw();
+        }
+        $("#"+id).addClass("active");
+        id_tab = id;
+        text_tab = text;
+    });
 
 
 </script>
@@ -323,4 +373,9 @@
     width:  40px;
     height: 40px;
 }
+
+.dataTables_paginate {
+    margin-top: 10px !important;
+}
+
   </style>

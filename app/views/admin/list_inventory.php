@@ -1,9 +1,8 @@
-<div class="container-md">
   <h3 class="fw-semibold text-accent">LIST BARANG</h3>
       <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
   <div class="search-wrapper d-flex flex-row">
       <input type="text" class="form-control" id="search" placeholder="Cari barang">
-      <button class="btn btn-primary text-white d-flex flex-row">
+      <button class="btn search btn-primary text-white d-flex flex-row">
           Cari
           <img src="<?=BASEURL?>/assets/search.svg" alt="search" class="alt-button search">
       </button>
@@ -21,76 +20,6 @@
         </tr>
       </thead>
     </table>
-      <!-- Table -->
-      <div class="container-table">
-        <div class="d-flex flex-row mb-2 entries-control">
-          Show
-          <input type="number" id="num-of-entries" class="form-control form-control-sm" value="10" min="1" max="100">
-          entries
-        </div>
-        <table class=" table-hover">
-          <tbody class="text-primary">
-            <?php $no = 1;
-            if (empty($data['brg'])): ?>
-              <tr>
-                <td colspan="7">
-                  <div class="alert alert-danger" role="alert">
-                    Tidak ada data terkait.
-                  </div>
-                </td>
-              </tr>
-            <?php else:
-              foreach ($data['brg'] as $brg): ?>
-                <tr class="bg-white text-primary align-middle">
-                  <td>
-                    <?= $no++ ?>
-                  </td>
-                  <td>
-                    <img src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" class="object-fit-cover border rounded" alt="" width="98px" height="70px">
-                  </td>
-
-                  <td>
-                    <?= $brg['nama']; ?>
-                  </td>
-                  <td>
-                    <?= $brg['tersedia']; ?> /
-                    <?= $brg['jumlah']; ?>
-                  </td>
-                  <td>
-                    <?= $brg['maintainer']; ?>
-                  </td>
-                  <td>
-                    <?= $brg['asal']; ?>
-                  </td>
-                  <td>
-                    <a href="/" class="icon_info"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
-                    <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
-                        src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
-                    <a href="<?= BASEURL; ?>/Barang/hapus/<?= $brg['id']; ?>" class="icon_remove"><img
-                        src="<?= BASEURL; ?>/assets/hapus.svg" alt=""
-                        onclick="return confirm('Apakah Anda yakin untuk menghapus Data Barang berikut?');"></a>
-                  </td>
-                </tr>
-              <?php endforeach;
-            endif; ?>
-          </tbody>
-        </table>
-        <div class="pagination-wrapper d-flex flex-row justify-content-between">
-          <div class="intries-showed mt-2 text-primary">
-            Showing 1 to 10 of 100 entries
-          </div>
-          <nav class="navigation">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#table">1</a></li>
-              <li class="page-item"><a class="page-link" href="#table">2</a></li>
-              <li class="page-item"><a class="page-link" href="#table">3</a></li>
-              <li class="page-item"><a class="page-link" href="#table">Next</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-
   <!-- The Modal -->
   <div class="modal fade" id="modal-id">
     <div class="modal-dialog modal-dialog-centered">
@@ -143,13 +72,12 @@
       </div>
     </div>
   </div>
-</div>
 
 
 <script> 
     let table = new DataTable("table#table.table", {
         ajax: "<?=BASEURL?>/Barang/getAll",
-        scrollY: "280px",
+        scrollY: "300px",
         scrollX: true,
         dom: '<"top-table"l<"tambah">>rtip',
         columns: [
@@ -205,13 +133,14 @@
                 render: function(data, type, row) {
                     return `
                         <div class="td-wrapper">
-                        <!-- Tombol untuk memanggil modal -->
-                        <a href="<?= BASEURL; ?>/Barang/detail/<?= $brg['id']; ?>" class="icon_info" data-bs-toggle="modal" data-bs-target="#modal-id"><img src="<?= BASEURL; ?>/assets/rincian.svg" alt=""></a>
-                          <a href="<?= BASEURL; ?>/Barang/getUbah/<?= $brg['id']; ?>" class="icon_edit"><img
-                              src="<?= BASEURL; ?>/assets/edit.svg" alt=""></a>
-                          <a href="<?= BASEURL; ?>/Barang/hapus/<?= $brg['id']; ?>" class="icon_remove"><img
-                              src="<?= BASEURL; ?>/assets/hapus.svg" alt=""
-                              onclick="return confirm('Apakah Anda yakin untuk menghapus Data Barang berikut?');"></a>
+                            <!-- Tombol untuk memanggil modal -->
+                            <a href="<?= BASEURL; ?>/Barang/detail/${row.id}" class="icon_info" data-bs-toggle="modal" data-bs-target="#modal-id"><img
+                                src="<?= BASEURL; ?>/assets/rincian.svg" class="alt-button rincian" alt=""></a>
+                            <a href="<?= BASEURL; ?>/Barang/getUbah/${row.id}" class="icon_edit"><img
+                                src="<?= BASEURL; ?>/assets/edit.svg" class="alt-button edit" alt=""></a>
+                            <a href="<?= BASEURL; ?>/Barang/hapus/${row.id}" class="icon_remove"><img
+                                src="<?= BASEURL; ?>/assets/hapus.svg" class="alt-button hapus" alt=""
+                                onclick="return confirm('Apakah Anda yakin untuk menghapus Data Barang berikut?');"></a>
                         </div>
                     `;
                 },
@@ -220,7 +149,7 @@
         ],
         initComplete: () => {
             $("div.tambah").html(`
-                <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn btn-primary text-white">Tambah</a>
+                <a href="<?= BASEURL; ?>/Barang/viewTambah" class="btn tambah btn-primary text-white">Tambah Barang<img src="<?=BASEURL?>/assets/add.svg" alt=""></a>
             `);
 
             let search = $("#search");
@@ -288,7 +217,7 @@
 
   /* Table */
   thead {
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
     font-weight: normal;
     text-align: center;
@@ -389,5 +318,17 @@
 
     .modal {
       position: fixed;
+    }
+
+    .modal-dialog {
+        max-width: none !important;
+    }
+
+    .btn.tambah {
+        background-color: var(--bs-success);
+        width: 151px;
+        height: 33px;
+        font-size: 14px;
+        padding: 4px 4px 4px 7px;
     }
 </style>

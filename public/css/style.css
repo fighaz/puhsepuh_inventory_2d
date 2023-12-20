@@ -10,6 +10,10 @@ html, body {
     background-color: var(--background-global) !important;
 }
 
+#content {
+    font-size: 14px;
+}
+
 a {
     color: white;
     text-decoration: none;
@@ -42,6 +46,7 @@ a {
 
 .search-wrapper {
     margin-left: 10px;
+    max-height: 35px;
     gap: 7px;
 }
 
@@ -65,6 +70,10 @@ table {
 
 .dataTables_scrollHeadInner {
     width: 100% !important;
+}
+
+.dataTables_scrollHead thead th {
+    padding: 6px !important;
 }
 
 .dataTables_wrapper > div > label {
@@ -111,7 +120,7 @@ tbody {
 }
 
 .dataTables_paginate {
-    margin-top: 10px !important;
+    margin-top: -25px !important;
 }
 
 .dataTables_info, .dataTables_paginate {
@@ -207,22 +216,18 @@ tbody {
     background-color: transparent;
 }
 
-.alt-button.hapus {
-    width:  30px;
-    height: 30px;
-}
-
 .alt-button.hapus:hover {
-    background-color: #f6a5a8;
-}
-
-.alt-button.hapus:active {
-    background-color: red;
+    border: 3px solid red;
 }
 
 button.btn {
     min-width: 150px;
     border: 3px solid transparent;
+}
+
+button.btn.search {
+    min-width: 0;
+    padding: 0.175rem 0.75rem;
 }
 
 button.btn:hover {
@@ -249,5 +254,19 @@ button.tolak {
 button.terima, button.simpan {
     background-color: var(--bs-success);
     color: #fff;
+}
+
+table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:before {
+    bottom: 50%;
+    content: "";
+}
+
+table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
+    top: 50%;
+    content: "";
+}
+
+table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting_asc_disabled, table.dataTable thead>tr>th.sorting_desc_disabled, table.dataTable thead>tr>td.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting_asc_disabled, table.dataTable thead>tr>td.sorting_desc_disabled {
+    cursor: unset;
 }
 

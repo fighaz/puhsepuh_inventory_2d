@@ -19,6 +19,11 @@ class Auth extends Controller
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['login_success'] = true;
+            if ($user['isChangePassword'] == 0) {
+                $_SESSION['has_changed_password'] = false;
+            } else {
+                $_SESSION['has_changed_password'] = true;
+            }
             header('Location: ' . BASEURL . '/' . $_SESSION['role']);
         } else {
             header('Location: ' . BASEURL . '/');

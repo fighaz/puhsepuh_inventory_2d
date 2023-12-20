@@ -17,7 +17,7 @@ class Kategori {
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
-        $this->db->bind('jumlah', $data['keterangan']);
+        $this->db->bind('keterangan', $data['keterangan']);
 
         $this->db->execute();
 

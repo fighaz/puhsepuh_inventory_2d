@@ -46,9 +46,13 @@
             <button class="btn kembali" type="button">Kembali</button>
         </div>
         <div>
-            <button class="btn edit" type="button">Edit</button>
-            <button class="btn tolak" type="button">Tolak</button>
-            <button class="btn terima" type="button">Terima</button>
+            <?php if ($data['peminjaman']['status'] == "menunggu_konfirmasi" ) { ?>
+                <button class="btn edit" type="button">Edit</button>
+                <button class="btn tolak" type="button">Tolak</button>
+                <button class="btn terima" type="button">Terima</button>
+            <?php } elseif ($data['peminjaman']['status'] == "menunggu_diambil") { ?>
+                <button class="btn edit" type="button">Edit</button>
+            <?php } ?>
         </div>
 <!--
         <button class="button kembali" type="button">Kembali</button>
@@ -271,6 +275,18 @@
                 }
             });
         });
+    });
+
+    $(".edit").click(function() {
+        window.location.href = "<?=BASEURL?>/Admin/ubahPeminjaman/<?=$data['peminjaman']['id']?>";
+    });
+
+    $(".terima").click(function() {
+        window.location.href = "<?=BASEURL?>/Admin/approve/<?=$data['peminjaman']['id']?>";
+    });
+
+    $(".tolak").click(function() {
+        window.location.href = "<?=BASEURL?>/Admin/tolak/<?=$data['peminjaman']['id']?>";
     });
 
 </script>
