@@ -88,5 +88,19 @@ class Barang_model
         $this->db->bind('keyword', "%$keyword%");
         return $this->db->resultSet();
     }
+    public function updateTersedia($id, $jumlah)
+    {
+        $query = "UPDATE barang SET tersedia = tersedia + :jumlah
+      WHERE id = :id";
+
+        $this->db->query($query);
+
+        $this->db->bind('jumlah', $jumlah);
+        $this->db->bind('id', $id);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 
 }

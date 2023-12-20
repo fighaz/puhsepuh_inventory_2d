@@ -61,7 +61,12 @@ class Admin extends Controller
     }
     public function tolak($id)
     {
-        $this->model('Peminjaman')->tolakPeminjaman($id);
+        if ($this->model('Peminjaman')->tolakPeminjaman($id)) {
+            $data = $this->model('Detail_Peminjaman')->getDetailPeminjamanData($id);
+            foreach ($data as $key => $value) {
+                $this->model('Barang_model')->updateTersedia($value['id_barang'], $value['jumlah']);
+            }
+        }
         $http_referer = $_SERVER['HTTP_REFERER'];
         if ($http_referer == BASEURL . '/Admin/peminjaman') {
             header('Location: ' . $http_referer . '/' . $_GET['id_tab'] . '/' . $_GET['text_tab']);
@@ -71,7 +76,12 @@ class Admin extends Controller
     }
     public function pinjamSelesai($id)
     {
-        $this->model('Peminjaman')->peminjamanSelesai($id);
+        if ($this->model('Peminjaman')->peminjamanSelesai($id) > 0) {
+            $data = $this->model('Detail_Peminjaman')->getDetailPeminjamanData($id);
+            foreach ($data as $key => $value) {
+                $this->model('Barang_model')->updateTersedia($value['id_barang'], $value['jumlah']);
+            }
+        }
         $http_referer = $_SERVER['HTTP_REFERER'];
         if ($http_referer == BASEURL . '/Admin/peminjaman') {
             header('Location: ' . $http_referer . '/' . $_GET['id_tab'] . '/' . $_GET['text_tab']);
