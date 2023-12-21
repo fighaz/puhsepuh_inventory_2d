@@ -140,8 +140,10 @@ class Admin extends Controller
     {
         if ($_POST['id'] > 0) {
             $this->model('Detail_Peminjaman')->updateDetailPeminjaman(json_decode($_POST['barang'], true), $_POST['id']);
+            Flasher::setFlash('berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Admin/detailPeminjaman/' . $_POST['id']);
         } else {
+            Flasher::setFlash('gagal', 'diubah', 'danger');
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }

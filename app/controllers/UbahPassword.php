@@ -34,7 +34,7 @@ class UbahPassword extends Controller
         if ($user && password_verify($passwordlama, $user['password'])) {
             if ($konfirm) {
                 if ($this->model('User')->changePassword($passwordkonfirm, $_SESSION['id_user']) > 0) {
-                    Flasher::setFlash('berhasil', 'diganti', 'success');
+                    Flasher::setFlash('berhasil', 'diubah', 'success');
                     $_SESSION['has_changed_password'] = true;
                     header('Location: ' . BASEURL . '/UbahPassword');
                 } else {
@@ -42,14 +42,14 @@ class UbahPassword extends Controller
                     header('Location: ' . BASEURL . '/UbahPassword');
                 }
             } else {
-                header('Location: ' . BASEURL . '/UbahPassword');
-                    Flasher::setFlash('gagal', 'diubah', 'danger');
+                Flasher::setFlash('gagal', 'diubah', 'danger');
                 echo "<script> alert('Masukkan Konfirmasi Password yang sesuai')</script>";
+                header('Location: ' . BASEURL . '/UbahPassword');
             }
         } else {
-            header('Location: ' . BASEURL . '/UbahPassword');
-                    Flasher::setFlash('gagal', 'diubah', 'danger');
             echo "<script> alert('Masukkan Password yang sesuai')</script>";
+            Flasher::setFlash('gagal', 'diubah', 'danger');
+            header('Location: ' . BASEURL . '/UbahPassword');
         }
 
     }
