@@ -252,6 +252,10 @@
         text-align: center;
     }
 
+    tbody {
+        color: var(--bs-primary) !important;
+    }
+
     /* Entries */
     #num-of-entries {
         background-color: var(--background-global);

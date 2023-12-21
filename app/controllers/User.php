@@ -91,8 +91,18 @@ class User extends Controller
     }
     public function detailPeminjaman($id)
     {
+        $data['peminjaman'] = $this->model('Peminjaman')->getDetailPeminjaman($id);
+        $this->view('user/detail_peminjaman', $data);
+    }
+    public function rincianPeminjaman($id)
+    {
         $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
-        $this->view('user/peminjaman', $data);
+        $this->view('user/rincian_peminjaman', $data);
+    }
+    public function getDetailBarangFromPeminjaman($id)
+    {
+        $result['data'] = $this->model('Peminjaman')->getDetailBarangById($id);
+        echo json_encode($result);
     }
 }
 ?>
