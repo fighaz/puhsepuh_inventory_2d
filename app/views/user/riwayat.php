@@ -45,6 +45,7 @@
         ajax: "<?=BASEURL?>/User/getAllPeminjaman",
         dom: "lrtip",
         scrollY: '300px',
+        order: [[0, "desc"]],
         columns: [
             {
                 data: "id",
@@ -106,11 +107,24 @@
                     return `
                         <!--<a class="icon_edit"><img src="<?=BASEURL?>/assets/edit.svg" class="alt-button" alt="edit"></a>
                         <a class="icon_tolak"><img src="<?=BASEURL?>/assets/tolak.svg" class="alt-button" alt="Tolak"></a>-->
-                        <a class="icon_rincian"><img src="<?=BASEURL?>/assets/rincian.svg" class="alt-button" alt="rincian"></a>
+                        <a class="icon_rincian"><img src="<?=BASEURL?>/assets/rincian.svg" class="alt-button rincian" alt="rincian"></a>
                     `;
                 }
             }
         ],
+    });
+
+    $(document).ready(function() {
+        let search = $("#search");
+
+        search.on('keyup', () => {
+            table.search(search.val(), false, true).draw();
+        });
+
+            table.on('click', 'tbody .rincian', function() {
+                let data = table.row($(this).parents('tr')).data();
+                window.location.href = `<?=BASEURL?>/User/detailPeminjaman/${data.id}/1`;
+            });
     });
 </script>
 
