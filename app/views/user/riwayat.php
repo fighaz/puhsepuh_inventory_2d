@@ -1,4 +1,4 @@
-    <h3>Riwayat Peminjaman</h3>
+    <h4 class="fw-bold">RIWAYAT PEMINJAMAN</h4>
     <br>
 
     <div class="search-wrapper d-flex flex-row mb-3">
@@ -130,9 +130,8 @@
       color: #E7AE0E;
     }
 
-    .content h3 {
-      font-size: 30px;
-      color: #E7AE0E;
+    h4 {
+      color: var(--bs-accent);
     }
 
     .content p {

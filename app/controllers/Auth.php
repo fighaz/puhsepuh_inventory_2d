@@ -7,13 +7,13 @@ class Auth extends Controller
     }
     public function login()
     {
+        session_start();
         $username = strip_tags(htmlspecialchars($_POST['username'], ENT_QUOTES));
         $password = strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES));
         $user = $this->model('User')->getUserByUsername($username);
         if ($user && password_verify($password, $user['password'])) {
             // Login successful
 
-            session_start();
             $_SESSION['id_user'] = $user['id'];
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['username'] = $user['username'];
@@ -26,6 +26,7 @@ class Auth extends Controller
             }
             header('Location: ' . BASEURL . '/' . $_SESSION['role']);
         } else {
+            $_SESSION['login_success'] = false;
             header('Location: ' . BASEURL . '/');
         }
     }

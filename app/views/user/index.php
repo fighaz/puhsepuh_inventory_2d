@@ -1,10 +1,11 @@
-<div id="alert" class="<alert alert-danger d-flex justify-content-between" role="alert" style="height: 30px; padding: 0.2rem 1.25rem;">
+<div id="alert" class="alert alert-danger d-flex justify-content-between" role="alert" style="height: 30px; padding: 0.2rem 1.25rem;">
     <div class="message">
       Password belum diganti.
       Mohon untuk segera mengganti password.
     </div>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="max-width: 5px; max-height: 5px; margin-top: 5px;"></button>
 </div>
+<h5 class="fw-bold text-accent" style="margin-left: 10px">BERANDA</h5>
 <div id="welcome" class="title text-accent">
     SELAMAT DATANG
     <span class="nama"> Alim </span>
@@ -60,7 +61,7 @@
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Barang/getAll",
         //data: dataBarang,
-        scrollY: "43vh",
+        scrollY: "40vh",
         scrollX: true,
         dom: "lrtip",
         columns: [
@@ -120,7 +121,7 @@
 
 
     let keranjangTable = new DataTable('#keranjang',{
-        scrollY: "33vh",
+        scrollY: "29vh",
         scrollX: true,
         dom: "t",
         columns: [

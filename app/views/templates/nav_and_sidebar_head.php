@@ -7,10 +7,12 @@
             $('#sidebar .sidebar-item span').toggleClass('expand');
             $('#sidebar').trigger('toggle');
         });
-    });
 
-    $(document).ready(function () {
         $('.sidebar-item.<?= $this->active_sidebar ?>').addClass('active');
+
+        $("#logo").on('click', function () {
+            window.location.href = "<?= BASEURL ?>/<?= $_SESSION['role'] ?>";
+        });
     });
 
 </script>

@@ -89,14 +89,20 @@ class Admin extends Controller
             header('Location: ' . $http_referer);
         }
     }
-    public function detailPeminjaman($id)
+    public function detailPeminjaman($id, $shouldBackReference = 0)
     {
         $data['peminjaman'] = $this->model('Peminjaman')->getDetailPeminjaman($id);
+        if ($shouldBackReference == 1) {
+            $_SESSION['prev_page'] = $_SERVER['HTTP_REFERER'];
+        }
         $this->view('admin/detail_peminjaman', $data);
     }
-    public function ubahPeminjaman($id)
+    public function ubahPeminjaman($id, $shouldBackReference = 0)
     {
         $data['peminjaman'] = $this->model('Peminjaman')->getDetailPeminjaman($id);
+        if ($shouldBackReference == 1) {
+            $_SESSION['prev_page'] = $_SERVER['HTTP_REFERER'];
+        }
         $this->view('admin/ubah_peminjaman', $data);
     }
     public function cari()
@@ -130,6 +136,15 @@ class Admin extends Controller
     {
         $data['detail'] = $this->model('Detail_Peminjaman')->getDetailPeminjaman($id);
         $this->view('admin/rincian_peminjaman', $data);
+    }
+    public function updatePeminjaman()
+    {
+        if ($_POST['id'] > 0) {
+            $this->model('Detail_Peminjaman')->updateDetailPeminjaman(json_decode($_POST['barang'], true), $_POST['id']);
+            header('Location: ' . BASEURL . '/Admin/detailPeminjaman/' . $_POST['id']);
+        } else {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
     }
 }
 ?>

@@ -1,5 +1,4 @@
-
-    <h3>Peminjaman</h3>
+    <h4>RIWAYAT PEMINJAMAN</h4>
     <br>
       <!-- NavTabs -->
         <ul class="nav nav-pills primary nav-fill rounded">
@@ -199,14 +198,39 @@
                 text_tab = text;
             });
 
+        }
+    });
+
+    $(document).ready(function() {
+        let id = "<?=isset($data['id_tab']) ? $data['id_tab'] : "tab0"?>";
+        let text = "<?=isset($data['text_tab']) ? $data['text_tab'] : "Semua"?>";
+        $(".nav .nav-link").removeClass("active");
+        console.log("id_tab: ", id);
+        console.log("text_tab: ", text);
+        if (text == "Semua") {
+            table.search("", false, true).draw();
+        } else {
+            table.search(text, false, true).draw();
+        }
+        $("#"+id).addClass("active");
+        id_tab = id;
+        text_tab = text;
+
+
+
+
+
+
+
+
             table.on('click', 'tbody .alt-button.edit', (event) => {
                 let data = table.row(event.target.closest('tr')).data();
-                window.location.href = "<?=BASEURL?>/Admin/ubahPeminjaman/" + data.id;
+                window.location.href = "<?=BASEURL?>/Admin/ubahPeminjaman/" + data.id + "/1";
             });
 
             table.on('click', 'tbody .alt-button.rincian', (event) => {
                 let data = table.row(event.target.closest('tr')).data();
-                window.location.href = "<?=BASEURL?>/Admin/detailPeminjaman/" + data.id;
+                window.location.href = "<?=BASEURL?>/Admin/detailPeminjaman/" + data.id + "/1";
             });
 
             table.on('click', 'tbody .alt-button.terima', function() {
@@ -236,23 +260,6 @@
                 const encodedTextTab = encodeURIComponent(text_tab);
                 window.location.href = `<?=BASEURL?>/Admin/pinjamSelesai/${data.id}/${encodedIdTab}/${encodedTextTab}`;
             })
-        }
-    });
-
-    $(document).ready(function() {
-        let id = "<?=isset($data['id_tab']) ? $data['id_tab'] : "tab0"?>";
-        let text = "<?=isset($data['text_tab']) ? $data['text_tab'] : "Semua"?>";
-        $(".nav .nav-link").removeClass("active");
-        console.log("id_tab: ", id);
-        console.log("text_tab: ", text);
-        if (text == "Semua") {
-            table.search("", false, true).draw();
-        } else {
-            table.search(text, false, true).draw();
-        }
-        $("#"+id).addClass("active");
-        id_tab = id;
-        text_tab = text;
     });
 
 
@@ -266,6 +273,11 @@
     #content p {
       color: #3C8DBB;
         font-size: 14px;
+    }
+
+    h4 {
+        color: var(--bs-accent);
+        font-weight: 700;
     }
 
 

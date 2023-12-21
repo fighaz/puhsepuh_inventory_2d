@@ -1,4 +1,4 @@
-  <h4 class="fw-bold">Beranda</h4>
+  <h4 class="fw-bold">BERANDA</h4>
   <h3>Selamat Datang
       <span id="nama_user">
           <?=$_SESSION['nama']?>
@@ -30,6 +30,7 @@
 
     let table = new DataTable("#table", {
         ajax: "<?=BASEURL?>/Admin/getPeminjamanToApprove",
+        order: [[0, "desc"]],
         scrollY: "260px",
         scrollX: true,
         dom: "lrtip",
@@ -108,12 +109,12 @@
 
             table.on('click', 'tbody .edit', function() {
                 let data = table.row($(this).parents('tr')).data();
-                window.location.href = `<?=BASEURL?>/Admin/ubahPeminjaman/${data.id_peminjaman}`;
+                window.location.href = `<?=BASEURL?>/Admin/ubahPeminjaman/${data.id_peminjaman}/1`;
             });
 
             table.on('click', 'tbody .rincian', function() {
                 let data = table.row($(this).parents('tr')).data();
-                window.location.href = `<?=BASEURL?>/Admin/detailPeminjaman/${data.id_peminjaman}`;
+                window.location.href = `<?=BASEURL?>/Admin/detailPeminjaman/${data.id_peminjaman}/1`;
             });
         }
     });

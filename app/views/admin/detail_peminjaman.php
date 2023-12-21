@@ -99,7 +99,7 @@
     $('.kembali').click(function() {
         window.location.href = "<?php
             if (isset($_SESSION['prev_page'])) {
-                echo BASEURL . $_SESSION['prev_page'];
+                echo $_SESSION['prev_page'];
             } else {
                 echo BASEURL;
             }

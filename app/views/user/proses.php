@@ -262,6 +262,15 @@
                 $(input).val(1);
             }
         });
+        table.on('change', 'tbody input.jumlah', (ev) => {
+            let input = ev.target;
+            let data = table.row($(input).parents('tr')).data();
+            if ($(input).val() > data.tersedia) {
+                $(input).val(data.tersedia);
+            } else if ($(input).val() < 1) {
+                $(input).val(1);
+            }
+        });
         table.on('change', 'tbody input#tgl_pinjam', (ev) => {
             // limit date of borrowing to not earlier than today
             let $input = $(ev.target);
@@ -413,6 +422,10 @@
         display: grid;
         grid-template-columns: 1fr 4fr;
         gap: 10px;
+    }
+
+    img {
+        object-fit: cover;
     }
 </style>
 
