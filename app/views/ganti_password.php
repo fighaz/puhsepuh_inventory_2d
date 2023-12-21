@@ -21,6 +21,8 @@
         margin-bottom: 0 !important;
     }
   </style>
+
+  
   <div class="container d-flex align-items-center justify-content-center">
     <form action="<?= BASEURL; ?>/UbahPassword/ubah" method="post">
       <div class="form-group">
