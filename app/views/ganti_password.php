@@ -21,6 +21,11 @@
         margin-bottom: 0 !important;
     }
   </style>
+<div class="row">
+    <div class="col-lg-6">
+        <?php Flasher::flash(); ?>
+    </div>
+</div>
   <div class="container d-flex align-items-center justify-content-center">
     <form action="<?= BASEURL; ?>/UbahPassword/ubah" method="post">
       <div class="form-group">
