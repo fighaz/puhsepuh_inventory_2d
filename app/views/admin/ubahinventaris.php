@@ -82,10 +82,14 @@
             </div>
     </form>
     <script>
-        //document.getElementById('gambar').addEventListener('change', function (e) {
-        //    var preview = document.getElementById('preview');
-        //    preview.src = URL.createObjectURL(e.target.files[0]);
-        //});
+        document.getElementById('gambar').addEventListener('change', function (e) {
+            var preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(e.target.files[0]);
+            $("#gambar").css("display", "none");
+            $("#preview").css("display", "block");
+            $(".highlight-text").removeClass('alt-show');
+            $(".btn-close.gambar").css("display", "block");
+        });
 
         $(document).ready(function() {
             $("#gambar").css("display", "none");

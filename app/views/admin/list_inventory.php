@@ -158,30 +158,30 @@
                 table.search(search.val(), false, true).draw();
             });
             
-            table.on('click', 'tbody .icon_info', function () {
-            let data = table.row($(this).parents('tr')).data();
-            $.ajax({
-                url: "<?= BASEURL; ?>/Barang/detail/" + data.id,
-                dataType: "json",
-                success: function (response, status, xhr) {
-                    if (xhr.status != 200) {
-                        return;
+            table.on('click', 'tbody .rincian', function () {
+                let data = table.row($(this).parents('tr')).data();
+                $.ajax({
+                    url: "<?= BASEURL; ?>/Barang/detail/" + data.id,
+                    dataType: "json",
+                    success: function (response, status, xhr) {
+                        if (xhr.status != 200) {
+                            return;
+                        }
+
+                        console.log("", response);
+                        $("#modal-img").attr("src", "<?=BASEURL?>/img/" + response.gambar);
+                        $(".modal-id").text(response.id_barang);
+                        $(".modal-nama").text(response.nama);
+                        $(".modal-qty").text(response.jumlah);
+                        $(".modal-pnggjawab").text(response.maintainer);
+                        $(".modal-asal").text(response.asal);
+                        $(".modal-keterangan").text(response.keterangan);
+
+                        // Tampilkan modal
+                        $("#modal-id").modal('show');
                     }
-
-                    console.log("", response);
-                    $("#modal-img").attr("src", "<?=BASEURL?>/img/" + response.gambar);
-                    $(".modal-id").text(response.id_barang);
-                    $(".modal-nama").text(response.nama);
-                    $(".modal-qty").text(response.jumlah);
-                    $(".modal-pnggjawab").text(response.maintainer);
-                    $(".modal-asal").text(response.asal);
-                    $(".modal-keterangan").text(response.keterangan);
-
-                    // Tampilkan modal
-                    $("#modal-id").modal('show');
-                }
+                });
             });
-        });
 
         }
     });
