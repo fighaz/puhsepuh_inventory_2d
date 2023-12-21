@@ -51,11 +51,11 @@ class User extends Controller
         if ($peminjaman > 0) {
             $this->model('Detail_Peminjaman')->tambahDataPeminjaman($data, $peminjaman);
             $this->model('Keranjang')->hapusDataKeranjangByUserId($_SESSION['id_user']);
-            // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            Flasher::setFlash('berhasil', 'dipinjam', 'success');
             header('Location: ' . BASEURL . '/User');
             exit;
         } else {
-            // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            Flasher::setFlash('gagal', 'dipinjam', 'danger');
             header('Location: ' . BASEURL . '/User');
             exit;
         }
