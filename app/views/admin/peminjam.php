@@ -4,7 +4,7 @@
     </div>
 </div>
 
-    <h3 class="fw-semibold">Daftar Peminjam</h3>
+    <h4 class="fw-bold">DAFTAR PEMINJAM</h4>
 
 <!-- Tombol -->
 <button type="button" class="btn btn-primary tombolTambahDataPeminjam text-white fw-semibold"
@@ -239,7 +239,7 @@
 </script>
 <!-- Style -->
 <style>
-    h3 {
+    h4 {
         color: #E7AE0E;
     }
 

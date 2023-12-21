@@ -1,4 +1,4 @@
-  <h3 class="fw-semibold text-accent">LIST BARANG</h3>
+  <h4 class="fw-semibold text-accent">LIST BARANG</h4>
       <p>Berikut adalah list barang yang ada yang tersedia di inventaris</p>
   <div class="search-wrapper d-flex flex-row">
       <input type="text" class="form-control" id="search" placeholder="Cari barang">
@@ -169,7 +169,7 @@
                     }
 
                     console.log("", response);
-                    $("#modal-img").attr("src", response.gambar);
+                    $("#modal-img").attr("src", "<?=BASEURL?>/img/" + response.gambar);
                     $(".modal-id").text(response.id_barang);
                     $(".modal-nama").text(response.nama);
                     $(".modal-qty").text(response.jumlah);
@@ -202,8 +202,8 @@
     padding: 14px 42px 14px 42px;
   }
 
-  .content h3 {
-    font-size: 30px;
+  #content h4 {
+    font-weight: 700;
     color: #E7AE0E;
   }
 

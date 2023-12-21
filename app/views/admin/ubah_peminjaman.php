@@ -1,4 +1,5 @@
-<form> <!-- action="<?=BASEURL?>/User/tambah" method="post">-->
+<form action="<?=BASEURL?>/Admin/updatePeminjaman" method="post">
+    <input type="hidden" name="id" value="<?=$data['peminjaman']['id']?>">
     <p class="judul fw-semibold">DETAIL PEMINJAMAN</p>
     <table class="info display">
         <tr>
@@ -19,12 +20,12 @@
             <td>Mulai Pinjam</td>
             <td>:</td>
             <td>
-                <input value="<?=$data['peminjaman']['tanggal_peminjaman']?>" class="form-control-sm w-75" type="date">
+                <input value="<?=$data['peminjaman']['tanggal_peminjaman']?>" class="form-control-sm w-75" type="date" disabled>
             </td>
             <td>Sampai</td>
             <td>:</td>
             <td>
-                <input value="<?=$data['peminjaman']['tanggal_pengembalian']?>" class="form-control-sm w-75" type="date">
+                <input value="<?=$data['peminjaman']['tanggal_pengembalian']?>" class="form-control-sm w-75" type="date" disabled>
             </td>
         </tr>
     </table>
@@ -94,7 +95,7 @@
     $('.kembali').click(function() {
         window.location.href = "<?php
             if (isset($_SESSION['prev_page'])) {
-                echo BASEURL . $_SESSION['prev_page'];
+                echo $_SESSION['prev_page'];
             } else {
                 echo BASEURL;
             }
@@ -159,7 +160,7 @@
             },
         ],
         createdRow: function(row, data, dataIndex) {
-            $(row).attr('id', data.id);
+            $(row).attr('id', data.id_barang);
         },
         initComplete: function() {
         }
@@ -182,7 +183,7 @@
         });
     }
 
-    $('.pinjam').on('click', () => {
+    $('button.simpan').on('click', () => {
         let form = $('form');
         let alert_arr = [];
         if ($("input#tgl_pinjam").val() == "") {
@@ -205,15 +206,15 @@
         for (let i = 0; i < data.length; i++) {
             let item = {};
             Object.defineProperty(item, 'id_barang', {
-                value: data[i].id,
+                value: data[i].id_barang,
                 enumerable: true,
             });
             Object.defineProperty(item, 'jumlah', {
-                value: $(`#${data[i].id} input.jumlah`).val(),
+                value: $(`#${data[i].id_barang} input.jumlah`).val(),
                 enumerable: true,
             });
             Object.defineProperty(item, 'catatan', {
-                value: $(`#${data[i].id} textarea.catatan`).val(),
+                value: $(`#${data[i].id_barang} textarea.catatan`).val(),
                 enumerable: true,
             });
             barang.push(item);
@@ -225,6 +226,7 @@
             name: "barang",
             value: JSON.stringify(barang)
         }));
+        //console.log(form.serialize());
         form.submit();
     });
 
@@ -399,6 +401,10 @@
         background-color: var(--background-global);
         padding: 11px !important;
         text-align: left;
+    }
+
+    img {
+        object-fit: cover;
     }
 
 </style>
