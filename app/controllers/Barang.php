@@ -69,11 +69,11 @@ class Barang extends Controller
         $validate = $_POST['tersedia'] <= $_POST['jumlah'];
         if ($validate) {
             if ($this->model('Barang_model')->tambahDataBarang($_POST, $gambar) > 0) {
-                // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
                 header('Location: ' . BASEURL . '/Barang');
                 exit;
             } else {
-                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+                Flasher::setFlash('gagal', 'ditambahkan', 'danger');
                 header('Location: ' . BASEURL . '/Barang');
                 exit;
             }
@@ -111,11 +111,11 @@ class Barang extends Controller
         $validate = $_POST['tersedia'] <= $_POST['jumlah'];
         if ($validate) {
             if ($this->model('Barang_model')->ubahDataBarang($_POST, $gambar) > 0) {
-                // Flasher::setFlash('berhasil', 'diubah', 'success');
+                Flasher::setFlash('berhasil', 'diubah', 'success');
                 header('Location: ' . BASEURL . '/Barang');
                 exit;
             } else {
-                // Flasher::setFlash('gagal', 'diubah', 'danger');
+                Flasher::setFlash('gagal', 'diubah', 'danger');
                 header('Location: ' . BASEURL . '/Barang');
                 exit;
             }
@@ -128,11 +128,11 @@ class Barang extends Controller
     public function hapus($id)
     {
         if ($this->model('Barang_model')->hapusDataBarang($id) > 0) {
-            // Flasher::setFlash('berhasil', 'dihapus', 'success');
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Barang');
             exit;
         } else {
-            // Flasher::setFlash('gagal', 'dihapus', 'danger');
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Barang');
             exit;
         }

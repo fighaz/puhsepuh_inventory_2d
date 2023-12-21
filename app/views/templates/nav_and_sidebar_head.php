@@ -17,7 +17,7 @@
 
 </script>
 
-<style> 
+<style>
     #global-container {
         position: relative;
         display: flex;
@@ -45,7 +45,7 @@
         width: 30px;
         height: 30px;
     }
-    
+
     #logo span {
         font-size: 19px;
         font-weight: 550;
@@ -166,7 +166,9 @@
             </div>
             <div id="user" class="d-flex">
                 <img src="<?= BASEURL ?>/assets/person.svg">
-                <span class="text-white"><?= "  " . $_SESSION['nama'] . "(" . $_SESSION['role'] . ")  " ?></span>
+                <span class="text-white">
+                    <?= "  " . $_SESSION['nama'] . "(" . $_SESSION['role'] . ")  " ?>
+                </span>
                 <span class="separator text-white">|</span>
                 <a href="<?= BASEURL ?>/Auth/logout">
                     Logout
@@ -185,7 +187,7 @@
                 foreach ($this->sidebar as $item) {
                     echo '
                         <li>
-                            <a class="sidebar-item ' . $item['id'] . '" href="' . BASEURL. '/' . $item['url'] . '">
+                            <a class="sidebar-item ' . $item['id'] . '" href="' . BASEURL . '/' . $item['url'] . '">
                                 <span class="shrink">' . $item['title'] . '</span>
                                 <img src="' . BASEURL . '/assets/' . $item['icon'] . '">
                             </a>
@@ -195,4 +197,10 @@
                 ?>
             </ul>
         </div>
+
         <div id="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php Flasher::flash(); ?>
+                </div>
+            </div>
