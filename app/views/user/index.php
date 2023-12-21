@@ -48,6 +48,62 @@
         </div>
     </div>
 </div>
+
+
+  <div class="modal fade" id="modal-id">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <div class="col-10 text-center mx-auto">
+          <h4 class="modal-title">Data Barang</h4>
+        </div>
+        <div class="col-2 text-end">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body d-flex">
+              <table class="table borderless text-primary fw-semibold">
+                  <tbody style="background-color: #EBEFF5;">
+                  <tr>
+                      <th>ID</th>
+                      <td class="modal-id"></td>
+                  </tr>
+                  <tr>
+                      <th>Nama Barang</th>
+                      <td class="modal-nama"></td>
+                  </tr>
+                  <tr>
+                      <th>Kuantitas</th>
+                      <td class="modal-qty"></td>
+                  </tr>
+<!--
+                  <tr>
+                      <th>Penanggung Jawab</th>
+                      <td class="modal-pnggjawab"></td>
+                  </tr>
+-->
+                  <tr>
+                      <th>Asal</th>
+                      <td class="modal-asal"></td>
+                  </tr>
+                  <tr>
+                      <th>Keterangan</th>
+                      <td class="modal-keterangan"></td>
+                  </tr>
+                  </tbody>
+              </table>
+            <div class="d-flex justify-content-end">
+              <img id="modal-img" class="border border-2 border-primary rounded mt-3 me-3" src="<?= BASEURL; ?>/img/<?= $brg['gambar']; ?>" alt="Gambar Barang" style="max-width: 280px; max-height: 200px;">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script>
 
     $(document).ready(() => {
@@ -199,6 +255,31 @@
             });
             $('th.sorting_asc').removeClass('sorting_asc');
         });
+
+        table.on('click', 'tbody .rincian', function () {
+            let data = table.row($(this).parents('tr')).data();
+            $.ajax({
+                url: "<?= BASEURL; ?>/Barang/detail/" + data.id,
+                dataType: "json",
+                success: function (response, status, xhr) {
+                    if (xhr.status != 200) {
+                        return;
+                    }
+
+                    console.log("", response);
+                    $("#modal-img").attr("src", "<?=BASEURL?>/img/" + response.gambar);
+                    $(".modal-id").text(response.id_barang);
+                    $(".modal-nama").text(response.nama);
+                    $(".modal-qty").text(response.jumlah);
+                    //$(".modal-pnggjawab").text(response.maintainer);
+                    $(".modal-asal").text(response.asal);
+                    $(".modal-keterangan").text(response.keterangan);
+
+                    // Tampilkan modal
+                    $("#modal-id").modal('show');
+                }
+            });
+        });
         
     }
 
@@ -271,4 +352,52 @@
     width:  30px;
     height: 30px;
 }
+    /* Style modal */
+    .modal-body {
+      width: 696px;
+      height: 409px; 
+      border-radius: 5px;
+      border: 3px solid #3C8DBB;
+      background: #EBEFF5;
+      margin: 27px 39px 46px 39px;
+    }
+
+    .text {
+        flex: 1;
+        padding: 0 10px;
+    }
+
+    .modal-content {
+        width: 774px; 
+        height: 550px; 
+        border-radius: 5px;
+        border: 3px solid #3C8DBB;
+        background: #EBEFF5;
+        margin: auto; 
+    }
+
+    .modal-header h4 {
+      color: #E7AD0E;
+      font-family: Montserrat;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .borderless th, .borderless td {
+      border: none !important;
+    }
+
+    .modal-content {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .modal {
+      position: fixed;
+    }
+
+    .modal-dialog {
+        max-width: none !important;
+    }
 </style>

@@ -7,7 +7,6 @@ class Auth extends Controller
     }
     public function login()
     {
-        session_start();
         $username = strip_tags(htmlspecialchars($_POST['username'], ENT_QUOTES));
         $password = strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES));
         $user = $this->model('User')->getUserByUsername($username);
@@ -32,7 +31,6 @@ class Auth extends Controller
     }
     public function logout()
     {
-        session_start();
         session_destroy();
         header('Location: ' . BASEURL . '/');
         exit;

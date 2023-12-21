@@ -8,6 +8,7 @@ class App
 
     public function __construct()
     {
+        session_start();
         $url = $this->parseURL();
 
         if (isset($url[0])) {

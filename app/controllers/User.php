@@ -7,7 +7,6 @@ class User extends Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
         if (!isset($_SESSION['role'])) {
             header('Location: ' . BASEURL . '/');
         }

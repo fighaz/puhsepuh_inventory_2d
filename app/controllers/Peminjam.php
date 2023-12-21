@@ -7,7 +7,6 @@ class Peminjam extends Controller
     {
         parent::__construct();
 
-        session_start();
         if (!isset($_SESSION['role'])) {
             header('Location: ' . BASEURL . '/');
         } else if ($_SESSION['role'] != 'Admin') {

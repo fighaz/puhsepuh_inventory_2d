@@ -6,7 +6,6 @@ class Barang extends Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
         if ($_SESSION['role'] == 'Admin') {
             $this->sidebar = $this->sidebar_admin;
         } elseif ($_SESSION['role'] == 'User') {
