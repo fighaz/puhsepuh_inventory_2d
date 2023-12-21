@@ -250,17 +250,19 @@
     // Flasher sweetalert
     <?php
     if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
-        unset($_SESSION['login_success']); 
+        unset($_SESSION['login_success']);
     ?>
-        Swal.fire({
-            title: 'Login Berhasil',
-            text: 'Selamat Datang!',
-            icon: 'success',
-            timer: 2000,
-            timerProgressBar: true,
-        });
+            Swal.fire({
+                title: 'Login Berhasil',
+                text: 'Selamat Datang!',
+                icon: 'success',
+                timer: 2000,
+                timerProgressBar: true,
+            }).then(function () {
+                <?php $_SESSION['login_success'] = false; ?>
+            });
+        </script>
     <?php } ?>
-
 </script>
 <style> 
 .dataTables_paginate {

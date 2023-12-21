@@ -118,30 +118,25 @@
             });
         }
     });
-
+  
+  // Sweet Alert
   <?php
-    if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
-        unset($_SESSION['login_success']); 
-    ?>
-        Swal.fire({
-            title: 'Login Berhasil',
-            text: 'Selamat Datang!',
-            icon: 'success',
-            timer: 2000,
-            timerProgressBar: true,
-        });
-    <?php } ?>
+  if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
+      unset($_SESSION['login_success']);
+  ?>
+          Swal.fire({
+              title: 'Login Berhasil',
+              text: 'Selamat Datang!',
+              icon: 'success',
+              timer: 2000,
+              timerProgressBar: true,
+          }).then(function () {
+              <?php $_SESSION['login_success'] = false; ?>
+          });
+      </script>
+  <?php } ?>
 </script>
 <style>
-  :root {
-    font-family: Montserrat;
-  }
-
-  html,
-  body {
-    background-color: #EBEFF5;
-  }
-
     table {
         color: var(--bs-primary) !important;
     }
@@ -164,30 +159,6 @@
     .search-wrapper {
         margin: 3px 0 21px 0;
     }
-
-
-  /* Table 
-  thead {
-    font-size: 16px;
-    color: #fff;
-    font-weight: normal;
-    text-align: center;
-  }
-
-  thead th {
-    border: 2px solid #fff;
-  }
-
-  tbody {
-    text-align: center;
-  }
-
-  tbody td {
-    border-bottom: 1px solid #3C8DBB;
-  }
-    */
-
-  /* Entries */
   #num-of-entries {
     background-color: var(--background-global);
     color: var(--bs-primary);

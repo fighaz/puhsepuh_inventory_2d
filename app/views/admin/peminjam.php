@@ -206,11 +206,6 @@
                                 location.reload();
                             }
                         })
-                        //table.row.add({
-                        //    id: id_user,
-                        //    nama: nama,
-                        //    username: username,
-                        //}).draw();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire({
@@ -223,20 +218,8 @@
             });
         },
     });
-
-    $(document).ready(() => {
-        //console.log("test");
-        //let modalElement = document.getElementById('formModalPeminjam');
-        //console.log(modalElement);
-        //let $modal = new bootstrap.Modal(modalElement, {
-        //    keyboard: false
-        //});
-        //let modal = bootstrap.Modal.getInstance(modalElement);
-        //console.log(modal);
-        //modal.toggle();
-        //});
-    });
 </script>
+
 <!-- Style -->
 <style>
     h4 {

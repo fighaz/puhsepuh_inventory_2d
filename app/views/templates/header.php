@@ -16,9 +16,7 @@
     <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/tZ1ZqjKw0BOyL8GfZ2mPAmUw/A763lSNtFqIo=" crossorigin="anonymous"></script>-->
     
     <!-- Script sweetalert -->
-    <!-- Include the Bootstrap 4 theme -->
-    <link rel="stylesheet" href="@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </head>
 
