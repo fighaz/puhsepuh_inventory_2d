@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 20, 2023 at 03:00 PM
+-- Generation Time: Dec 21, 2023 at 01:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -59,16 +59,19 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `nama`, `jumlah`, `tersedia`, `kondisi`, `asal`, `keterangan`, `maintainer`, `gambar`) VALUES
-(1, 'Spidol', 100, 31, 'Baik', 2, 'Keterangan1', 'Keterangan1', 'gambar1.jpg'),
-(2, 'Remote AC', 50, 30, 'Rusak', 2, 'Keterangan2', 'Pak Jadi', 'gambar2.jpg'),
-(3, 'Proyektor', 70, 20, 'Baik', 1, 'Keterangan3', 'Keterangan3', 'gambar3.jpg'),
-(4, 'Remote Proyektor', 30, 20, 'Baik', 2, 'Keterangan4', 'Mbak Novi', 'gambar4.jpg'),
-(5, 'Penghapus', 100, 20, 'Rusak', 2, 'Keterangan5', 'Mas Wowon', 'gambar5.jpg'),
-(6, 'Keyboard', 93, 15, 'Baik', 1, 'Keterangan5', 'Mas Wowon', 'gambar6.jpg'),
-(9, 'd', 21, 21, 'Baik', 2, 'sad', 'sad', '65717367d8d94.png'),
-(10, 'sasdj', 12, 11, 'Baik', 2, 'asdsad', 'asdsad', '6572b85b147ea.png'),
-(12, 'sad', 3, 1, 'Baik', 1, 'sdf', 'sdf', '6572c9662b33f.png'),
-(13, '[value-2]', 20, 10, '[value-5]', 2, '[value-7]', '[value-8]', '[value-9]');
+(1, 'Spidol', 100, 31, 'Baik', 2, 'Keterangan1', 'Keterangan1', '65841464e3627.jpg'),
+(2, 'Remote AC', 50, 30, 'Rusak', 2, 'Keterangan2', 'Pak Jadi', '658414aaf14ce.jpg'),
+(3, 'Proyektor', 70, 20, 'Baik', 1, 'Keterangan3', 'Keterangan3', '65841fb291cba.jpg'),
+(4, 'Remote Proyektor', 30, 20, 'Baik', 2, 'Keterangan4', 'Mbak Novi', '65841fc71ae04.jpg'),
+(5, 'Penghapus', 100, 20, 'Rusak', 2, 'Keterangan5', 'Mas Wowon', '65841fdd8c9ff.png'),
+(6, 'Keyboard', 93, 15, 'Baik', 1, 'Keterangan5', 'Mas Wowon', '65841ffd3bcaa.jpg'),
+(14, 'headphone ', 20, 10, 'Baik', 2, 'Keterangan', 'Mas Wowon', '6584204b9d646.jpg'),
+(15, 'Printer', 20, 20, 'Baik', 2, 'Keterangan', 'Mbak Novi', '6584209c46606.jpeg'),
+(16, 'Kabel hdmi', 20, 20, 'Baik', 2, 'Keterangan', 'Mas Wowon', '658420d2db961.jpg'),
+(17, 'Microphone', 30, 30, 'Baik', 2, 'Keterangan', 'Mas Wowon', '6584210d8b596.jpeg'),
+(18, 'Mouse', 100, 100, 'Baik', 2, 'Keterangan', 'Mas Wowon', '658421460adb7.jpg'),
+(19, 'Kabel Olor', 20, 20, 'Baik', 2, 'Keterangan', 'Mas Wowon', '658421833e91d.jpg'),
+(20, 'Speaker', 20, 20, 'Baik', 2, 'Keterangan', 'Mas Wowon', '65842ae45bc54.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,7 +118,11 @@ INSERT INTO `detail_peminjaman` (`id_peminjaman`, `id_barang`, `jumlah`, `ketera
 (35, 2, 5, ''),
 (35, 3, 5, ''),
 (36, 1, 1, ''),
-(36, 2, 5, '');
+(36, 2, 5, ''),
+(37, 2, 10, ''),
+(37, 3, 10, ''),
+(38, 2, 10, ''),
+(38, 3, 10, '');
 
 --
 -- Triggers `detail_peminjaman`
@@ -169,7 +176,8 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id`, `nama`, `keterangan`) VALUES
 (1, 'Hibah', ''),
-(2, 'Pembelian', '');
+(2, 'Pembelian', ''),
+(3, 'Kerja Sama', '');
 
 -- --------------------------------------------------------
 
@@ -188,6 +196,8 @@ CREATE TABLE `keranjang` (
 
 INSERT INTO `keranjang` (`id_user`, `id_barang`) VALUES
 (5, 1),
+(1, 2),
+(1, 3),
 (5, 6);
 
 -- --------------------------------------------------------
@@ -245,7 +255,9 @@ INSERT INTO `peminjaman` (`id`, `id_user`, `status`, `tanggal_peminjaman`, `tang
 (33, 1, 'ditolak', '2023-12-21', '2023-12-21', '2023-12-20 12:20:51'),
 (34, 1, 'selesai', '2023-12-21', '2023-12-23', '2023-12-20 13:14:45'),
 (35, 2, 'selesai', '2023-12-21', '2023-12-21', '2023-12-20 13:56:45'),
-(36, 1, 'ditolak', '2023-12-28', '2023-12-29', '2023-12-20 13:58:39');
+(36, 1, 'ditolak', '2023-12-28', '2023-12-29', '2023-12-20 13:58:39'),
+(37, 10, 'selesai', '2023-12-22', '2023-12-23', '2023-12-21 11:37:29'),
+(38, 10, 'selesai', '2023-12-22', '2023-12-23', '2023-12-21 11:40:09');
 
 --
 -- Triggers `peminjaman`
@@ -320,7 +332,17 @@ INSERT INTO `peminjaman_log` (`log_id`, `activity`, `peminjaman_id`, `id_user`, 
 (25, 'UPDATE', 35, 2, 'dipinjam', '2023-12-21', '2023-12-21', '2023-12-20 13:56:42'),
 (26, 'UPDATE', 35, 2, 'selesai', '2023-12-21', '2023-12-21', '2023-12-20 13:56:45'),
 (27, 'INSERT', 36, 1, 'menunggu_konfirmasi', '2023-12-28', '2023-12-29', '2023-12-20 13:58:30'),
-(28, 'UPDATE', 36, 1, 'ditolak', '2023-12-28', '2023-12-29', '2023-12-20 13:58:39');
+(28, 'UPDATE', 36, 1, 'ditolak', '2023-12-28', '2023-12-29', '2023-12-20 13:58:39'),
+(29, 'INSERT', 37, 10, 'menunggu_konfirmasi', '2023-12-22', '2023-12-23', '2023-12-21 11:33:57'),
+(30, 'UPDATE', 37, 10, 'menunggu_diambil', '2023-12-22', '2023-12-23', '2023-12-21 11:34:27'),
+(31, 'UPDATE', 37, 10, 'menunggu_diambil', '2023-12-22', '2023-12-23', '2023-12-21 11:34:27'),
+(32, 'UPDATE', 37, 10, 'dipinjam', '2023-12-22', '2023-12-23', '2023-12-21 11:37:23'),
+(33, 'UPDATE', 37, 10, 'selesai', '2023-12-22', '2023-12-23', '2023-12-21 11:37:29'),
+(34, 'INSERT', 38, 10, 'menunggu_konfirmasi', '2023-12-22', '2023-12-23', '2023-12-21 11:39:19'),
+(35, 'UPDATE', 38, 10, 'menunggu_diambil', '2023-12-22', '2023-12-23', '2023-12-21 11:39:47'),
+(36, 'UPDATE', 38, 10, 'menunggu_diambil', '2023-12-22', '2023-12-23', '2023-12-21 11:39:47'),
+(37, 'UPDATE', 38, 10, 'dipinjam', '2023-12-22', '2023-12-23', '2023-12-21 11:40:04'),
+(38, 'UPDATE', 38, 10, 'selesai', '2023-12-22', '2023-12-23', '2023-12-21 11:40:09');
 
 -- --------------------------------------------------------
 
@@ -348,7 +370,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `nama`, `notelp`, `email`, `r
 (2, 'user', '$2y$10$pEbmSoC82qRpj5GmEAIWfu9tzaIZ7u4TwcLsKDE29UXexVO77fC0m', 'user', '3225425', 'user', 'User', NULL),
 (5, 'fighaz', '$2y$10$IexOL7vP.f2ZIw2beCf4Tu5JgYuluMZhOz181qJRXeMT2WEa0ouFe', 'fighaz', '492348', 'fighaz', 'User', 1),
 (8, 'sofi', '$2y$10$4Fpsb.bZ3pGCIKYvzwF/6.mr5h74dSCF7hGjzHnUgfsB/Pl.Wb2tS', 'sofi', '', '', 'User', 0),
-(9, 'saya', '$2y$10$voaQFbygV3zNbyl63jnsj.9Op3nDrQ6.tViPC9ooDUN//NoXUgu.a', 'saya', '24442', 'saya', 'User', 0);
+(9, 'saya', '$2y$10$voaQFbygV3zNbyl63jnsj.9Op3nDrQ6.tViPC9ooDUN//NoXUgu.a', 'saya', '24442', 'saya', 'User', 0),
+(10, '2241720026', '$2y$10$cXCU8bk9ZNZn6qGkUDvFweWlisNTjXRKPzLkChEAmwvPlPg5gx67y', 'SOFISUGIHARTO ZAINI', '0812829812', 'gmail.com', 'User', 1);
 
 -- --------------------------------------------------------
 
@@ -357,7 +380,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `nama`, `notelp`, `email`, `r
 --
 DROP TABLE IF EXISTS `all_peminjaman`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_peminjaman`  AS SELECT `p`.`id` AS `id_peminjaman`, `u`.`nama` AS `nama_peminjam`, group_concat(`b`.`nama` separator ', ') AS `nama_barang`, `p`.`status` AS `status`, `p`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `p`.`tanggal_pengembalian` AS `tanggal_pengembalian` FROM (((`users` `u` join `peminjaman` `p` on(`u`.`id` = `p`.`id_user`)) join `detail_peminjaman` `dp` on(`p`.`id` = `dp`.`id_peminjaman`)) join `barang` `b` on(`dp`.`id_barang` = `b`.`id`)) WHERE `u`.`id` = `p`.`id_user` GROUP BY `p`.`id`  ;
 
 --
 -- Indexes for dumped tables
@@ -418,31 +441,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `peminjaman_log`
 --
 ALTER TABLE `peminjaman_log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
