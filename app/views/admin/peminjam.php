@@ -4,26 +4,26 @@
     </div>
 </div>
 
-    <h4 class="fw-bold">DAFTAR PEMINJAM</h4>
+<h4 class="fw-bold">DAFTAR PEMINJAM</h4>
 
 <!-- Tombol -->
-<button type="button" class="btn btn-primary tombolTambahDataPeminjam text-white fw-semibold"
-    data-bs-toggle="modal" data-bs-target="#formModalPeminjam">
+<button type="button" class="btn btn-primary tombolTambahDataPeminjam text-white fw-semibold" data-bs-toggle="modal"
+    data-bs-target="#formModalPeminjam">
     Tambah Data Peminjam
 </button>
 
-  <table class="table rounded" id="table">
+<table class="table rounded" id="table">
     <thead class="rounded-top">
-      <tr class="bg-primary">
-        <th style="border-top-left-radius: 5px;">No</th>
-        <th>Nama</th>
-        <th>Username</th>
-        <th>No Telp</th>
-        <th>Email</th>
-        <th style="border-top-right-radius: 5px; max-width: 200px;">Aksi</th>
-      </tr>
+        <tr class="bg-primary">
+            <th style="border-top-left-radius: 5px;">No</th>
+            <th>Nama</th>
+            <th>Username</th>
+            <th>No Telp</th>
+            <th>Email</th>
+            <th style="border-top-right-radius: 5px; max-width: 200px;">Aksi</th>
+        </tr>
     </thead>
-  </table>
+</table>
 
 
 <!-- Modal Add and Edit -->
@@ -151,7 +151,7 @@
                                     src="<?= BASEURL; ?>/assets/edit.svg" title="ubah" class="alt-button edit"></a>
                             <a href="<?= BASEURL; ?>/Peminjam/hapus/${row.id}"><img
                                     src="<?= BASEURL; ?>/assets/hapus.svg" title="hapus" class="alt-button hapus"
-                                    onclick="return confirm('Apakah Anda yakin untuk menghapus Data Peminjam berikut?');"></a>
+                                   ></a>
                             <a href="<?= BASEURL; ?>/Peminjam/resetPassword/${row.id}"><img
                                     src="<?= BASEURL; ?>/assets/reset.svg" title="reset password" class="alt-button reset"
                                     onclick="return confirm('Apakah Anda yakin untuk mereset Password Peminjam berikut?');"></a>
@@ -176,8 +176,8 @@
                     cancelButtonText: 'Batal',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        document.location.href = "<?=BASEURL?>/Peminjam/hapus/" + data.id;
-                        //console.log("<?=BASEURL?>/Peminjam/hapus/" + data.id);
+                        document.location.href = "<?= BASEURL ?>/Peminjam/hapus/" + data.id;
+                        //console.log("<?= BASEURL ?>/Peminjam/hapus/" + data.id);
                     }
                 })
             });
@@ -269,19 +269,19 @@
         background-color: #3C8DBB !important;
     }
 
-.dataTables_paginate {
-    margin-top: 10px !important;
-}
+    .dataTables_paginate {
+        margin-top: 10px !important;
+    }
 
-.tombolTambahDataPeminjam {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 230px;
-    height: 33px;
-    padding: 2px 5px;
-}
+    .tombolTambahDataPeminjam {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 230px;
+        height: 33px;
+        padding: 2px 5px;
+    }
 
-.td-wrapper {
-    max-height: 40px;
-}
+    .td-wrapper {
+        max-height: 40px;
+    }
 </style>

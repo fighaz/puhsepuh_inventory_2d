@@ -1,30 +1,40 @@
-<form> <!-- action="<?=BASEURL?>/User/tambah" method="post">-->
+<form> <!-- action="<?= BASEURL ?>/User/tambah" method="post">-->
     <p class="judul fw-semibold">DETAIL PEMINJAMAN</p>
     <table class="info display">
         <tr>
             <td>Nama Peminjam</td>
             <td>:</td>
-            <td><?=$data['peminjaman']['nama_user']?></td>
+            <td>
+                <?= $data['peminjaman']['nama_user'] ?>
+            </td>
         </tr>
         <tr>
             <td>NIM/NIP</td>
             <td>:</td>
-            <td><?=$data['peminjaman']['username_user']?></td>
+            <td>
+                <?= $data['peminjaman']['username_user'] ?>
+            </td>
         </tr>
         <tr>
             <td>Mulai Pinjam</td>
             <td>:</td>
-            <td><?=$data['peminjaman']['tanggal_peminjaman']?></td>
+            <td>
+                <?= $data['peminjaman']['tanggal_peminjaman'] ?>
+            </td>
         </tr>
         <tr>
             <td>Sampai</td>
             <td>:</td>
-            <td><?=$data['peminjaman']['tanggal_pengembalian']?></td>
+            <td>
+                <?= $data['peminjaman']['tanggal_pengembalian'] ?>
+            </td>
         </tr>
         <tr>
             <td>Status</td>
             <td>:</td>
-            <td><?=$data['peminjaman']['status']?></td>
+            <td>
+                <?= $data['peminjaman']['status'] ?>
+            </td>
         </tr>
     </table>
 
@@ -45,16 +55,16 @@
         <div>
             <button class="btn kembali" type="button">Kembali</button>
         </div>
-        <div>
-            <?php if ($data['peminjaman']['status'] == "menunggu_konfirmasi" ) { ?>
+        <!-- <div>
+            <?php if ($data['peminjaman']['status'] == "menunggu_konfirmasi") { ?>
                 <button class="btn edit" type="button">Edit</button>
                 <button class="btn tolak" type="button">Tolak</button>
                 <button class="btn terima" type="button">Terima</button>
             <?php } elseif ($data['peminjaman']['status'] == "menunggu_diambil") { ?>
                 <button class="btn edit" type="button">Edit</button>
             <?php } ?>
-        </div>
-<!--
+        </div> -->
+        <!--
         <button class="button kembali" type="button">Kembali</button>
         <button class="tombol pinjam" type="button">Pinjam!</button>
 -->
@@ -62,7 +72,7 @@
 </form>
 <script>
 
-    $("#tgl_pinjam").on("change", function() {
+    $("#tgl_pinjam").on("change", function () {
         let today = new Date();
         let $tgl_pinjam = $('#tgl_pinjam');
         let $tgl_kembali = $('#tgl_kembali');
@@ -79,7 +89,7 @@
         }
     });
 
-    $("#tgl_kembali").on("change", function() {
+    $("#tgl_kembali").on("change", function () {
         let today = new Date();
         let $tgl_pinjam = $('#tgl_pinjam');
         let $tgl_kembali = $('#tgl_kembali');
@@ -96,26 +106,26 @@
         }
     });
 
-    $('.kembali').click(function() {
-        window.location.href = "<?=BASEURL?>/User/peminjaman";
+    $('.kembali').click(function () {
+        window.location.href = "<?= BASEURL ?>/User/peminjaman";
     });
 
     let table = new DataTable('#table', {
-        ajax: '<?=BASEURL?>/User/getDetailBarangFromPeminjaman/' + "<?=$data['peminjaman']['id']?>",
+        ajax: '<?= BASEURL ?>/User/getDetailBarangFromPeminjaman/' + "<?= $data['peminjaman']['id'] ?>",
         scrollY: '235px',
         dom: 't',
         columns: [
             {
-                data: 'gambar_barang', 
+                data: 'gambar_barang',
                 sortable: false,
-                render: function(data, type, row, meta) {
-                    return `<img src="<?=BASEURL?>/img/${data}" alt="Gambar" class="object-fit-cover border rounded" width="98px" height="70px">`;
+                render: function (data, type, row, meta) {
+                    return `<img src="<?= BASEURL ?>/img/${data}" alt="Gambar" class="object-fit-cover border rounded" width="98px" height="70px">`;
                 }
             },
-            { 
-                data: 'nama_barang', 
+            {
+                data: 'nama_barang',
                 sortable: false,
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return `
                         <div class="td-wrapper">
                             <p class="text-primary align-middle">${data}</p>
@@ -124,9 +134,9 @@
                 }
             },
             {
-                data: 'jumlah', 
+                data: 'jumlah',
                 sortable: false,
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return `
                         <div class="td-wrapper">
                             ${data}
@@ -136,9 +146,9 @@
                 }
             },
             {
-                data: 'keterangan', 
+                data: 'keterangan',
                 sortable: false,
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return `
                         <!--<textarea class="catatan form-control-lg" rows="2"></textarea>-->
                         <div class="td-wrapper">
@@ -153,16 +163,16 @@
             //    render: function(data, type, row, meta) {
             //        return `
             //            <div class="td-wrapper">
-            //                <img src="<?=BASEURL?>/assets/hapus.svg" alt="hapus" class="alt-button hapus">
+            //                <img src="<?= BASEURL ?>/assets/hapus.svg" alt="hapus" class="alt-button hapus">
             //            </div>
             //        `;
             //    }
             //},
         ],
-        createdRow: function(row, data, dataIndex) {
+        createdRow: function (row, data, dataIndex) {
             $(row).attr('id', data.id);
         },
-        initComplete: function() {
+        initComplete: function () {
         }
     });
 
@@ -170,12 +180,12 @@
     function getItem(id) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?=BASEURL?>/Barang/detail/" + id,
+                url: "<?= BASEURL ?>/Barang/detail/" + id,
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     resolve(data);
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log("error get item");
                     reject(err);
                 }
@@ -229,7 +239,7 @@
         form.submit();
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         table.on('keyup', 'tbody input.jumlah', (ev) => {
             let input = ev.target;
             let data = table.row($(input).parents('tr')).data();
@@ -256,14 +266,14 @@
             let $row = $button.parents('tr');
             let data = table.row($row).data();
             $.ajax({
-                url: '<?=BASEURL?>/User/removeFromCart/' + $row.attr('id'),
+                url: '<?= BASEURL ?>/User/removeFromCart/' + $row.attr('id'),
                 type: 'GET',
                 dataType: 'json',
-                success: function(_) {
+                success: function (_) {
                     console.log("success");
                     $row.remove().draw();
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log("error");
                     console.log(err);
                 }
@@ -271,16 +281,16 @@
         });
     });
 
-    $(".edit").click(function() {
-        window.location.href = "<?=BASEURL?>/Admin/ubahPeminjaman/<?=$data['peminjaman']['id']?>";
+    $(".edit").click(function () {
+        window.location.href = "<?= BASEURL ?>/Admin/ubahPeminjaman/<?= $data['peminjaman']['id'] ?>";
     });
 
-    $(".terima").click(function() {
-        window.location.href = "<?=BASEURL?>/Admin/approve/<?=$data['peminjaman']['id']?>";
+    $(".terima").click(function () {
+        window.location.href = "<?= BASEURL ?>/Admin/approve/<?= $data['peminjaman']['id'] ?>";
     });
 
-    $(".tolak").click(function() {
-        window.location.href = "<?=BASEURL?>/Admin/tolak/<?=$data['peminjaman']['id']?>";
+    $(".tolak").click(function () {
+        window.location.href = "<?= BASEURL ?>/Admin/tolak/<?= $data['peminjaman']['id'] ?>";
     });
 
 </script>
@@ -386,7 +396,8 @@
     /* Styles for the table */
     .table-primary th {
         background-color: #3C8DBB;
-        color: #fff; ;
+        color: #fff;
+        ;
     }
 
     .dataTables_scrollHead thead th {
@@ -394,7 +405,7 @@
     }
 
     thead th {
-      border: 1px solid #fff;
+        border: 1px solid #fff;
     }
 
     .aksi-page {
@@ -413,4 +424,3 @@
         text-align: left;
     }
 </style>
-

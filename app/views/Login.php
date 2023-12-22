@@ -13,18 +13,18 @@
 </head>
 
 <body>
-<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="container d-flex align-items-center justify-content-center vh-100">
         <form id="login-form" class="w-25" action="<?= BASEURL; ?>/Auth/login" method="post">
             <div class="d-flex justify-content-center mb-3">
                 <img src="assets/jti-logo.png" alt="logo" class="img-fluid">
             </div>
             <div class="form-group">
-                <input type="username" name="username" class="form-control border border-primary shadow-sm border-3" id="username-input"
-                    aria-describedby="usernameHelp" placeholder="Username" required>
+                <input type="username" name="username" class="form-control border border-primary shadow-sm border-3"
+                    id="username-input" aria-describedby="usernameHelp" placeholder="Username" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control border border-primary shadow-sm border-3" id="password-input"
-                    placeholder="Password" required>
+                <input type="password" name="password" class="form-control border border-primary shadow-sm border-3"
+                    id="password-input" placeholder="Password" required>
             </div>
             <div class="d-flex justify-content-end forgot-password">
                 <!--<a href="#" class="text-primary"><small>Lupa Password?</small></a>-->
@@ -33,8 +33,7 @@
         </form>
     </div>
     <script>
-        <?php session_start() ?>
-        if (<?=$_SESSION['login_success'] == false?>) {
+        if (<?= $_SESSION['login_success'] == false ?>) {
             Swal.fire({
                 title: 'Login Gagal',
                 text: 'Silahkan coba lagi',
@@ -42,7 +41,7 @@
                 timer: 2000,
                 timerProgressBar: true,
             });
-            <?php $_SESSION['login_success'] = true?>
+            <?php $_SESSION['login_success'] = true ?>
         }
     </script>
     <style>
@@ -59,7 +58,7 @@
         .forgot-password>a {
             text-decoration: none;
         }
-        
+
         img {
             width: 35%;
             height: 35%;
